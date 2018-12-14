@@ -31,9 +31,7 @@
 
 <h2>1、 (* &hellip; *) ，(** &hellip; **)</h2>
 
-<ul>
-<li>标识注释，(* &hellip; *)  一般用于代码注释，可嵌套。 (** &hellip; **)  一般用于文档注释，例如：</li>
-</ul>
+<p>标识注释，(* &hellip; *)  一般用于代码注释，可嵌套。 (** &hellip; **)  一般用于文档注释，例如：</p>
 
 <pre><code class="language-ocaml"> (** 这里是注释. **)
 val touch : (string * int) list -&gt; string -&gt; (string * int) list
@@ -41,9 +39,7 @@ val touch : (string * int) list -&gt; string -&gt; (string * int) list
 
 <h2>2、 [ &hellip; ]</h2>
 
-<ul>
-<li>生成一个列表（类型）。 使用 ; 分隔符列表元素，例如：</li>
-</ul>
+<p>生成一个列表（类型）。 使用 ; 分隔符列表元素，例如：</p>
 
 <pre><code class="language-ocaml"># let words = [&quot;foo&quot;; &quot;bar&quot;; &quot;baz&quot;];;
 val words : string list = [&quot;foo&quot;; &quot;bar&quot;; &quot;baz&quot;]
@@ -51,9 +47,7 @@ val words : string list = [&quot;foo&quot;; &quot;bar&quot;; &quot;baz&quot;]
 
 <h2>3、 ,</h2>
 
-<ul>
-<li>生成一个元组。但是，元组的类型是通过  *  号来分隔每个元素的，例如：</li>
-</ul>
+<p>生成一个元组。但是，元组的类型是通过  *  号来分隔每个元素的，例如：</p>
 
 <pre><code class="language-ocaml">(* 类型定义 *)
 type name = string * string
@@ -93,10 +87,9 @@ val a : int list = [1; 2; 3]
 
 <h2>8、 &lsquo;</h2>
 
-<ul>
-<li>单引号可以用于标识符。  x&rsquo;  你也可以说变量名 f&rsquo;  和函数名都可以。</li>
-<li>但是， 你不能以 &lsquo;a 的形式定义变量。这被称为类型变量，它用于类型符号。</li>
-</ul>
+<p>单引号可以用于标识符。  x&rsquo;  你也可以说变量名 f&rsquo;  和函数名都可以。</p>
+
+<p>但是， 你不能以 &lsquo;a 的形式定义变量。这被称为类型变量，它用于类型符号。</p>
 
 <h2>9、 |</h2>
 
@@ -107,7 +100,6 @@ type foobar =
     Foo (* 可能是 Foo *) 
   | Bar 
   | Baz 
-
 (* 模式匹配 *) 
 match v with 
 | Foo -&gt; ... 
@@ -128,18 +120,15 @@ match v with
 
 <h2>11、 ()</h2>
 
-<ul>
-<li>括号内没有任何内容。这是一个  unit ，它没有任何称为类型的东西&hellip;&hellip;它在其他语言中是无效的。</li>
+<p>括号内没有任何内容。这是一个  unit ，它没有任何称为类型的东西&hellip;&hellip;它在其他语言中是无效的。</p>
 
-<li><p>() 如果你发现一个指定参数的函数，它是一个不需要任何参数的函数。函数不能在没有参数的情况下调用，因此可以通过指定来调用类型以()开头的 unit - &gt;  函数。例如：</p>
+<p>() 如果你发现一个指定参数的函数，它是一个不需要任何参数的函数。函数不能在没有参数的情况下调用，因此可以通过指定来调用类型以()开头的 unit - &gt;  函数。例如：</p>
 
 <pre><code class="language-ocaml"># Sys.getcwd () ;; (* 获取当前目录 *) 
 -: string = &quot;/Volumes/Users/szktty&quot;
 </code></pre>
 
-<ul>
-<li>入口点是 let () = &hellip; 也是这个符号，这是模式匹配，但不是一个参数。</li>
-</ul>
+<p>入口点是 let () = &hellip; 也是这个符号，这是模式匹配，但不是一个参数。</p>
 
 <h2>12、 ^</h2>
 
@@ -147,73 +136,49 @@ match v with
 
 <pre><code class="language-ocaml"># let name = &quot;hello &quot; ^ &quot;lanqy&quot;;;
 val name : string = &quot;hello lanqy&quot;
-</code></pre></li>
-</ul>
+</code></pre>
 
 <h2>13、 +.  -.  *.  /.</h2>
 
-<ul>
-<li><p>浮点数的加减乘除。例如：
-```ocaml
-(* 相加 *)</p>
+<p>浮点数的加减乘除。例如：</p>
 
-<h1>1.2 +. 1.3;;</h1></li>
+<pre><code class="language-ocaml">(* 相加 *)
+# 1.2 +. 1.3;;
+- : float = 2.5
+(* 相减 *)
+# 1.3 -. 1.2;;
+- : float = 0.10000000000000009
+(* 相乘 *)
+# 3.0 *. 2.0;;
+- : float = 6.
+(* 相除 *)
+# 6.0 /. 2.0;;
+- : float = 3.
+</code></pre>
 
-<li><dl>
-<dd>float = 2.5</dd>
-</dl></li>
-</ul>
+<h2>14、  _</h2>
 
-<p>(* 相减 *)</p>
+<p>这是一个可以用于标识符的符号。在模式匹配中，它被称为通配符，但与其他变量相比，它实际上并没有特殊的功能。  _  即  v  它匹配任何值：</p>
 
-<h1>1.3 -. 1.2;;</h1>
-
-<ul>
-<li>: float = 0.10000000000000009</li>
-</ul>
-
-<p>(* 相乘 *)</p>
-
-<h1>3.0 *. 2.0;;</h1>
-
-<ul>
-<li>: float = 6.</li>
-</ul>
-
-<p>(* 相除 *)</p>
-
-<h1>6.0 /. 2.0;;</h1>
-
-<ul>
-<li><dl>
-<dd><p>float = 3.</p>
-
-<pre><code>
-
-## 14、  _
-
-- 这是一个可以用于标识符的符号。在模式匹配中，它被称为通配符，但与其他变量相比，它实际上并没有特殊的功能。  _  即  v  它匹配任何值：
-```ocmal
-match exp with 
+<pre><code class="language-ocmal">match exp with 
 | 0 -&gt; ... 
 | v -&gt; ... (* 匹配 0 以外的值 *)
-</code></pre></dd>
-</dl></li>
+</code></pre>
 
-<li><p>但是，如果将此符号添加到变量名称（或函数名称）的开头，则该变量将绕过警告。通常情况下，如果您根本没有使用任何已定义的变量，编译器将被警告为未使用的变量，但该检查不会完成，不要写 let _ =  。
-```ocaml
-match exp with
-| 0 -&gt; 0
-| v -&gt; 1 (* w 被警告为未使用的变量，因为 v 未使用 *)</p></li>
-</ul>
+<p>但是，如果将此符号添加到变量名称（或函数名称）的开头，则该变量将绕过警告。通常情况下，如果您根本没有使用任何已定义的变量，编译器将被警告为未使用的变量，但该检查不会完成，不要写 let _ =  。</p>
 
-<p>match exp with
-| 0 -&gt; 0
-| _ -&gt; 1 (* 我不会收到警告 *)</p>
+<pre><code class="language-ocaml">match exp with 
+| 0 -&gt; 0 
+| v -&gt; 1 (* w 被警告为未使用的变量，因为 v 未使用 *) 
 
-<pre><code>- 另外，这不是一个单独的语言规范，也不是强制性的，但作为命名惯例_it有时附加到标识符的末尾（特别是记录字段名称），我们经常看到类似  end_ ,  to_  这样的命名方式，原因很简单，因为有同名的end, to 保留字，与其绞尽脑汁想一个命名，不如直接在单词后面加  _  ?
-```ocaml
-type location = {
+match exp with 
+| 0 -&gt; 0 
+| _ -&gt; 1 (* 我不会收到警告 *)
+</code></pre>
+
+<p>另外，这不是一个单独的语言规范，也不是强制性的，但作为命名惯例<em>it有时附加到标识符的末尾（特别是记录字段名称），我们经常看到类似  end</em> ,  to_  这样的命名方式，原因很简单，因为有同名的end, to 保留字，与其绞尽脑汁想一个命名，不如直接在单词后面加  _  ?</p>
+
+<pre><code class="language-ocaml">type location = {
   start : int;
   end_ : int;
 }
@@ -221,20 +186,17 @@ type location = {
 
 <h2>15、  [| &hellip; |]</h2>
 
-<ul>
-<li><p>用于生成数组的语法（类型）， [&hellip;]  与这个区别是完美的，例如：
-```ocaml</p>
+<p>用于生成数组的语法（类型）， [&hellip;]  与这个区别是完美的，例如：</p>
 
-<h1>[|1; 2; 3|];;</h1></li>
+<pre><code class="language-ocaml"># [|1; 2; 3|];;
+- : int array = [|1; 2; 3|]
+</code></pre>
 
-<li><dl>
-<dd><p>int array = [|1; 2; 3|]</p>
+<h2>16、  :=  &lt;-</h2>
 
-<pre><code>
-## 16、  :=  &lt;- 
--  :=  引用（指针）（赋值（当解引用不提供左值））,  &lt;-  变量赋值或声明（赋值）, 例如：
-```ocaml
-# let y = ref None;;
+<p>:=  引用（指针）（赋值（当解引用不提供左值））,  &lt;-  变量赋值或声明（赋值）, 例如：</p>
+
+<pre><code class="language-ocaml"># let y = ref None;;
 val y : '_a option ref = {contents = None}
 # y;;
 - : '_a option ref = {contents = None}
@@ -245,82 +207,52 @@ val y : '_a option ref = {contents = None}
 # y := None;;
 # y;;
 - : int option ref = {contents = None}
-
-
-
 let s = &quot;hello world&quot;;;
 let s' = s;;
 s.[0] &lt;- 'x';;
 s';;
 - : string = &quot;xello world&quot;
-
-
 (* 数组 *)
 let x = [| 2; 8; 3 |];;
 
 (* 修改数组元素 *)
 x.(1) &lt;- 9;;             (* 设置索引为 1 的元素为 9 *)
-
 x;;
 - : int array = [|2; 9; 3|]
-</code></pre></dd>
-</dl></li>
-</ul>
+</code></pre>
 
 <h2>17、 = &lt;&gt; == !=</h2>
 
-<ul>
-<li><p>=  相等，  &lt;&gt;  不相等( 深层 )， ==  相等，  !=  不相等 ( 浅层次 )，OCaml中有两个相等运算符 = 和 == ，相应的不等式运算符 &lt;&gt; 和 !=。= 和 &lt;&gt; 检查结构相等，而 == 和 != 检查物理相等，例如：
-```ocaml</p>
+<p>=  相等，  &lt;&gt;  不相等( 深层 )， ==  相等，  !=  不相等 ( 浅层次 )，OCaml中有两个相等运算符 = 和 == ，相应的不等式运算符 &lt;&gt; 和 !=。= 和 &lt;&gt; 检查结构相等，而 == 和 != 检查物理相等，例如：</p>
 
-<h1>&ldquo;a&rdquo; == &ldquo;a&rdquo;;;</h1></li>
+<pre><code class="language-ocaml"># &quot;a&quot; == &quot;a&quot;;;
+- : bool = false
+# &quot;a&quot; = &quot;a&quot;;;
+- : bool = true
+# &quot;a&quot; != &quot;a&quot;;;
+- : bool = true
+# &quot;a&quot; &lt;&gt; &quot;a&quot;;;
+- : bool = false
+</code></pre>
 
-<li><dl>
-<dd>bool = false</dd>
-</dl></li>
-</ul>
+<h2>18、  ~</h2>
 
-<h1>&ldquo;a&rdquo; = &ldquo;a&rdquo;;;</h1>
+<p>标签参数中使用的符号，例如：</p>
 
-<ul>
-<li>: bool = true</li>
-</ul>
-
-<h1>&ldquo;a&rdquo; != &ldquo;a&rdquo;;;</h1>
-
-<ul>
-<li>: bool = true</li>
-</ul>
-
-<h1>&ldquo;a&rdquo; &lt;&gt; &ldquo;a&rdquo;;;</h1>
-
-<ul>
-<li><dl>
-<dd><p>bool = false</p>
-
-<pre><code>
-
-## 18、  ~ 
-
-- 标签参数中使用的符号，例如：
-```ocaml
-#let f ~x ~y = x - y;;
+<pre><code class="language-ocaml"># let f ~x ~y = x - y;;
 val f : x:int -&gt; y:int -&gt; int = &lt;fun&gt;
 
-#let x = 3 and y = 2 in f ~x ~y;;
+# let x = 3 and y = 2 in f ~x ~y;;
 - : int = 1
 
-
-#let f ~x:x1 ~y:y1 = x1 - y1;;
+# let f ~x:x1 ~y:y1 = x1 - y1;;
 val f : x:int -&gt; y:int -&gt; int = &lt;fun&gt;
 
-#f ~x:3 ~y:2;;
+# f ~x:3 ~y:2;;
 - : int = 1
-</code></pre></dd>
-</dl></li>
-</ul>
+</code></pre>
 
-<h2>19、  ?</h2>
+<h2>19、 ?</h2>
 
 <p>可选参数 = 用于标记参数的符号，可以省略。例如：</p>
 
@@ -338,10 +270,9 @@ val foo : ?z:int -&gt; int -&gt; int -&gt; bool = &lt;fun&gt;
 
 <h2>20、  `</h2>
 
-<ul>
-<li>表示多态变体的符号。还有其他多态变体符号  [&gt;  和  [&lt;  。</li>
-<li>可以结合 <a href="http://blog.klipse.tech/reason/2018/03/12/blog-reason-types.html">http://blog.klipse.tech/reason/2018/03/12/blog-reason-types.html</a> 这篇文章来理解  [&gt;  和  [&lt; 。</li>
-</ul>
+<p>表示多态变体的符号。还有其他多态变体符号  [&gt;  和  [&lt;  。</p>
+
+<p>可以结合 <a href="http://blog.klipse.tech/reason/2018/03/12/blog-reason-types.html">http://blog.klipse.tech/reason/2018/03/12/blog-reason-types.html</a> 这篇文章来理解  [&gt;  和  [&lt; 。</p>
 
 <pre><code class="language-ocaml">#  type card =  [  `Jorker  |  `Num  of  int  ];;  (* 多态变体类型 *) 
 type card =  [  `Jorker  |  `Num  of  int  ] 
@@ -362,46 +293,40 @@ val get_number: [&gt;  ` Num  of 'a ]  -&gt; ' a =  &lt;fun &gt;
 
 <h2>21、  @@  和   |&gt;</h2>
 
-<ul>
-<li>OCaml 4.01 新添加的两个内置运算符： @@  和  |&gt; ，它们非常简单，你可以在像这样的旧版本中自己定义它们：
-```ocmal
-let (@@) fn x = fn x
-let (|&gt;) x fn = fn x</li>
-</ul>
+<p>OCaml 4.01 新添加的两个内置运算符： @@  和  |&gt; ，它们非常简单，你可以在像这样的旧版本中自己定义它们：</p>
 
-<p>(* 以下这两个是一样的 *)
-print @@ &ldquo;Hello&rdquo;;;
-print &ldquo;Hello&rdquo;;;</p>
+<pre><code class="language-ocmal">let (@@) fn x = fn x
+let (|&gt;) x fn = fn x
+(* 以下这两个是一样的 *)
+print @@ &quot;Hello&quot;;;
+print &quot;Hello&quot;;;
+</code></pre>
 
-<pre><code>
-- 例如，这两行是等价的（我们加载一个文件，将其解析为XML，将生成的文档解析为选择文档，然后执行选择）
-```ocaml
-execute (parse_selections (parse_xml (load_file path)))
+<p>例如，这两行是等价的（我们加载一个文件，将其解析为XML，将生成的文档解析为选择文档，然后执行选择）</p>
+
+<pre><code class="language-ocaml">execute (parse_selections (parse_xml (load_file path)))
 
 execute @@ parse_selections @@ parse_xml @@ load_file path
 </code></pre>
 
 <p>(* 代码来自 <a href="http://roscidus.com/blog/blog/2013/10/13/ocaml-tips/">http://roscidus.com/blog/blog/2013/10/13/ocaml-tips/</a> *)</p>
 
-<ul>
-<li><p>这样做的好处是，当你阅读一个  ( ，你必须沿着括号中的其余行扫描来找到匹配的。当你看到 @@ 时，你知道表达式的其余部分是前一个单一的参数功能。</p></li>
+<p>这样做的好处是，当你阅读一个  ( ，你必须沿着括号中的其余行扫描来找到匹配的。当你看到 @@ 时，你知道表达式的其余部分是前一个单一的参数功能。</p>
 
-<li><p>管道运算符 |&gt; 是相似的，但函数和参数是相反的。以下两行是相同的：
-```ocaml
-execute @@ parse_selections @@ parse_xml @@ load_file path</p></li>
-</ul>
+<p>管道运算符 |&gt; 是相似的，但函数和参数是相反的。以下两行是相同的：</p>
 
-<p>load_file path |&gt; parse_xml |&gt; parse_selections |&gt; execute</p>
+<pre><code class="language-ocaml">execute @@ parse_selections @@ parse_xml @@ load_file path
 
-<pre><code>(* 代码来自 http://roscidus.com/blog/blog/2013/10/13/ocaml-tips/ *)
+load_file path |&gt; parse_xml |&gt; parse_selections |&gt; execute
+</code></pre>
 
+<p>(* 代码来自 <a href="http://roscidus.com/blog/blog/2013/10/13/ocaml-tips/">http://roscidus.com/blog/blog/2013/10/13/ocaml-tips/</a> *)</p>
 
-## 22、  ;; 
+<h2>22、  ;;</h2>
 
-顶层环境的结束符。例如：
+<p>顶层环境的结束符。例如：</p>
 
-```ocaml
-let a = [2;3;4;5];;
+<pre><code class="language-ocaml">let a = [2;3;4;5];;
 val a : int list = [2; 3; 4; 5]
 </code></pre>
 

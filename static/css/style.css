@@ -175,7 +175,7 @@
 
 }
 
-.post-title span{float:right}
+.post-title span{float:right;color:#999}
 
 .post-title: last-child {
 
@@ -1013,7 +1013,8 @@ h6 {
 
 p {
 
-    font-size: 16px
+    font-size: 16px;
+    line-height:38px;
 
 }
 
@@ -1707,7 +1708,7 @@ pre[class*=language-] {
 
     color: #ccc;
 
-    background: none;
+    background: #002b36;
 
     font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
 
@@ -1728,12 +1729,14 @@ pre[class*=language-] {
     -o-tab-size: 4;
 
     tab-size: 4;
+    border-radius:5px;
 
     -webkit-hyphens: none;
 
     -ms-hyphens: none;
 
-    hyphens: none
+    hyphens: none;
+    margin-bottom: 22px;
 
 }
 
@@ -1741,7 +1744,7 @@ pre[class*=language-] {
 
     padding: 1em;
 
-    margin: .5em 0;
+    margin: 22px 0;
 
     overflow: auto
 
@@ -1889,7 +1892,7 @@ pre[class*=language-] {
 
 @media screen and (max-width: 768px) {
 
-    .hide-on-mobile {
+    .hide-on-mobile,.post-title span {
 
         display: none!important
 
