@@ -8,6 +8,16 @@
         <link href="/css/style.css" rel="stylesheet" />
         <script src="/js/prism.js"></script>
         <meta name="description" content="BuckleScript 绑定技巧">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120096920-1');
+        </script>
     </head>
     <body> 
         <header class="header">
@@ -25,9 +35,9 @@
             </div>
         </header>
         <div class="container main"
-        <div class="page-body">
-            <div class="markdown-body">
-                <h1>BuckleScript 绑定技巧</h1>
+            <div class="page-body">
+                <div class="markdown-body">
+                    <h1>BuckleScript 绑定技巧</h1>
 
 <p>译自： <a href="https://jwheatley.co/bucklescript-binding-tips/">https://jwheatley.co/bucklescript-binding-tips/</a></p>
 
@@ -132,8 +142,8 @@ let date2 = Date.make(`String(&quot;1995-12-17T03:24:00&quot;));
 
 <p>你也可以使用 <code>bs.unwrap</code> 来“重载”你的函数类型。</p>
 
+                </div>
             </div>
-        </div>
         </div>
 
         <footer class="container footer">

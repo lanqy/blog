@@ -8,6 +8,16 @@
         <link href="/css/style.css" rel="stylesheet" />
         <script src="/js/prism.js"></script>
         <meta name="description" content="Erlang maps 函数 “简单” 的解释">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120096920-1');
+        </script>
     </head>
     <body> 
         <header class="header">
@@ -25,9 +35,9 @@
             </div>
         </header>
         <div class="container main"
-        <div class="page-body">
-            <div class="markdown-body">
-                <h1>Erlang maps 函数 “简单” 的解释</h1>
+            <div class="page-body">
+                <div class="markdown-body">
+                    <h1>Erlang maps 函数 “简单” 的解释</h1>
 
 <p>译自：<a href="https://qiita.com/kayama0fa/items/b0e60644ed40b318a513">https://qiita.com/kayama0fa/items/b0e60644ed40b318a513</a></p>
 
@@ -176,8 +186,8 @@ WithMap3 = maps:without(WithKeys, WithMap1),
 <pre><code class="language-erlang">{2, M1} = maps:take(b, M2)
 </code></pre>
 
+                </div>
             </div>
-        </div>
         </div>
 
         <footer class="container footer">

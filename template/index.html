@@ -8,6 +8,16 @@
         <link href="/css/style.css" rel="stylesheet" />
         <title>让思绪停留在这里</title>
         <link rel="alternate" href="/atom.xml" type="application/rss+xml" title="让思绪停留在这里"/>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120096920-1');
+        </script>
     </head>
     <body>
         <div>
@@ -28,9 +38,9 @@
                 </header>
             </div>       
             <div class="container main">
-            <div class="post-list">
-                $POST
-            </div>
+                <div class="post-list">
+                    $post
+                </div>
             </div>
             <footer class="container footer">
                 <div class="centered">

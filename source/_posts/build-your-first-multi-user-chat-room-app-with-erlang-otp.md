@@ -1,6 +1,6 @@
 ---
 title: 使用 Erlang / OTP 构建您的第一个多用户聊天室应用程序
-created: 2018-07-13
+created: 2018-07-18
 description: 使用 Erlang / OTP 构建您的第一个多用户聊天室应用程序
 author: lanqy
 ---

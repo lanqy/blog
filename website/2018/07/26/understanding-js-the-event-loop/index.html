@@ -8,6 +8,16 @@
         <link href="/css/style.css" rel="stylesheet" />
         <script src="/js/prism.js"></script>
         <meta name="description" content="理解JS：事件循环">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120096920-1');
+        </script>
     </head>
     <body> 
         <header class="header">
@@ -25,9 +35,9 @@
             </div>
         </header>
         <div class="container main"
-        <div class="page-body">
-            <div class="markdown-body">
-                <h1>理解JS：事件循环</h1>
+            <div class="page-body">
+                <div class="markdown-body">
+                    <h1>理解JS：事件循环</h1>
 
 <p>译自：<a href="https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40">https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40</a></p>
 
@@ -71,8 +81,8 @@ console.log('second')
 
 <p>还有更多的事情在发生，这只是循环和它周围的一切的基本解释。尽管我希望尽可能地保持简单，但如果不深入整个过程，就无法解释事件循环做了什么。需要注意的是，这个解释是在 V8 JavaScript 引擎的上下文中进行的。它是 Chrome 背后的引擎，也用于 Node。</p>
 
+                </div>
             </div>
-        </div>
         </div>
 
         <footer class="container footer">

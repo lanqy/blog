@@ -8,6 +8,16 @@
         <link href="/css/style.css" rel="stylesheet" />
         <script src="/js/prism.js"></script>
         <meta name="description" content="Reason 中的多态性与普通变体">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120096920-1');
+        </script>
     </head>
     <body> 
         <header class="header">
@@ -25,9 +35,9 @@
             </div>
         </header>
         <div class="container main"
-        <div class="page-body">
-            <div class="markdown-body">
-                <h1>Reason 中的多态性与普通变体</h1>
+            <div class="page-body">
+                <div class="markdown-body">
+                    <h1>Reason 中的多态性与普通变体</h1>
 
 <p>译自： <a href="http://blog.klipse.tech/reason/2018/03/12/blog-reason-types.html">http://blog.klipse.tech/reason/2018/03/12/blog-reason-types.html</a></p>
 
@@ -211,8 +221,8 @@ val myThings : [&gt; `Cat | `Dog | `Rose | `Tulip] list = [`Dog; `Cat; `Rose; `T
 
 <p>请务必阅读 Real World Ocaml 的 <a href="https://realworldocaml.org/v1/en/html/variants.html#polymorphic-variants">这一章</a>，深入了解普通和多态变体。在本章最后，他们详细解释了多态变体相对于普通变体的优点和缺点。</p>
 
+                </div>
             </div>
-        </div>
         </div>
 
         <footer class="container footer">

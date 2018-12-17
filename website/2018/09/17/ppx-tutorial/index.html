@@ -8,6 +8,16 @@
         <link href="/css/style.css" rel="stylesheet" />
         <script src="/js/prism.js"></script>
         <meta name="description" content="OCaml -ppx 语言扩展教程">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120096920-1');
+        </script>
     </head>
     <body> 
         <header class="header">
@@ -25,9 +35,9 @@
             </div>
         </header>
         <div class="container main"
-        <div class="page-body">
-            <div class="markdown-body">
-                <h1>OCaml -ppx 语言扩展教程</h1>
+            <div class="page-body">
+                <div class="markdown-body">
+                    <h1>OCaml -ppx 语言扩展教程</h1>
 
 <p>译自：<a href="https://victor.darvariu.me/jekyll/update/2018/06/19/ppx-tutorial.html">https://victor.darvariu.me/jekyll/update/2018/06/19/ppx-tutorial.html</a></p>
 
@@ -211,8 +221,8 @@ let () = register &quot;addone&quot; addone_mapper
 
 <p><a href="https://www.reddit.com/r/ocaml/comments/8sus7f/a_tutorial_to_ocaml_ppx_language_extensions/">这里</a>有关于 OCaml reddit 的帖子的讨论。 OCaml 社区有帮助指出包装部分已经过时。 您可以在 <a href="http://rgrinberg.com/posts/extension-points-3-years-later/">Rudi Grinberg 的教程</a>中查看如何使用 dune / jbuilder（较新的构建工具）设置配置，包括运行测试以将语法树与 diff 工具进行比较的巧妙方法。 他提供了一个可以在<a href="https://github.com/rgrinberg/ppx_getenv2">这里</a>克隆的初学者项目。 有些库已经重新组织，因此您必须更改导入才能使其开箱即用。</p>
 
+                </div>
             </div>
-        </div>
         </div>
 
         <footer class="container footer">

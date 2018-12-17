@@ -8,6 +8,16 @@
         <link href="/css/style.css" rel="stylesheet" />
         <script src="/js/prism.js"></script>
         <meta name="description" content="如何将 BuckleScript / ReasonML 对象绑定到 JavaScript 对象">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120096920-1');
+        </script>
     </head>
     <body> 
         <header class="header">
@@ -25,9 +35,9 @@
             </div>
         </header>
         <div class="container main"
-        <div class="page-body">
-            <div class="markdown-body">
-                <h1>如何将 BuckleScript / ReasonML 对象绑定到 JavaScript 对象。</h1>
+            <div class="page-body">
+                <div class="markdown-body">
+                    <h1>如何将 BuckleScript / ReasonML 对象绑定到 JavaScript 对象。</h1>
 
 <blockquote>
 <p>注1：当我在本文中说 BuckleScript 时，我指的是 OCaml。
@@ -205,8 +215,8 @@ end;;
 
 <p>使用 JavaScript 对象时，可能会试图将其与（Js.t）框一起使用。但是，为了获得 OCaml 类型系统的全部好处，我们宁愿将 Js.t 转换为本地结构。</p>
 
+                </div>
             </div>
-        </div>
         </div>
 
         <footer class="container footer">

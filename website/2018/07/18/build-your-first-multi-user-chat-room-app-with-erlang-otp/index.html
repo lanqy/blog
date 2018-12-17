@@ -8,6 +8,16 @@
         <link href="/css/style.css" rel="stylesheet" />
         <script src="/js/prism.js"></script>
         <meta name="description" content="使用 Erlang / OTP 构建您的第一个多用户聊天室应用程序">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120096920-1');
+        </script>
     </head>
     <body> 
         <header class="header">
@@ -25,9 +35,9 @@
             </div>
         </header>
         <div class="container main"
-        <div class="page-body">
-            <div class="markdown-body">
-                <h1>使用 Erlang / OTP 构建您的第一个多用户聊天室应用程序</h1>
+            <div class="page-body">
+                <div class="markdown-body">
+                    <h1>使用 Erlang / OTP 构建您的第一个多用户聊天室应用程序</h1>
 
 <p>译自：<a href="https://medium.com/@kansi/chatbus-build-your-first-multi-user-chat-room-app-with-erlang-otp-b55f72064901">https://medium.com/@kansi/chatbus-build-your-first-multi-user-chat-room-app-with-erlang-otp-b55f72064901</a></p>
 
@@ -313,8 +323,8 @@ ok = ebus:sub(default, [BusFd]),
 
 <p>总之，使用 Erlang 构建聊天系统非常容易 :)</p>
 
+                </div>
             </div>
-        </div>
         </div>
 
         <footer class="container footer">

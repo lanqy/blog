@@ -8,6 +8,16 @@
         <link href="/css/style.css" rel="stylesheet" />
         <script src="/js/prism.js"></script>
         <meta name="description" content="给 create-react-app 创建的项目，加上热加载功能">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120096920-1');
+        </script>
     </head>
     <body> 
         <header class="header">
@@ -25,9 +35,9 @@
             </div>
         </header>
         <div class="container main"
-        <div class="page-body">
-            <div class="markdown-body">
-                <h1>给 create-react-app 创建的项目，加上热加载功能</h1>
+            <div class="page-body">
+                <div class="markdown-body">
+                    <h1>给 create-react-app 创建的项目，加上热加载功能</h1>
 
 <p>修改index.js文件</p>
 
@@ -53,8 +63,8 @@ if (module.hot) { //热替换代码
 
 <p>来自 ：<a href="https://medium.com/@sheepsteak/adding-hot-module-reloading-to-create-react-app-e053fadf569d#.jn5jammd4">https://medium.com/@sheepsteak/adding-hot-module-reloading-to-create-react-app-e053fadf569d#.jn5jammd4</a></p>
 
+                </div>
             </div>
-        </div>
         </div>
 
         <footer class="container footer">
