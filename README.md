@@ -1,3 +1,3 @@
-# blog
+# Usage
 
-Build based on https://github.com/lanqy/mksite.go
+see ---> https://github.com/lanqy/mksite.go
