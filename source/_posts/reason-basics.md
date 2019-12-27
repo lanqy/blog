@@ -1,6 +1,6 @@
 ---
 title: Reason 基础知识
-created: 2018-05-23
+created: 2018/05/23
 description: Reason 基础知识
 author: lanqy
 ---

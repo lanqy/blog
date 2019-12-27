@@ -1,6 +1,6 @@
 ---
 title: OCaml -ppx 语言扩展教程
-created: 2018-09-17
+created: 2018/09/17
 description: OCaml -ppx 语言扩展教程
 author: lanqy
 ---

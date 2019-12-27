@@ -1,6 +1,6 @@
 ---
 title: Reason 入门手册
-created: 2018-05-30
+created: 2018/05/30
 description: Reason 入门手册
 author: lanqy
 ---

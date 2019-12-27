@@ -1,6 +1,6 @@
 ---
 title: 用 Javascript 编写一个编译器
-created: 2018-05-21
+created: 2018/05/21
 description: 用 Javascript 编写一个编译器
 author: lanqy
 ---

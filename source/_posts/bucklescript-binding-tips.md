@@ -1,6 +1,6 @@
 ---
 title: BuckleScript 绑定技巧
-created: 2018-05-25
+created: 2018/05/25
 description: BuckleScript 绑定技巧
 author: lanqy
 ---

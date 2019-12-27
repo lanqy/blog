@@ -1,6 +1,6 @@
 ---
 title: OCaml 符号
-created: 2018-10-23
+created: 2018/10/23
 description: OCaml 符号
 author: lanqy
 ---
@@ -146,7 +146,7 @@ val name : string = "hello lanqy"
 
 这是一个可以用于标识符的符号。在模式匹配中，它被称为通配符，但与其他变量相比，它实际上并没有特殊的功能。  _  即  v  它匹配任何值：
 
-```ocmal
+```ocaml
 match exp with 
 | 0 -> ... 
 | v -> ... (* 匹配 0 以外的值 *)
@@ -289,7 +289,7 @@ val get_number: [>  ` Num  of 'a ]  -> ' a =  <fun >
 
 OCaml 4.01 新添加的两个内置运算符： @@  和  |> ，它们非常简单，你可以在像这样的旧版本中自己定义它们：
 
-```ocmal
+```ocaml
 let (@@) fn x = fn x
 let (|>) x fn = fn x
 (* 以下这两个是一样的 *)

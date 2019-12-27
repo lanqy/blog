@@ -1,6 +1,6 @@
 ---
 title: Webpack 给初学者
-created: 2018-05-25
+created: 2018/05/25
 description: Webpack 给初学者
 author: lanqy
 ---
@@ -36,7 +36,7 @@ module.exports = {
 
 这个文件告诉webpack我们的应用入口点在哪里，以及在哪个目录输出打包后的代码，通过命令行运行`webpack`,在dist目录下就会生成bundle.js文件。到目前为止，我们到应用是相当无聊的，我是<a href="http://mithril.js.org/" target="_blank">Mithril.js</a>的忠实粉丝,因此我们通过<a href="http://mithril.js.org/" target="_blank">Mithril.js</a>来做一些东西，首先通过npm来安装这个库。
 
-```javascirpt
+```javascript
 $ npm install --save mithril
 ```
 现在打开`src/main.js`输入如下代码：

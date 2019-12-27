@@ -1,6 +1,6 @@
 ---
 title: ReasonML - React 为首要目标
-created: 2018-05-28
+created: 2018/05/28
 description: ReasonML - React 为首要目标
 author: lanqy
 ---

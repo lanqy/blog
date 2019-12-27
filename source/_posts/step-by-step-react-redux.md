@@ -1,6 +1,6 @@
 ---
 title: 一步一步教你创建 react redux 应用
-created: 2018-05-21
+created: 2018/05/21
 description: 一步一步教你创建 react redux 应用
 author: lanqy
 ---
@@ -89,7 +89,7 @@ AddTodo组件
 
  在这个案例中，我们可以通过创建一个JSON对象来描述我们的AddTodo action,JSON如下：
 
-```javascirpt
+```javascript
  {
   type:'ADD_TODO'
   payload:{
@@ -325,7 +325,7 @@ Link组件：
 
 个onClick回调方法，当链接被点击的时候会被调用。
 
-```javascirpt
+```javascript
 const Link = ({active,children,onClick}) = >{
    if(active){
      return <span>{children}</span>

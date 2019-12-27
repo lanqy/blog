@@ -1,10 +1,11 @@
 {
-    "siteName": "让思绪停留在这里",
-    "staticDir": "static",
-    "sourceDir": "source/_posts/*",
-    "targetDir": "website",
-    "pageSize": 30,
-    "templateFile": "template/tpl.html",
-    "indexTemplateFile": "template/index.html",
-    "itemTemplateFile": "template/item.html"
+ "siteName": "让思绪停留在这里",
+ "staticDir": "static",
+ "baseUrl": "https://lanqy.xyz",
+ "sourceDir": "source/_posts/*",
+ "targetDir": "website",
+ "postTemplateFile": "template/post.html",
+ "navTemplateFile": "template/nav.html",
+ "indexTemplateFile": "template/index.html",
+ "itemTemplateFile": "template/item.html"
 }

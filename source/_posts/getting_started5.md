@@ -1,7 +1,7 @@
 ---
 title: OCaml简介第5部分
 description: OCaml简介第5部分
-created: 2018-07-16
+created: 2018/07/16
 author: lanqy
 ---
 

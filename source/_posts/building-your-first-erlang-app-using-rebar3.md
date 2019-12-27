@@ -1,6 +1,6 @@
 ---
 title: 使用 Rebar3 构建您的第一个 Erlang 应用程序
-created: 2018-08-10
+created: 2018/08/10
 description: 使用 Rebar3 构建您的第一个 Erlang 应用程序
 author: lanqy
 ---

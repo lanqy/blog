@@ -1,7 +1,7 @@
 ---
 title: OCaml简介第4部分
 description: OCaml简介第4部分
-created: 2018-07-15
+created: 2018/07/15
 author: lanqy
 ---
 

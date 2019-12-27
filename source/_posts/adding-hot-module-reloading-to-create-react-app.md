@@ -1,6 +1,6 @@
 ---
 title: 给 create-react-app 创建的项目，加上热加载功能
-created: 2018-05-21
+created: 2018/05/21
 description: 给 create-react-app 创建的项目，加上热加载功能
 author: lanqy
 ---

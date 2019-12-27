@@ -1,6 +1,6 @@
 ---
 title: 通过代数数据类型和模式匹配进行语言比较：Koka，Rust，Haxe，Swift，Elm，PureScript，Haskell，OCaml，ReasonML，Kotlin，Scala，Dotty，Ruby，TypeScript
-created: 2018-05-21
+created: 2018/05/21
 description: 通过代数数据类型和模式匹配进行语言比较：Koka，Rust，Haxe，Swift，Elm，PureScript，Haskell，OCaml，ReasonML，Kotlin，Scala，Dotty，Ruby，TypeScript
 author: lanqy
 ---
@@ -66,7 +66,7 @@ type Color = Red | Green | Blue | Rgb { r: Int, g: Int, b: Int }
 
 ### PureScript
 
-```purescript
+```haskell
 data Color = Red | Blue | Green | Rgb{ r :: Int, g :: Int, b :: Int }
 ```
 
@@ -242,7 +242,7 @@ case color of
 
 ### PureScript
 
-```purescript
+```haskell
 case color of
   Red   -> "#FF0000"
   Green -> "#00FF00"

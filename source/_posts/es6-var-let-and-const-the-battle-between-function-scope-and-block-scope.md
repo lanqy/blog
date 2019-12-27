@@ -1,6 +1,6 @@
 ---
 title: ES6：var，let和const - 函数作用域和块范围之间的争斗
-created: 2018-11-21
+created: 2018/11/21
 description: ES6：var，let和const - 函数作用域和块范围之间的争斗TypeScript
 author: lanqy
 ---

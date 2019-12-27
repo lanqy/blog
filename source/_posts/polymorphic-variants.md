@@ -1,6 +1,6 @@
 ---
 title: Reason 中的多态性与普通变体
-created: 2018-05-25
+created: 2018/05/25
 description: Reason 中的多态性与普通变体
 author: lanqy
 ---

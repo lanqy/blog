@@ -1,6 +1,6 @@
 ---
 title: OCaml 符号ReasonML 中的持久性 React Native Apps
-created: 2018-05-28
+created: 2018/05/28
 description: ReasonML 中的持久性 React Native Apps
 author: lanqy
 ---

@@ -1,6 +1,6 @@
 ---
 title: 理解JS：事件循环
-created: 2018-07-26
+created: 2018/07/26
 description: 理解JS：事件循环
 author: lanqy
 ---

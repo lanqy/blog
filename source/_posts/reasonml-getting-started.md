@@ -1,6 +1,6 @@
 ---
 title: ReasonML 入门
-created: 2018-05-28
+created: 2018/05/28
 description: ReasonML 入门
 author: lanqy
 ---

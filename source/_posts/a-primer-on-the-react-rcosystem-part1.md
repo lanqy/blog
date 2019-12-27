@@ -1,6 +1,6 @@
 ---
 title: React 生态系统入门第一部分（共三个部分）
-created: 2016-07-14
+created: 2016/07/14
 description: React 生态系统入门第一部分（共三个部分）
 author: lanqy
 ---

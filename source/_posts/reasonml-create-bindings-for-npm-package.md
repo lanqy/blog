@@ -1,6 +1,6 @@
 ---
 title: ReasonML：为 NPM 包创建绑定
-created: 2018-06-15
+created: 2018/06/15
 description: ReasonML：为 NPM 包创建绑定
 author: lanqy
 ---
@@ -256,7 +256,7 @@ Semver.cmp("1.5.0", "<", "2.3.5");
 
 通过定义第二个参数“<”，作为一个字符串，它使我们有可能犯下以下错误：
 
-```oacml
+```ocaml
 Semver.cmp("1.5.0", "hello", "2.3.5");
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: OCaml简介第2部分
 description: OCaml简介第2部分
-created: 2018-07-13
+created: 2018/07/13
 author: lanqy
 ---
 

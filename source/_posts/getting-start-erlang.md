@@ -1,7 +1,7 @@
 ---
 title: Erlang 入门
 description: Erlang 入门
-created: 2018-07-31
+created: 2018/07/31
 author: lanqy
 ---
 

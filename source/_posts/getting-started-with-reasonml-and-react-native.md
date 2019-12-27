@@ -1,7 +1,7 @@
 ---
 title: 开始使用 ReasonML 和 React Native
 description: 开始使用 ReasonML 和 React Native
-created: 2018-05-30
+created: 2018/05/30
 author: lanqy
 ---
 

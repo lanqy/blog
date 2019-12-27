@@ -1,7 +1,7 @@
 ---
 title: OCaml简介第6部分
 description: OCaml简介第6部分
-created: 2018-07-17
+created: 2018/07/17
 author: lanqy
 ---
 

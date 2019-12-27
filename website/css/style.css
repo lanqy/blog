@@ -157,7 +157,7 @@
 
 .main {
 
-    padding-top: 100px
+    padding-top: 75px
 
 }
 
@@ -373,8 +373,6 @@
 
     margin: 0 auto;
 
-    padding-top: 126px
-
 }
 
 .page-title {
@@ -484,9 +482,6 @@ code: after, code: before {
 }
 
 pre {
-
-    border: 1px solid #eee8d5;
-
     margin-top: 30px;
 
     margin-bottom: 30px;
@@ -499,9 +494,8 @@ pre {
 
     font-weight: 400;
 
-    padding: 20px;
+    padding: 20px 0;
 
-    background: #000
 
 }
 
@@ -1276,13 +1270,6 @@ img {
 
 }
 
-.box,
-
-.nav {
-
-    padding-top: 16px
-
-}
 
 .nav {
 

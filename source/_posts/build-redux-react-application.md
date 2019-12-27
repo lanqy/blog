@@ -1,6 +1,6 @@
 ---
 title: 构建一个基于 Redux 的 react 应用
-created: 2018-05-21
+created: 2018/05/21
 description: 构建一个基于 Redux 的 react 应用
 author: lanqy
 ---

@@ -1,6 +1,6 @@
 ---
 title: Linux 下重新启动 Nginx web 服务器
-created: 2018-05-21
+created: 2018/05/21
 description: Linux 下重新启动 Nginx web 服务器
 author: lanqy
 ---

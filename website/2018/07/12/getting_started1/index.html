@@ -1,395 +1,306 @@
+<!--
+ * @Author: Leland
+ * @Date: 2019-12-27 15:59:00
+ * @Description: Description
+ -->
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-        <title>OCaml简介第1部分</title>
-        <link href="/css/style.css" rel="stylesheet" />
-        <script src="/js/prism.js"></script>
-        <meta name="description" content="OCaml简介第1部分">
 
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120096920-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
+    <title>OCaml简介第1部分</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <meta name="description" content="OCaml简介第1部分">
+  </head>
 
-            gtag('config', 'UA-120096920-1');
-        </script>
-    </head>
-    <body> 
+  <body>
+    <div>
+      <div>
         <header class="header">
-            <div class="container header-wrap">
-                <h1 class="site-name">
-                    <a href="/">
-                        首页
-                    </a>
-                </h1> 
-                <ul class="nav" style="padding-top:0;">
-                    <li class="nav-item">
-                        <a href="/about">关于</a>
-                    </li>
-                </ul>
-            </div>
+          <div class="container header-wrap">
+            <h1 class="site-name">
+              <a href="/">
+                首页
+              </a>
+            </h1>
+            <ul class="nav">
+              <li class="nav-item">
+                <a href="/about">关于</a>
+              </li>
+            </ul>
+          </div>
         </header>
-        <div class="container main"
-            <div class="page-body">
-                <div class="markdown-body">
-                    <h1>OCaml 简介第 1 部分</h1>
-
-<p>译自 : <a href="https://qiita.com/zenwerk/items/3bdf7eef6b7511e11b2c">https://qiita.com/zenwerk/items/3bdf7eef6b7511e11b2c</a></p>
-
-<h2>函数式语言</h2>
-
-<p>函数式语言 =&gt; 执行程序 = 执行表达式</p>
-
-<p>执行表达式 =&gt; 计算表达式（eval）以获得值</p>
-
-<p><img src="./images/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f343432382f65373633373633322d393262342d623736342d623063652d6465366161653933396161342e706e67.png" alt="函数式语言原理图" /></p>
-
-<h2>基本类型</h2>
-
-<h3>整型（int）</h3>
-
-<h4>字首</h4>
-
-<ul>
-<li>二进制 0b</li>
-<li>八进制 Oo</li>
-<li>十六进制 0x</li>
-</ul>
-
-<pre><code class="language-ocaml"># 351;;
-- : int = 351
-# 12345;;
-- : int = 12345
-# 0o523;;
-- : int = 339
-# 0xffff;;
-- : int = 65535
+      </div>
+      <div class="container main">
+        <div class="page-body">
+          <div class="markdown-body">
+            <h1>OCaml 简介第 1 部分</h1>
+            <p>译自 : <a href="https://qiita.com/zenwerk/items/3bdf7eef6b7511e11b2c">https://qiita.com/zenwerk/items/3bdf7eef6b7511e11b2c</a></p>
+            <h2>函数式语言</h2>
+            <p>函数式语言 =&gt; 执行程序 = 执行表达式</p>
+            <p>执行表达式 =&gt; 计算表达式（eval）以获得值</p>
+            <p><img src="./images/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f343432382f65373633373633322d393262342d623736342d623063652d6465366161653933396161342e706e67.png" alt="函数式语言原理图"></p>
+            <h2>基本类型</h2>
+            <h3>整型（int）</h3>
+            <h4>字首</h4>
+            <ul>
+              <li>二进制 0b</li>
+              <li>八进制 Oo</li>
+              <li>十六进制 0x</li>
+            </ul>
+            <pre><code class="language-ocaml"># <span class="token number">351</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">351</span>
+# <span class="token number">12345</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">12345</span>
+# <span class="token number">0o523</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">339</span>
+# <span class="token number">0xffff</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">65535</span>
 </code></pre>
-
-<h3>浮点数（float）</h3>
-
-<pre><code class="language-ocaml"># 3.141;;
-- : float = 3.1415
-# 1.04e10;;
-- : float = 10400000000.
-# 25e-15;;
-- : float = 2.5e-14
+            <h3>浮点数（float）</h3>
+            <pre><code class="language-ocaml"># <span class="token number">3.141</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> float <span class="token operator">=</span> <span class="token number">3.1415</span>
+# <span class="token number">1.04e10</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> float <span class="token operator">=</span> <span class="token number">10400000000.</span>
+# <span class="token number">25e-15</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> float <span class="token operator">=</span> <span class="token number">2.5e-14</span>
 </code></pre>
-
-<h3>字符（char）</h3>
-
-<ul>
-<li>将其用单引号括起来，用单字节字母数字字符（ascii 字符）</li>
-</ul>
-
-<pre><code class="language-ocaml"># 'a';;
-- : char = 'a'
-# '\101';;
-- : char = 'e'
-# '\n';;
-- : char = '\n'
+            <h3>字符（char）</h3>
+            <ul>
+              <li>将其用单引号括起来，用单字节字母数字字符（ascii 字符）</li>
+            </ul>
+            <pre><code class="language-ocaml"># <span class="token string">'a'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> char <span class="token operator">=</span> <span class="token string">'a'</span>
+# <span class="token string">'\101'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> char <span class="token operator">=</span> <span class="token string">'e'</span>
+# <span class="token string">'\n'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> char <span class="token operator">=</span> <span class="token string">'\n'</span>
 </code></pre>
-
-<h3>字符串（string）</h3>
-
-<ul>
-<li>用双引号括起来。</li>
-<li>一个字符串，一个字符可以用[下标]获取。</li>
-</ul>
-
-<pre><code class="language-ocaml"># &quot;string&quot;;;
-- : string = &quot;string&quot;
-# &quot;string&quot;.[0];;
-- : char = 's'
+            <h3>字符串（string）</h3>
+            <ul>
+              <li>用双引号括起来。</li>
+              <li>一个字符串，一个字符可以用[下标]获取。</li>
+            </ul>
+            <pre><code class="language-ocaml"># <span class="token string">"string"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"string"</span>
+# <span class="token string">"string"</span><span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> char <span class="token operator">=</span> <span class="token string">'s'</span>
 </code></pre>
-
-<h3>类型转换</h3>
-
-<ul>
-<li>从 X 类型转换为 Y 类型的函数的命名规则为 Y_of_X。</li>
-</ul>
-
-<pre><code class="language-ocaml"># float_of_int 5;;
-- : float = 5.
-# int_of_float 5.;;
-- : int = 5
-- # string_of_int 123;;
-- : string = &quot;123&quot;
-# int_of_string &quot;123&quot;;;
-- : int = 123
+            <h3>类型转换</h3>
+            <ul>
+              <li>从 X 类型转换为 Y 类型的函数的命名规则为 Y_of_X。</li>
+            </ul>
+            <pre><code class="language-ocaml"># float<span class="token punctuation">_</span>of<span class="token punctuation">_</span>int <span class="token number">5</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> float <span class="token operator">=</span> <span class="token number">5.</span>
+# int<span class="token punctuation">_</span>of<span class="token punctuation">_</span>float <span class="token number">5.</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">5</span>
+<span class="token operator">-</span> # string<span class="token punctuation">_</span>of<span class="token punctuation">_</span>int <span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"123"</span>
+# int<span class="token punctuation">_</span>of<span class="token punctuation">_</span>string <span class="token string">"123"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">123</span>
 </code></pre>
-
-<h3>元组</h3>
-
-<ul>
-<li>(类型名 * 类型名&hellip;)</li>
-</ul>
-
-<pre><code class="language-ocaml"># (1, 2);;
-- : int * int = (1, 2)
-# ('a', 1, &quot;str&quot;, 4.3);;
-- : char * int * string * float = ('a', 1, &quot;str&quot;, 4.3)
-# ((1, 2), ('a', &quot;str&quot;));;
-- : (int * int) * (char * string) = ((1, 2), ('a', &quot;str&quot;))
+            <h3>元组</h3>
+            <ul>
+              <li>(类型名 * 类型名…)</li>
+            </ul>
+            <pre><code class="language-ocaml"># <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">*</span> int <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+# <span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"str"</span><span class="token punctuation">,</span> <span class="token number">4.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> char <span class="token operator">*</span> int <span class="token operator">*</span> string <span class="token operator">*</span> float <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"str"</span><span class="token punctuation">,</span> <span class="token number">4.3</span><span class="token punctuation">)</span>
+# <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">"str"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>int <span class="token operator">*</span> int<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>char <span class="token operator">*</span> string<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">"str"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
-
-<h3>定义变量</h3>
-
-<h4>let 定义（let defenition）</h4>
-
-<ul>
-<li>let 变量名称 = 表达式</li>
-</ul>
-
-<pre><code class="language-ocaml"># let hoge = 1;;
-val hoge : int = 1
+            <h3>定义变量</h3>
+            <h4>let 定义（let defenition）</h4>
+            <ul>
+              <li>let 变量名称 = 表达式</li>
+            </ul>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> hoge <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> hoge <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">1</span>
 </code></pre>
-
-<h4>可以同时定义</h4>
-
-<ul>
-<li>let 变量名称 = 表达式 1 and 表达式 2</li>
-</ul>
-
-<pre><code class="language-ocaml"># let a = 1 and b = 2;;
-val a : int = 1
-val b : int = 2
+            <h4>可以同时定义</h4>
+            <ul>
+              <li>let 变量名称 = 表达式 1 and 表达式 2</li>
+            </ul>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">and</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> a <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">val</span> b <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">2</span>
 </code></pre>
-
-<h3>定义函数</h3>
-
-<h4>let 函数名 参数 = 表达式</h4>
-
-<pre><code class="language-ocaml"># let twice s = s ^ s;;
-val twice : string -&gt; string = &lt;fun&gt;
+            <h3>定义函数</h3>
+            <h4>let 函数名 参数 = 表达式</h4>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> twice s <span class="token operator">=</span> s <span class="token operator">^</span> s<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> twice <span class="token punctuation">:</span> string <span class="token operator">-></span> string <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 </code></pre>
-
-<p>包含参数（）是可选的。</p>
-
-<h4>let 表达式（let expression）</h4>
-
-<ul>
-<li>与 let 定义不同。</li>
-<li>用于在函数中定义临时变量（局部变量）的表达式。</li>
-<li>let 变量名 = 表达式 1 in 表达式 2</li>
-</ul>
-
-<pre><code class="language-ocaml"># let four_times s =
-  let twice = s ^ s in
-  twice ^ twice;;
-val four_times : string -&gt; string = &lt;fun&gt;
+            <p>包含参数（）是可选的。</p>
+            <h4>let 表达式（let expression）</h4>
+            <ul>
+              <li>与 let 定义不同。</li>
+              <li>用于在函数中定义临时变量（局部变量）的表达式。</li>
+              <li>let 变量名 = 表达式 1 in 表达式 2</li>
+            </ul>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> four<span class="token punctuation">_</span>times s <span class="token operator">=</span>
+  <span class="token keyword">let</span> twice <span class="token operator">=</span> s <span class="token operator">^</span> s <span class="token keyword">in</span>
+  twice <span class="token operator">^</span> twice<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> four<span class="token punctuation">_</span>times <span class="token punctuation">:</span> string <span class="token operator">-></span> string <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 </code></pre>
-
-<h3>递归定义</h3>
-
-<h4>用 let rec 定义。</h4>
-
-<ul>
-<li>使用 rec 可以引用函数定义中定义的函数名称。</li>
-</ul>
-
-<p>阶乘的例子:</p>
-
-<pre><code class="language-ocaml"># let rec fact x =
-    if x &lt;= 1 then 1 else x * fact (x - 1);;
-val fact : int -&gt; int = &lt;fun&gt;
-# fact 5;;
-- : int = 120
+            <h3>递归定义</h3>
+            <h4>用 let rec 定义。</h4>
+            <ul>
+              <li>使用 rec 可以引用函数定义中定义的函数名称。</li>
+            </ul>
+            <p>阶乘的例子:</p>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> <span class="token keyword">rec</span> fact x <span class="token operator">=</span>
+    <span class="token keyword">if</span> x <span class="token operator">&lt;=</span> <span class="token number">1</span> <span class="token keyword">then</span> <span class="token number">1</span> <span class="token keyword">else</span> x <span class="token operator">*</span> fact <span class="token punctuation">(</span>x <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> fact <span class="token punctuation">:</span> int <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+# fact <span class="token number">5</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">120</span>
 </code></pre>
+            <h3>相互递归</h3>
+            <ul>
+              <li>
+                <p>两个或多个函数相互调用的样式的递归定义。</p>
+              </li>
+              <li>
+                <p>let rec 函数名称 1 参数 1 = 表达式 1 and 函数名称 2 参数 2 = 表达式 2 and …</p>
+              </li>
+            </ul>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> <span class="token keyword">rec</span> even n <span class="token operator">=</span>
+    <span class="token keyword">match</span> n <span class="token keyword">with</span>
+    <span class="token operator">|</span> <span class="token number">0</span> <span class="token operator">-></span> <span class="token boolean">true</span>
+    <span class="token operator">|</span> x <span class="token operator">-></span> odd <span class="token punctuation">(</span>x<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token operator">and</span> odd n <span class="token operator">=</span>
+    <span class="token keyword">match</span> n <span class="token keyword">with</span>
+    <span class="token operator">|</span> <span class="token number">0</span> <span class="token operator">-></span> <span class="token boolean">false</span>
+    <span class="token operator">|</span> x <span class="token operator">-></span> even <span class="token punctuation">(</span>x<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> even <span class="token punctuation">:</span> int <span class="token operator">-></span> bool <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+<span class="token keyword">val</span> odd <span class="token punctuation">:</span> int <span class="token operator">-></span> bool <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 
-<h3>相互递归</h3>
-
-<ul>
-<li><p>两个或多个函数相互调用的样式的递归定义。</p></li>
-
-<li><p>let rec 函数名称 1 参数 1 = 表达式 1 and 函数名称 2 参数 2 = 表达式 2 and &hellip;</p></li>
-</ul>
-
-<pre><code class="language-ocaml"># let rec even n =
-    match n with
-    | 0 -&gt; true
-    | x -&gt; odd (x-1)
-  and odd n =
-    match n with
-    | 0 -&gt; false
-    | x -&gt; even (x-1);;
-val even : int -&gt; bool = &lt;fun&gt;
-val odd : int -&gt; bool = &lt;fun&gt;
-
-# even 10;;
-- : bool = true
-# even 3;;
-- : bool = false
-# odd 3;;
-- : bool = true
-# odd 10;;
-- : bool = false
+# even <span class="token number">10</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> bool <span class="token operator">=</span> <span class="token boolean">true</span>
+# even <span class="token number">3</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> bool <span class="token operator">=</span> <span class="token boolean">false</span>
+# odd <span class="token number">3</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> bool <span class="token operator">=</span> <span class="token boolean">true</span>
+# odd <span class="token number">10</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> bool <span class="token operator">=</span> <span class="token boolean">false</span>
 </code></pre>
+            <h3>匿名函数</h3>
+            <h4>fun 参数名 = 表达式</h4>
+            <ul>
+              <li>let f 参数 = 表达式 是 let f = fun 参数 = 表达式 的语法糖</li>
+              <li>因为 fun 是尽可能地认识到它是一个函数定义，所以最好在必要时用（）分割它。</li>
+            </ul>
+            <h3>高阶函数</h3>
+            <p>定义一个函数作为参数</p>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> twice f x <span class="token operator">=</span> f <span class="token punctuation">(</span>f x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> twice <span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token type variable">'a</span> <span class="token operator">-></span> <span class="token type variable">'a</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token type variable">'a</span> <span class="token operator">-></span> <span class="token type variable">'a</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+# twice <span class="token punctuation">(</span><span class="token keyword">fun</span> x <span class="token operator">-></span> x <span class="token operator">*</span> x<span class="token punctuation">)</span> <span class="token number">3</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">81</span>
 
-<h3>匿名函数</h3>
-
-<h4>fun 参数名 = 表达式</h4>
-
-<ul>
-<li>let f 参数 = 表达式 是 let f = fun 参数 = 表达式 的语法糖</li>
-<li>因为 fun 是尽可能地认识到它是一个函数定义，所以最好在必要时用（）分割它。</li>
-</ul>
-
-<h3>高阶函数</h3>
-
-<p>定义一个函数作为参数</p>
-
-<pre><code class="language-ocaml"># let twice f x = f (f x);;
-val twice : ('a -&gt; 'a) -&gt; 'a -&gt; 'a = &lt;fun&gt;
-# twice (fun x -&gt; x * x) 3;;
-- : int = 81
-
-# let fourth x =
-    let square y = y * y in
-    twice square x;;
-val fourth : int -&gt; int = &lt;fun&gt;
-# fourth 3;;
-- : int = 81
+# <span class="token keyword">let</span> fourth x <span class="token operator">=</span>
+    <span class="token keyword">let</span> square y <span class="token operator">=</span> y <span class="token operator">*</span> y <span class="token keyword">in</span>
+    twice square x<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> fourth <span class="token punctuation">:</span> int <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+# fourth <span class="token number">3</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">81</span>
 </code></pre>
-
-<h3>柯里化函数</h3>
-
-<pre><code class="language-ocaml"># let concat_curry s1 = fun s2 -&gt; s1 ^ s2 ^ s1;;
-val concat_curry : string -&gt; string -&gt; string = &lt;fun&gt;
-# concat_curry &quot;a&quot;;;  (* 部分適用 *)
-- : string -&gt; string = &lt;fun&gt;
-# (concat_curry &quot;a&quot;) &quot;b&quot;;;
-- : string = &quot;aba&quot;
+            <h3>柯里化函数</h3>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> concat<span class="token punctuation">_</span>curry s1 <span class="token operator">=</span> <span class="token keyword">fun</span> s2 <span class="token operator">-></span> s1 <span class="token operator">^</span> s2 <span class="token operator">^</span> s1<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> concat<span class="token punctuation">_</span>curry <span class="token punctuation">:</span> string <span class="token operator">-></span> string <span class="token operator">-></span> string <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+# concat<span class="token punctuation">_</span>curry <span class="token string">"a"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment">(* 部分適用 *)</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">-></span> string <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+# <span class="token punctuation">(</span>concat<span class="token punctuation">_</span>curry <span class="token string">"a"</span><span class="token punctuation">)</span> <span class="token string">"b"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"aba"</span>
 </code></pre>
-
-<h3>柯里化语法糖</h3>
-
-<p>一下这个定义</p>
-
-<pre><code class="language-ocaml">let concat_curry s1 s2 = s1 ^ s2 ^ s1;;
+            <h3>柯里化语法糖</h3>
+            <p>一下这个定义</p>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> concat<span class="token punctuation">_</span>curry s1 s2 <span class="token operator">=</span> s1 <span class="token operator">^</span> s2 <span class="token operator">^</span> s1<span class="token punctuation">;</span><span class="token punctuation">;</span>
 </code></pre>
-
-<p>与以下相同</p>
-
-<pre><code class="language-ocaml">let concat_curry s1 = fun s2 -&gt; s1 ^ s2 ^ s1;;
+            <p>与以下相同</p>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> concat<span class="token punctuation">_</span>curry s1 <span class="token operator">=</span> <span class="token keyword">fun</span> s2 <span class="token operator">-></span> s1 <span class="token operator">^</span> s2 <span class="token operator">^</span> s1<span class="token punctuation">;</span><span class="token punctuation">;</span>
 </code></pre>
-
-<p>也就是说，当参数排序的时候，以下代码</p>
-
-<pre><code class="language-ocaml"># let fuga x y z = x + y + z;;
-val fuga : int -&gt; int -&gt; int -&gt; int = &lt;fun&gt;
+            <p>也就是说，当参数排序的时候，以下代码</p>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> fuga x y z <span class="token operator">=</span> x <span class="token operator">+</span> y <span class="token operator">+</span> z<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> fuga <span class="token punctuation">:</span> int <span class="token operator">-></span> int <span class="token operator">-></span> int <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 </code></pre>
-
-<p>实际上可以展开为以下代码</p>
-
-<pre><code class="language-ocaml"># let hoge x = fun y -&gt; fun z -&gt; x + y + z;;
-val hoge : int -&gt; int -&gt; int -&gt; int = &lt;fun&gt;
+            <p>实际上可以展开为以下代码</p>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> hoge x <span class="token operator">=</span> <span class="token keyword">fun</span> y <span class="token operator">-></span> <span class="token keyword">fun</span> z <span class="token operator">-></span> x <span class="token operator">+</span> y <span class="token operator">+</span> z<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> hoge <span class="token punctuation">:</span> int <span class="token operator">-></span> int <span class="token operator">-></span> int <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 </code></pre>
-
-<p>函数是左结合，所以可以扩展如下：</p>
-
-<pre><code class="language-ocaml">f x y z =&gt; (((f x) y) z)
+            <p>函数是左结合，所以可以扩展如下：</p>
+            <pre><code class="language-ocaml">f x y z <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>f x<span class="token punctuation">)</span> y<span class="token punctuation">)</span> z<span class="token punctuation">)</span>
 </code></pre>
-
-<p>函数类型构造函数是右结合的</p>
-
-<pre><code class="language-ocaml">int - &gt; int - &gt; int - &gt; int = &lt;fun&gt;
+            <p>函数类型构造函数是右结合的</p>
+            <pre><code class="language-ocaml">int <span class="token operator">-</span> <span class="token operator">></span> int <span class="token operator">-</span> <span class="token operator">></span> int <span class="token operator">-</span> <span class="token operator">></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 解释为
-int - &gt;（int - &gt;（int - &gt; int））= &lt;fun&gt;
+int <span class="token operator">-</span> <span class="token operator">></span>（int <span class="token operator">-</span> <span class="token operator">></span>（int <span class="token operator">-</span> <span class="token operator">></span> int））<span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+</code></pre>
+            <h3>运算符定义</h3>
+            <h4>中缀运算符被定义为柯里化函数。</h4>
+            <pre><code class="language-ocaml"># <span class="token punctuation">(</span><span class="token operator">+</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">-></span> int <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+# <span class="token punctuation">(</span><span class="token operator">+</span><span class="token punctuation">)</span> <span class="token number">1</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">3</span>
+</code></pre>
+            <h4>自己定义操作符时</h4>
+            <h4>前缀运算符</h4>
+            <ul>
+              <li>1、定义为一个参数函数</li>
+            </ul>
+            <h4>中缀运算符</h4>
+            <ul>
+              <li>2、定义为参数（currying）函数</li>
+              <li>请注意，可以用来定义运算符的字符类型是有限的。</li>
+            </ul>
+            <h3>类型推断</h3>
+            <ul>
+              <li>比较运算符（=等）可以使用多种类型，如整数类型和实数类型=&gt;多态（多态）。</li>
+              <li>具有多态性的类型系统被称为多态类型系统。</li>
+            </ul>
+            <h4>类型方案·参数多态性</h4>
+            <ul>
+              <li>一种表示一种类型的外观模式的变量。</li>
+              <li>它表示为’a 或’b。</li>
+            </ul>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> twice f x <span class="token operator">=</span> f <span class="token punctuation">(</span>f x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> twice <span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token type variable">'a</span> <span class="token operator">-></span> <span class="token type variable">'a</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token type variable">'a</span> <span class="token operator">-></span> <span class="token type variable">'a</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+# <span class="token keyword">let</span> first <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token operator">=</span> x<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> first <span class="token punctuation">:</span> <span class="token type variable">'a</span> <span class="token operator">*</span> <span class="token type variable">'b</span> <span class="token operator">-></span> <span class="token type variable">'a</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+</code></pre>
+            <h4>类型变量的泛化</h4>
+            <ul>
+              <li>将类型变量（如’_a）（类型方案，如’a’）泛化的条件之一如下。</li>
+              <li>如果定义右侧的表达式是一个值，则可以概括类型变量</li>
+              <li>作为值处理的事物=&gt;不需要计算的表达式</li>
+              <li>作为一个例子</li>
+              <li>函数声明</li>
+              <li>常量</li>
+              <li>需要计算的表达式不被视为值，因为它们是有价值的。</li>
+            </ul>
+            <pre><code class="language-ocaml">（<span class="token operator">*</span>定义身份函数<span class="token operator">*</span>）
+# <span class="token keyword">let</span> id x <span class="token operator">=</span> x <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> id：<span class="token type variable">'a</span> <span class="token operator">-</span> <span class="token operator">></span><span class="token type variable">'a</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+
+（<span class="token operator">*</span><span class="token type variable">'_a</span>不是一个类型方案
+    因为id是一个值，一些实际的参数是必需的，计算是必要的。
+<span class="token operator">*</span>）
+# <span class="token keyword">let</span> id'<span class="token operator">=</span> id id <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> id<span class="token string">'：'</span><span class="token punctuation">_</span>a <span class="token operator">-</span> <span class="token operator">></span><span class="token type variable">'_a</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+
+（<span class="token operator">*</span>
+    这种类型的方案
+    通过添加参数x，id'变成了函数定义。
+<span class="token operator">*</span>）
+# <span class="token keyword">let</span> id'x <span class="token operator">=</span> id id x <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> id<span class="token string">'：'</span>a <span class="token operator">-</span> <span class="token operator">></span><span class="token type variable">'a</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 </code></pre>
 
-<h3>运算符定义</h3>
-
-<h4>中缀运算符被定义为柯里化函数。</h4>
-
-<pre><code class="language-ocaml"># (+);;
-- : int -&gt; int -&gt; int = &lt;fun&gt;
-# (+) 1 2;;
-- : int = 3
-</code></pre>
-
-<h4>自己定义操作符时</h4>
-
-<h4>前缀运算符</h4>
-
-<ul>
-<li>1、定义为一个参数函数</li>
-</ul>
-
-<h4>中缀运算符</h4>
-
-<ul>
-<li>2、定义为参数（currying）函数</li>
-<li>请注意，可以用来定义运算符的字符类型是有限的。</li>
-</ul>
-
-<h3>类型推断</h3>
-
-<ul>
-<li>比较运算符（=等）可以使用多种类型，如整数类型和实数类型=&gt;多态（多态）。</li>
-<li>具有多态性的类型系统被称为多态类型系统。</li>
-</ul>
-
-<h4>类型方案·参数多态性</h4>
-
-<ul>
-<li>一种表示一种类型的外观模式的变量。</li>
-<li>它表示为&rsquo;a 或&rsquo;b。</li>
-</ul>
-
-<pre><code class="language-ocaml"># let twice f x = f (f x);;
-val twice : ('a -&gt; 'a) -&gt; 'a -&gt; 'a = &lt;fun&gt;
-# let first (x, y) = x;;
-val first : 'a * 'b -&gt; 'a = &lt;fun&gt;
-</code></pre>
-
-<h4>类型变量的泛化</h4>
-
-<ul>
-<li>将类型变量（如&rsquo;_a）（类型方案，如&rsquo;a&rsquo;）泛化的条件之一如下。</li>
-<li>如果定义右侧的表达式是一个值，则可以概括类型变量</li>
-<li>作为值处理的事物=&gt;不需要计算的表达式</li>
-<li>作为一个例子</li>
-<li>函数声明</li>
-<li>常量</li>
-<li>需要计算的表达式不被视为值，因为它们是有价值的。</li>
-</ul>
-
-<pre><code class="language-ocaml">（*定义身份函数*）
-# let id x = x ;;
-val id：'a - &gt;'a = &lt;fun&gt;
-
-（*'_a不是一个类型方案
-    因为id是一个值，一些实际的参数是必需的，计算是必要的。
-*）
-# let id'= id id ;;
-val id'：'_a - &gt;'_a = &lt;fun&gt;
-
-（*
-    这种类型的方案
-    通过添加参数x，id'变成了函数定义。
-*）
-# let id'x = id id x ;;
-val id'：'a - &gt;'a = &lt;fun&gt;
-</code></pre>
-
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </body>
 
-        <footer class="container footer">
-            <div class="centered">
-                <span>2018 ~ </span> 
-                <span>©</span> 
-                <span>
-                    lanqy
-                </span>
-            </div>
-        </footer>
-    </body>
 </html>

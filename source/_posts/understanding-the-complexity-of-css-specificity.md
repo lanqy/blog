@@ -1,6 +1,6 @@
 ---
 title: 理解 CSS 特异性的复杂性
-created: 2018-05-21
+created: 2018/05/21
 description: 理解 CSS 特异性的复杂性
 author: lanqy
 ---

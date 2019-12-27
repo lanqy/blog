@@ -1,6 +1,6 @@
 ---
 title: OCaml 操作符备忘单
-created: 2018-09-17
+created: 2018/09/17
 description: OCaml 操作符备忘单
 author: lanqy
 ---
