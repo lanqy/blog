@@ -221,7 +221,7 @@ let make = (~dispatch, ~counterState, _children) => {
 
 正如您所看到的，这些更改非常小，我所做的只是创建一个具有子状态并集的父组件，并让它负责更新该新状态。我们也只是改变原始组件中的一些函数调用来使用新的调度函数，我们是金色的。
 
-![示例演示截图](1__kAXzPNzq0y1fSyyOjOzOA.gif)
+![示例演示截图](/images/1__kAXzPNzq0y1fSyyOjOzOA.gif)
 
 管用!
 
