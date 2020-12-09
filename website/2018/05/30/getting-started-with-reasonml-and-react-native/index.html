@@ -47,7 +47,7 @@
             <pre><code class="language-ocaml">npm i <span class="token operator">-</span>g react<span class="token operator">-</span>native<span class="token operator">-</span>cli
 </code></pre>
             <p>现在我们可以初始化一个新的 React Native 项目，就像我们对每个 React Native 应用程序所做的一样：</p>
-            <pre><code class="language-ocaml">react<span class="token operator">-</span>native init MyReasonApp
+            <pre><code class="language-ocaml">react<span class="token operator">-</span>native init <span class="token module variable">MyReasonApp</span>
 </code></pre>
             <h2>添加 “ Reason 部分”</h2>
             <p>我们将需要 3 个包：</p>
@@ -84,17 +84,17 @@
             <p>首先是 <a href="https://bucklescript.github.io/docs/en/build-configuration.html#sources"><code>&quot;subdirs&quot;: true</code></a>，使得 BuckleScript 知道它应该检查应该编译的代码的子目录。</p>
             <p>另一个是 <a href="https://bucklescript.github.io/docs/en/build-configuration.html#package-specs"><code>&quot;in-source&quot;: true</code></a> ，这个非常方便，与源文件一起生成输出（默认情况下，它们输出到 <code>lib/js</code> 目录下）。当我们引用 <code>.js</code> 文件或资源文件时，这非常有用。</p>
             <p>没有它，要导入一个图像，你会参考它：</p>
-            <pre><code class="language-ocaml"><span class="token operator">&lt;</span>Image
-  style<span class="token operator">=</span>Styles<span class="token punctuation">.</span>icon
+            <pre><code class="language-ocaml"><span class="token operator">&lt;</span><span class="token module variable">Image</span>
+  style<span class="token operator">=</span><span class="token module variable">Styles</span><span class="token punctuation">.</span>icon
   source<span class="token operator">=</span><span class="token punctuation">(</span>
-    Required<span class="token punctuation">(</span>Packager<span class="token punctuation">.</span>require<span class="token punctuation">(</span><span class="token string">"../../../assets/right.png"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token module variable">Required</span><span class="token punctuation">(</span><span class="token module variable">Packager</span><span class="token punctuation">.</span>require<span class="token punctuation">(</span><span class="token string">"../../../assets/right.png"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
   <span class="token punctuation">)</span>
 <span class="token operator">/></span>
 </code></pre>
             <p>使用 <code>&quot;in-source&quot;: true</code> ，它会看起来像：</p>
-            <pre><code class="language-ocaml"><span class="token operator">&lt;</span>Image
-  style<span class="token operator">=</span>Styles<span class="token punctuation">.</span>icon
-  source<span class="token operator">=</span><span class="token punctuation">(</span>Required<span class="token punctuation">(</span>Packager<span class="token punctuation">.</span>require<span class="token punctuation">(</span><span class="token string">"./assets/right.png"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <pre><code class="language-ocaml"><span class="token operator">&lt;</span><span class="token module variable">Image</span>
+  style<span class="token operator">=</span><span class="token module variable">Styles</span><span class="token punctuation">.</span>icon
+  source<span class="token operator">=</span><span class="token punctuation">(</span><span class="token module variable">Required</span><span class="token punctuation">(</span><span class="token module variable">Packager</span><span class="token punctuation">.</span>require<span class="token punctuation">(</span><span class="token string">"./assets/right.png"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token operator">/></span>
 </code></pre>
             <p>我更喜欢后者，因此我启用了该选项。</p>
@@ -102,49 +102,49 @@
             <p>我们完成了配置，回顾一下，我们添加了三个软件包：<code>bs-platform</code>，<code>reason-react</code> 和 <code>bs-react-native</code>。然后我们添加了 <code>BuckleScript</code> 的配置文件 <code>bsconfig.json</code>，就是这样！ 🎉</p>
             <p>现在我们来写一些 Reason 吧！</p>
             <p>正如我们之前在 <code>bsconfig.json</code> 中定义的，我们将把所有的 ReasonML 代码保存在 <code>src</code> 目录中。在新创建的 <code>src</code> 目录中（在我们项目的根目录中），让我们添加<code>App.re</code> ，它可能看起来像这样：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">open</span> BsReactNative<span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">open</span> <span class="token module variable">BsReactNative</span><span class="token punctuation">;</span>
 
 <span class="token operator">/*</span> 这里我们定义一些样式 <span class="token operator">*/</span>
-<span class="token keyword">module</span> Styles <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token keyword">open</span> Style<span class="token punctuation">;</span>
+<span class="token keyword">module</span> <span class="token module variable">Styles</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">open</span> <span class="token module variable">Style</span><span class="token punctuation">;</span>
 
     <span class="token keyword">let</span> container <span class="token operator">=</span> 
         style<span class="token punctuation">(</span><span class="token punctuation">[</span>
             flex<span class="token punctuation">(</span><span class="token number">1.</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            justifyContent<span class="token punctuation">(</span>Center<span class="token punctuation">)</span><span class="token punctuation">,</span>
-            alignItems<span class="token punctuation">(</span>Center<span class="token punctuation">)</span><span class="token punctuation">,</span>
-            backgroundColor<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token string">"tomato"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            justifyContent<span class="token punctuation">(</span><span class="token module variable">Center</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            alignItems<span class="token punctuation">(</span><span class="token module variable">Center</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            backgroundColor<span class="token punctuation">(</span><span class="token module variable">String</span><span class="token punctuation">(</span><span class="token string">"tomato"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">let</span> text <span class="token operator">=</span> style<span class="token punctuation">(</span><span class="token punctuation">[</span>color<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token string">"#fff"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fontSize<span class="token punctuation">(</span>Float<span class="token punctuation">(</span><span class="token number">24.</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> text <span class="token operator">=</span> style<span class="token punctuation">(</span><span class="token punctuation">[</span>color<span class="token punctuation">(</span><span class="token module variable">String</span><span class="token punctuation">(</span><span class="token string">"#fff"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fontSize<span class="token punctuation">(</span><span class="token module variable">Float</span><span class="token punctuation">(</span><span class="token number">24.</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">module</span> Main <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"Main"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">module</span> <span class="token module variable">Main</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"Main"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">_</span>children <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> make <span class="token operator">=</span> _children <span class="token operator">=></span> <span class="token punctuation">{</span>
         <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
-        render<span class="token punctuation">:</span> <span class="token punctuation">_</span>self <span class="token operator">=></span>
-            <span class="token operator">&lt;</span>View style<span class="token operator">=</span>Styles<span class="token punctuation">.</span>container<span class="token operator">></span>
-                <span class="token operator">&lt;</span>Text style<span class="token operator">=</span>Styles<span class="token punctuation">.</span>text<span class="token operator">></span>
-                    <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Let's play with ReasonML!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token operator">&lt;/</span>Text<span class="token operator">></span>
-            <span class="token operator">&lt;/</span>View<span class="token operator">></span><span class="token punctuation">,</span>
+        render<span class="token punctuation">:</span> _self <span class="token operator">=></span>
+            <span class="token operator">&lt;</span><span class="token module variable">View</span> style<span class="token operator">=</span><span class="token module variable">Styles</span><span class="token punctuation">.</span>container<span class="token operator">></span>
+                <span class="token operator">&lt;</span><span class="token module variable">Text</span> style<span class="token operator">=</span><span class="token module variable">Styles</span><span class="token punctuation">.</span>text<span class="token operator">></span>
+                    <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Let's play with ReasonML!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token operator">&lt;/</span><span class="token module variable">Text</span><span class="token operator">></span>
+            <span class="token operator">&lt;/</span><span class="token module variable">View</span><span class="token operator">></span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> app <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>Main <span class="token operator">/></span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> app <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span><span class="token module variable">Main</span> <span class="token operator">/></span><span class="token punctuation">;</span>
 </code></pre>
             <p>我还从项目的根目录中删除了 <code>App.js</code>（这是由 React Native CLI 生成的文件）。</p>
             <p>我们需要做的最后一件事是将我们编译好的 <code>App</code> 导入到 <code>index.js</code> 中：</p>
-            <pre><code class="language-ocaml">import <span class="token punctuation">{</span> AppRegistry <span class="token punctuation">}</span> from <span class="token type variable">'react</span><span class="token operator">-</span>native'<span class="token punctuation">;</span>
-import <span class="token punctuation">{</span> app <span class="token punctuation">}</span> from <span class="token type variable">'</span><span class="token punctuation">.</span><span class="token operator">/</span>src<span class="token operator">/</span>App'<span class="token punctuation">;</span>
+            <pre><code class="language-ocaml">import <span class="token punctuation">{</span> <span class="token module variable">AppRegistry</span> <span class="token punctuation">}</span> from <span class="token type_variable function">'react</span><span class="token operator">-</span>native'<span class="token punctuation">;</span>
+import <span class="token punctuation">{</span> app <span class="token punctuation">}</span> from '<span class="token punctuation">.</span><span class="token operator">/</span>src<span class="token operator">/</span><span class="token module variable">App</span>'<span class="token punctuation">;</span>
 
 <span class="token operator">/*</span>
  如果 <span class="token string">"in-source"</span> 选项为 <span class="token boolean">false</span> <span class="token punctuation">(</span>默认为 <span class="token boolean">false</span> <span class="token punctuation">)</span>，您将以这种方式导入app<span class="token punctuation">:</span>
  import <span class="token punctuation">{</span> app <span class="token punctuation">}</span> from <span class="token string">"./lib/js/src/App.js"</span><span class="token punctuation">;</span>
 <span class="token operator">*/</span>
 
-AppRegistry<span class="token punctuation">.</span>registerComponent<span class="token punctuation">(</span><span class="token type variable">'MyReasonApp</span><span class="token type variable">'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> app<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token module variable">AppRegistry</span><span class="token punctuation">.</span>registerComponent<span class="token punctuation">(</span><span class="token type_variable function">'MyReasonApp</span>'<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> app<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>最后，我们可以通过运行来编译代码:</p>
             <pre><code class="language-ocaml">npm run watch

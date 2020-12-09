@@ -39,7 +39,8 @@
             <h1>用 Javascript 编写一个编译器</h1>
             <p>译自： <a href="https://medium.com/@kosamari/how-to-be-a-compiler-make-a-compiler-with-javascript-4a8a13d473b4#.evrubxdub">https://medium.com/@kosamari/how-to-be-a-compiler-make-a-compiler-with-javascript-4a8a13d473b4#.evrubxdub</a></p>
             <p>在布鲁克林 布什威克的一个美好的星期天，我在本地书店发现了一本John Maeda写的“数字设计”的书，这本书里一步一步的教DBN编程语言–一种90年代末在麻省理工学院媒体实验室诞生的语言，旨在以可视化的方式介绍计算机编程概念。
-              <img src="/images/dbn.png" /></p>
+              <img src="/images/dbn.png" />
+            </p>
             <p>DNB 代码示例 来自 <a href="http://dbn.media.mit.edu/introduction.html">http://dbn.media.mit.edu/introduction.html</a></p>
             <p>我迫切地想让SVG来实现DBN并运行它在浏览器在2016年将是一个有趣的项目,而不是安装Java环境执行原始DBN源代码。</p>
             <p>我想我需要些一个DBN到SVG的编译器，所以编写一个编译器的任务已经开始。 “写一个编译器”听起来像很多计算机科学…但我从来没有接触过这方面，我可以写一个编译器吗？</p>
@@ -76,18 +77,18 @@ Line <span class="token number">0</span> <span class="token number">50</span> <s
             <h4>1.Lexer方法</h4>
             <p>正如我们可以将英语句子“I have a pen”分割为[I，have，a，pen]，词法分析器将一个代码字符串拆分成小的有意义的块（token）。 在DBN中，每个token由空格分隔，并分类为“word”或“number”。</p>
             <pre><code class="language-js"><span class="token keyword">function</span> <span class="token function">lexer</span> <span class="token punctuation">(</span><span class="token parameter">code</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> code<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex">/\s+/</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> code<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\s+</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span>
           <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">t</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> t<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
           <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">t</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> <span class="token function">isNaN</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
-                    <span class="token operator">?</span> <span class="token punctuation">{</span>type<span class="token punctuation">:</span> <span class="token string">'word'</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> t<span class="token punctuation">}</span>
-                    <span class="token punctuation">:</span> <span class="token punctuation">{</span>type<span class="token punctuation">:</span> <span class="token string">'number'</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> t<span class="token punctuation">}</span>
+                    <span class="token operator">?</span> <span class="token punctuation">{</span>type<span class="token operator">:</span> <span class="token string">'word'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> t<span class="token punctuation">}</span>
+                    <span class="token operator">:</span> <span class="token punctuation">{</span>type<span class="token operator">:</span> <span class="token string">'number'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> t<span class="token punctuation">}</span>
           <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>
-            <pre><code class="language-js">输入<span class="token punctuation">:</span> <span class="token string">"Paper 100"</span>
-输出<span class="token punctuation">:</span><span class="token punctuation">[</span>
-  <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">"word"</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">"Paper"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">"number"</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token number">100</span> <span class="token punctuation">}</span>
+            <pre><code class="language-js">输入<span class="token operator">:</span> <span class="token string">"Paper 100"</span>
+输出<span class="token operator">:</span><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"word"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">"Paper"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"number"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span>
 <span class="token punctuation">]</span>
 </code></pre>
             <h4>2.Parser方法</h4>
@@ -95,8 +96,8 @@ Line <span class="token number">0</span> <span class="token number">50</span> <s
               在我们的代码中，有2种语法类型“NumberLiteral”和“CallExpression”。 NumberLiteral表示该值是一个数字。 它用作CallExpression的参数。</p>
             <pre><code class="language-js"><span class="token keyword">function</span> <span class="token function">parser</span> <span class="token punctuation">(</span><span class="token parameter">tokens</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">var</span> <span class="token constant">AST</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
-    type<span class="token punctuation">:</span> <span class="token string">'Drawing'</span><span class="token punctuation">,</span>
-    body<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    type<span class="token operator">:</span> <span class="token string">'Drawing'</span><span class="token punctuation">,</span>
+    body<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
   <span class="token comment">// extract a token at a time as current_token. Loop until we are out of tokens.</span>
   <span class="token keyword">while</span> <span class="token punctuation">(</span>tokens<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -105,27 +106,27 @@ Line <span class="token number">0</span> <span class="token number">50</span> <s
     <span class="token comment">// Since number token does not do anything by it self, we only analyze syntax when we find a word.</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>current_token<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'word'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">switch</span> <span class="token punctuation">(</span>current_token<span class="token punctuation">.</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">case</span> <span class="token string">'Paper'</span> <span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'Paper'</span> <span class="token operator">:</span>
           <span class="token keyword">var</span> expression <span class="token operator">=</span> <span class="token punctuation">{</span>
-            type<span class="token punctuation">:</span> <span class="token string">'CallExpression'</span><span class="token punctuation">,</span>
-            name<span class="token punctuation">:</span> <span class="token string">'Paper'</span><span class="token punctuation">,</span>
-            arguments<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+            type<span class="token operator">:</span> <span class="token string">'CallExpression'</span><span class="token punctuation">,</span>
+            name<span class="token operator">:</span> <span class="token string">'Paper'</span><span class="token punctuation">,</span>
+            arguments<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
           <span class="token punctuation">}</span>
           <span class="token comment">// if current token is CallExpression of type Paper, next token should be color argument</span>
           <span class="token keyword">var</span> argument <span class="token operator">=</span> tokens<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
           <span class="token keyword">if</span><span class="token punctuation">(</span>argument<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'number'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             expression<span class="token punctuation">.</span>arguments<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>  <span class="token comment">// add argument information to expression object</span>
-              type<span class="token punctuation">:</span> <span class="token string">'NumberLiteral'</span><span class="token punctuation">,</span>
-              value<span class="token punctuation">:</span> argument<span class="token punctuation">.</span>value
+              type<span class="token operator">:</span> <span class="token string">'NumberLiteral'</span><span class="token punctuation">,</span>
+              value<span class="token operator">:</span> argument<span class="token punctuation">.</span>value
             <span class="token punctuation">}</span><span class="token punctuation">)</span>
             <span class="token constant">AST</span><span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>expression<span class="token punctuation">)</span>    <span class="token comment">// push the expression object to body of our AST</span>
           <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token string">'Paper command must be followed by a number.'</span>
           <span class="token punctuation">}</span>
           <span class="token keyword">break</span>
-        <span class="token keyword">case</span> <span class="token string">'Pen'</span> <span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'Pen'</span> <span class="token operator">:</span>
           <span class="token operator">...</span>
-        <span class="token keyword">case</span> <span class="token string">'Line'</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'Line'</span><span class="token operator">:</span>
           <span class="token operator">...</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
@@ -133,15 +134,15 @@ Line <span class="token number">0</span> <span class="token number">50</span> <s
   <span class="token keyword">return</span> <span class="token constant">AST</span>
 <span class="token punctuation">}</span>
 </code></pre>
-            <pre><code class="language-js">输入<span class="token punctuation">:</span> <span class="token punctuation">[</span>
-  <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">"word"</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">"Paper"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">"number"</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token number">100</span> <span class="token punctuation">}</span>
+            <pre><code class="language-js">输入<span class="token operator">:</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"word"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">"Paper"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"number"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span>
 <span class="token punctuation">]</span>
-输出<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-  <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"Drawing"</span><span class="token punctuation">,</span>
-  <span class="token string">"body"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
-    <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"CallExpression"</span><span class="token punctuation">,</span>
-    <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"Paper"</span><span class="token punctuation">,</span>
-    <span class="token string">"arguments"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"NumberLiteral"</span><span class="token punctuation">,</span> <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token string">"100"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
+输出<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"type"</span><span class="token operator">:</span> <span class="token string">"Drawing"</span><span class="token punctuation">,</span>
+  <span class="token string">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token string">"type"</span><span class="token operator">:</span> <span class="token string">"CallExpression"</span><span class="token punctuation">,</span>
+    <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"Paper"</span><span class="token punctuation">,</span>
+    <span class="token string">"arguments"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token string">"type"</span><span class="token operator">:</span> <span class="token string">"NumberLiteral"</span><span class="token punctuation">,</span> <span class="token string">"value"</span><span class="token operator">:</span> <span class="token string">"100"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -150,12 +151,12 @@ Line <span class="token number">0</span> <span class="token number">50</span> <s
               例如。 “纸张”是一个只存在于DBN范例中的概念。 在SVG中，我们可以使用<rect>元素来表示一个Paper。 变换函数将AST转换为另一个支持SVG的AST。</p>
             <pre><code class="language-js"><span class="token keyword">function</span> <span class="token function">transformer</span> <span class="token punctuation">(</span><span class="token parameter">ast</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">var</span> svg_ast <span class="token operator">=</span> <span class="token punctuation">{</span>
-    tag <span class="token punctuation">:</span> <span class="token string">'svg'</span><span class="token punctuation">,</span>
-    attr<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-      width<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> height<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> viewBox<span class="token punctuation">:</span> <span class="token string">'0 0 100 100'</span><span class="token punctuation">,</span>
-      xmlns<span class="token punctuation">:</span> <span class="token string">'http://www.w3.org/2000/svg'</span><span class="token punctuation">,</span> version<span class="token punctuation">:</span> <span class="token string">'1.1'</span>
+    tag <span class="token operator">:</span> <span class="token string">'svg'</span><span class="token punctuation">,</span>
+    attr<span class="token operator">:</span> <span class="token punctuation">{</span>
+      width<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span> height<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span> viewBox<span class="token operator">:</span> <span class="token string">'0 0 100 100'</span><span class="token punctuation">,</span>
+      xmlns<span class="token operator">:</span> <span class="token string">'http://www.w3.org/2000/svg'</span><span class="token punctuation">,</span> version<span class="token operator">:</span> <span class="token string">'1.1'</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    body<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+    body<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
 
   <span class="token keyword">var</span> pen_color <span class="token operator">=</span> <span class="token number">100</span> <span class="token comment">// default pen color is black</span>
@@ -164,52 +165,52 @@ Line <span class="token number">0</span> <span class="token number">50</span> <s
   <span class="token keyword">while</span> <span class="token punctuation">(</span>ast<span class="token punctuation">.</span>body<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> node <span class="token operator">=</span> ast<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token keyword">switch</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">case</span> <span class="token string">'Paper'</span> <span class="token punctuation">:</span>
+      <span class="token keyword">case</span> <span class="token string">'Paper'</span> <span class="token operator">:</span>
         <span class="token keyword">var</span> paper_color <span class="token operator">=</span> <span class="token number">100</span> <span class="token operator">-</span> node<span class="token punctuation">.</span>arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value
         svg_ast<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token comment">// add rect element information to svg_ast's body</span>
-          tag <span class="token punctuation">:</span> <span class="token string">'rect'</span><span class="token punctuation">,</span>
-          attr <span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            x<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-            width<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> height<span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">,</span>
-            fill<span class="token punctuation">:</span> <span class="token string">'rgb('</span> <span class="token operator">+</span> paper_color <span class="token operator">+</span> <span class="token string">'%,'</span> <span class="token operator">+</span> paper_color <span class="token operator">+</span> <span class="token string">'%,'</span> <span class="token operator">+</span> paper_color <span class="token operator">+</span> <span class="token string">'%)'</span>
+          tag <span class="token operator">:</span> <span class="token string">'rect'</span><span class="token punctuation">,</span>
+          attr <span class="token operator">:</span> <span class="token punctuation">{</span>
+            x<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            width<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span> height<span class="token operator">:</span><span class="token number">100</span><span class="token punctuation">,</span>
+            fill<span class="token operator">:</span> <span class="token string">'rgb('</span> <span class="token operator">+</span> paper_color <span class="token operator">+</span> <span class="token string">'%,'</span> <span class="token operator">+</span> paper_color <span class="token operator">+</span> <span class="token string">'%,'</span> <span class="token operator">+</span> paper_color <span class="token operator">+</span> <span class="token string">'%)'</span>
           <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token keyword">break</span>
-      <span class="token keyword">case</span> <span class="token string">'Pen'</span><span class="token punctuation">:</span>
+      <span class="token keyword">case</span> <span class="token string">'Pen'</span><span class="token operator">:</span>
         pen_color <span class="token operator">=</span> <span class="token number">100</span> <span class="token operator">-</span> node<span class="token punctuation">.</span>arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value <span class="token comment">// keep current pen color in `pen_color` variable</span>
         <span class="token keyword">break</span>
-      <span class="token keyword">case</span> <span class="token string">'Line'</span><span class="token punctuation">:</span>
+      <span class="token keyword">case</span> <span class="token string">'Line'</span><span class="token operator">:</span>
         <span class="token operator">...</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> svg_ast
  <span class="token punctuation">}</span>
 </code></pre>
-            <pre><code class="language-js">输入<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-  <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"Drawing"</span><span class="token punctuation">,</span>
-  <span class="token string">"body"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
-    <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"CallExpression"</span><span class="token punctuation">,</span>
-    <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"Paper"</span><span class="token punctuation">,</span>
-    <span class="token string">"arguments"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"NumberLiteral"</span><span class="token punctuation">,</span> <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token string">"100"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
+            <pre><code class="language-js">输入<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"type"</span><span class="token operator">:</span> <span class="token string">"Drawing"</span><span class="token punctuation">,</span>
+  <span class="token string">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token string">"type"</span><span class="token operator">:</span> <span class="token string">"CallExpression"</span><span class="token punctuation">,</span>
+    <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"Paper"</span><span class="token punctuation">,</span>
+    <span class="token string">"arguments"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token string">"type"</span><span class="token operator">:</span> <span class="token string">"NumberLiteral"</span><span class="token punctuation">,</span> <span class="token string">"value"</span><span class="token operator">:</span> <span class="token string">"100"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
-输出<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-  <span class="token string">"tag"</span><span class="token punctuation">:</span> <span class="token string">"svg"</span><span class="token punctuation">,</span>
-  <span class="token string">"attr"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    <span class="token string">"width"</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-    <span class="token string">"height"</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-    <span class="token string">"viewBox"</span><span class="token punctuation">:</span> <span class="token string">"0 0 100 100"</span><span class="token punctuation">,</span>
-    <span class="token string">"xmlns"</span><span class="token punctuation">:</span> <span class="token string">"http://www.w3.org/2000/svg"</span><span class="token punctuation">,</span>
-    <span class="token string">"version"</span><span class="token punctuation">:</span> <span class="token string">"1.1"</span>
+输出<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"tag"</span><span class="token operator">:</span> <span class="token string">"svg"</span><span class="token punctuation">,</span>
+  <span class="token string">"attr"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"width"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token string">"height"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token string">"viewBox"</span><span class="token operator">:</span> <span class="token string">"0 0 100 100"</span><span class="token punctuation">,</span>
+    <span class="token string">"xmlns"</span><span class="token operator">:</span> <span class="token string">"http://www.w3.org/2000/svg"</span><span class="token punctuation">,</span>
+    <span class="token string">"version"</span><span class="token operator">:</span> <span class="token string">"1.1"</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token string">"body"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
-    <span class="token string">"tag"</span><span class="token punctuation">:</span> <span class="token string">"rect"</span><span class="token punctuation">,</span>
-    <span class="token string">"attr"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
-      <span class="token string">"x"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-      <span class="token string">"y"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-      <span class="token string">"width"</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-      <span class="token string">"height"</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-      <span class="token string">"fill"</span><span class="token punctuation">:</span> <span class="token string">"rgb(0%, 0%, 0%)"</span>
+  <span class="token string">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token string">"tag"</span><span class="token operator">:</span> <span class="token string">"rect"</span><span class="token punctuation">,</span>
+    <span class="token string">"attr"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"x"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token string">"y"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token string">"width"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+      <span class="token string">"height"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+      <span class="token string">"fill"</span><span class="token operator">:</span> <span class="token string">"rgb(0%, 0%, 0%)"</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
@@ -238,27 +239,27 @@ Line <span class="token number">0</span> <span class="token number">50</span> <s
   <span class="token keyword">return</span> <span class="token string">'&lt;svg '</span><span class="token operator">+</span> svg_attr <span class="token operator">+</span><span class="token string">'>\n'</span> <span class="token operator">+</span> elements <span class="token operator">+</span> <span class="token string">'\n&lt;/svg>'</span>
 <span class="token punctuation">}</span>
 </code></pre>
-            <pre><code class="language-js">输入<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-  <span class="token string">"tag"</span><span class="token punctuation">:</span> <span class="token string">"svg"</span><span class="token punctuation">,</span>
-  <span class="token string">"attr"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    <span class="token string">"width"</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-    <span class="token string">"height"</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-    <span class="token string">"viewBox"</span><span class="token punctuation">:</span> <span class="token string">"0 0 100 100"</span><span class="token punctuation">,</span>
-    <span class="token string">"xmlns"</span><span class="token punctuation">:</span> <span class="token string">"http://www.w3.org/2000/svg"</span><span class="token punctuation">,</span>
-    <span class="token string">"version"</span><span class="token punctuation">:</span> <span class="token string">"1.1"</span>
+            <pre><code class="language-js">输入<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"tag"</span><span class="token operator">:</span> <span class="token string">"svg"</span><span class="token punctuation">,</span>
+  <span class="token string">"attr"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"width"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token string">"height"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token string">"viewBox"</span><span class="token operator">:</span> <span class="token string">"0 0 100 100"</span><span class="token punctuation">,</span>
+    <span class="token string">"xmlns"</span><span class="token operator">:</span> <span class="token string">"http://www.w3.org/2000/svg"</span><span class="token punctuation">,</span>
+    <span class="token string">"version"</span><span class="token operator">:</span> <span class="token string">"1.1"</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token string">"body"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
-    <span class="token string">"tag"</span><span class="token punctuation">:</span> <span class="token string">"rect"</span><span class="token punctuation">,</span>
-    <span class="token string">"attr"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
-      <span class="token string">"x"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-      <span class="token string">"y"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-      <span class="token string">"width"</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-      <span class="token string">"height"</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-      <span class="token string">"fill"</span><span class="token punctuation">:</span> <span class="token string">"rgb(0%, 0%, 0%)"</span>
+  <span class="token string">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token string">"tag"</span><span class="token operator">:</span> <span class="token string">"rect"</span><span class="token punctuation">,</span>
+    <span class="token string">"attr"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"x"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token string">"y"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token string">"width"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+      <span class="token string">"height"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+      <span class="token string">"fill"</span><span class="token operator">:</span> <span class="token string">"rgb(0%, 0%, 0%)"</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
-输出<span class="token punctuation">:</span>
+输出<span class="token operator">:</span>
 <span class="token operator">&lt;</span>svg width<span class="token operator">=</span><span class="token string">"100"</span> height<span class="token operator">=</span><span class="token string">"100"</span> viewBox<span class="token operator">=</span><span class="token string">"0 0 100 100"</span> version<span class="token operator">=</span><span class="token string">"1.1"</span> xmlns<span class="token operator">=</span><span class="token string">"http://www.w3.org/2000/svg"</span><span class="token operator">></span>
   <span class="token operator">&lt;</span>rect x<span class="token operator">=</span><span class="token string">"0"</span> y<span class="token operator">=</span><span class="token string">"0"</span> width<span class="token operator">=</span><span class="token string">"100"</span> height<span class="token operator">=</span><span class="token string">"100"</span> fill<span class="token operator">=</span><span class="token string">"rgb(0%, 0%, 0%)"</span><span class="token operator">></span>
   <span class="token operator">&lt;</span><span class="token operator">/</span>rect<span class="token operator">></span>
@@ -302,7 +303,8 @@ document<span class="token punctuation">.</span>body<span class="token punctuati
             <p>任何事情都是有可能的，这里有人使用<a href="http://www.emojicode.org/">Emoji（表情符号代码）</a>和<a href="http://www.dangermouse.net/esoteric/piet.html">彩色图像（Piet编程语言）</a>开发变成语言。</p>
             <h2>学习编写编译器中学到了什么？</h2>
             <p>编译器很有趣，但最重要的是，它教会了我很多关于软件开发。 这里有几个我在学习编译器时学到的东西。
-              <img src="/images/1-AREFc7UVIAu_YIgk46EwaA.png" /></p>
+              <img src="/images/1-AREFc7UVIAu_YIgk46EwaA.png" />
+            </p>
             <p>我怎么想象自己做一个编译器</p>
             <h4>1.不熟悉的东西没关系</h4>
             <p>就像我们的词法分析程序,你不需要一开始就知道它。如果你不真正理解一段代码或技术,可以直接说“这我知道”，并且继续下一个步骤。不要有压力,最终你会知道。</p>

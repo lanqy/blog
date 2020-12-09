@@ -39,7 +39,8 @@
             <h1>一步一步教你创建 react redux 应用</h1>
             <p>Redux 已经成为构建React应用的标配，有大量的实例展示它是怎样做到的，但是react-Redux 应用有很多部分，例如：“Reducers”, “Actions”, “Action Creators”, “State”, “Middleware” 等等)，这些都具有颠覆性的。</p>
             <p>当我开始学习它的时候，我找不到任何资料说明“构建react-Redux应用的时候，应该先构建哪个部分”或者一般怎样构建react－redux应用，因此我通过几个实例和文章来教你怎样一步步构建react－redux应用。
-              <br /></p>
+              <br />
+            </p>
             <p>注：我通过“模拟”以保持较高水平和不至于太杂乱。我将使用经典的<a href="https://github.com/reactjs/redux/tree/master/examples/todos">Todo list app</a>作为基础来创建任何react应用。如果你的应用有多个（screens）界面，只需要重复这个步骤到你到界面中即可。</p>
             <h3>为什么要用Redux?</h3>
             <p>React—一个JS库，帮助我们将我们的应用拆分为多个组件，但是没有具体说明如何保持数据（<code>state</code>）的轨迹以及如何正常处理我们的所有事件（<code>Actions</code>）。</p>
@@ -86,11 +87,11 @@
               1.AddTodo组件允许我们创建一个新的Todo项目通过监听DOM事件和从输入框获取数据。这个事件映射到JSON对象，我们称之为Action。</p>
             <p>在这个案例中，我们可以通过创建一个JSON对象来描述我们的AddTodo action,JSON如下：</p>
             <pre><code class="language-javascript"> <span class="token punctuation">{</span>
-  type<span class="token punctuation">:</span><span class="token string">'ADD_TODO'</span>
-  payload<span class="token punctuation">:</span><span class="token punctuation">{</span>
-    data<span class="token punctuation">:</span><span class="token string">'Learn Redux'</span><span class="token punctuation">,</span>
-    id<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>
-    completed<span class="token punctuation">:</span><span class="token boolean">false</span>
+  type<span class="token operator">:</span><span class="token string">'ADD_TODO'</span>
+  payload<span class="token operator">:</span><span class="token punctuation">{</span>
+    data<span class="token operator">:</span><span class="token string">'Learn Redux'</span><span class="token punctuation">,</span>
+    id<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+    completed<span class="token operator">:</span><span class="token boolean">false</span>
   <span class="token punctuation">}</span>
  <span class="token punctuation">}</span>
 
@@ -139,17 +140,17 @@
             <pre><code class="language-javascript"><span class="token comment">//1. 从AddTodo文本域获取文本并返回正确的“Action” JSON对象发送到其它到组件中。（Takes the text from AddTodo field and returns proper “Action” JSON to send to other components.）</span>
 <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">addTodo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">text</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
  <span class="token keyword">return</span> <span class="token punctuation">{</span>
- type<span class="token punctuation">:</span> ‘<span class="token constant">ADD_TODO</span>’<span class="token punctuation">,</span>
- id<span class="token punctuation">:</span> nextTodoId<span class="token operator">++</span><span class="token punctuation">,</span>
+ type<span class="token operator">:</span> ‘<span class="token constant">ADD_TODO</span>’<span class="token punctuation">,</span>
+ id<span class="token operator">:</span> nextTodoId<span class="token operator">++</span><span class="token punctuation">,</span>
  text<span class="token punctuation">,</span>  <span class="token comment">//&lt;--ES6. same as text:text, in ES5（这个是ES6的写法，相当于ES5的text:text）</span>
- completed<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token comment">//&lt;-- initially this is set to false (completed字段初始化为false)</span>
+ completed<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token comment">//&lt;-- initially this is set to false (completed字段初始化为false)</span>
  <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
 <span class="token comment">//2. 获取filter 字符串并返回正确的“Action” JSON对象发送到其它组件中。（Takes filter string and returns proper “Action” JSON object to send to other components.）</span>
 <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">setVisibilityFilter</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">filter</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
  <span class="token keyword">return</span> <span class="token punctuation">{</span>
- type<span class="token punctuation">:</span> ‘<span class="token constant">SET_VISIBILITY_FILTER</span>’<span class="token punctuation">,</span>
+ type<span class="token operator">:</span> ‘<span class="token constant">SET_VISIBILITY_FILTER</span>’<span class="token punctuation">,</span>
  filter
  <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -157,7 +158,7 @@
 <span class="token comment">//3. 获取Todo 项目的id并返回正确的“Action” JSON对象发送到其它组件中。（Takes Todo item’s id and returns proper “Action” JSON object to send to other components.）</span>
 <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">toggleTodo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
  <span class="token keyword">return</span> <span class="token punctuation">{</span>
- type<span class="token punctuation">:</span> ‘<span class="token constant">TOGGLE_TODO</span>’<span class="token punctuation">,</span>
+ type<span class="token operator">:</span> ‘<span class="token constant">TOGGLE_TODO</span>’<span class="token punctuation">,</span>
  id
  <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -170,33 +171,33 @@
 <span class="token comment">// 例如下面这个方法获取Redux 状态（一个之前的todos数组），并返回一个新的todos数组（new state），当action's的类型为“ADD_TODO”时，一个新的Todo就会被添加</span>
 <span class="token keyword">const</span> <span class="token function-variable function">todo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">case</span> ‘<span class="token constant">ADD_TODO</span>’<span class="token punctuation">:</span>
+  <span class="token keyword">case</span> ‘<span class="token constant">ADD_TODO</span>’<span class="token operator">:</span>
      <span class="token keyword">return</span>
-       <span class="token punctuation">[</span>…state<span class="token punctuation">,</span><span class="token punctuation">{</span>id<span class="token punctuation">:</span> action<span class="token punctuation">.</span>id<span class="token punctuation">,</span> text<span class="token punctuation">:</span> action<span class="token punctuation">.</span>text<span class="token punctuation">,</span> completed<span class="token punctuation">:</span><span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+       <span class="token punctuation">[</span>…state<span class="token punctuation">,</span><span class="token punctuation">{</span>id<span class="token operator">:</span> action<span class="token punctuation">.</span>id<span class="token punctuation">,</span> text<span class="token operator">:</span> action<span class="token punctuation">.</span>text<span class="token punctuation">,</span> completed<span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
  <span class="token punctuation">}</span>
 </code></pre>
             <h3>第五步，为每个<code>Action</code>写<code>Reducers</code></h3>
             <p>注：为简洁起见，一些代码已经被简化了,另外我简单当展示一下<code>SET_VISIBILITY_FILTER</code>、<code>ADD_TODO</code> 和 <code>TOGGLE_TODO</code> ，代码如下：</p>
             <pre><code class="language-javascript"><span class="token keyword">const</span> <span class="token function-variable function">todo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-     <span class="token keyword">case</span> ‘<span class="token constant">ADD_TODO</span>’<span class="token punctuation">:</span>
-      <span class="token keyword">return</span> <span class="token punctuation">[</span>…state<span class="token punctuation">,</span><span class="token punctuation">{</span>id<span class="token punctuation">:</span> action<span class="token punctuation">.</span>id<span class="token punctuation">,</span> text<span class="token punctuation">:</span> action<span class="token punctuation">.</span>text<span class="token punctuation">,</span>
-              completed<span class="token punctuation">:</span><span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+     <span class="token keyword">case</span> ‘<span class="token constant">ADD_TODO</span>’<span class="token operator">:</span>
+      <span class="token keyword">return</span> <span class="token punctuation">[</span>…state<span class="token punctuation">,</span><span class="token punctuation">{</span>id<span class="token operator">:</span> action<span class="token punctuation">.</span>id<span class="token punctuation">,</span> text<span class="token operator">:</span> action<span class="token punctuation">.</span>text<span class="token punctuation">,</span>
+              completed<span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
 
-     <span class="token keyword">case</span> ‘<span class="token constant">TOGGLE_TODO</span>’<span class="token punctuation">:</span>
+     <span class="token keyword">case</span> ‘<span class="token constant">TOGGLE_TODO</span>’<span class="token operator">:</span>
         <span class="token keyword">return</span> state<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">todo</span> <span class="token operator">=></span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>todo<span class="token punctuation">.</span>id <span class="token operator">!==</span> action<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                   <span class="token keyword">return</span> todo
                 <span class="token punctuation">}</span>
                  <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                    todo<span class="token punctuation">,</span> <span class="token punctuation">{</span>completed<span class="token punctuation">:</span> <span class="token operator">!</span>todo<span class="token punctuation">.</span>completed<span class="token punctuation">}</span><span class="token punctuation">)</span>
+                    todo<span class="token punctuation">,</span> <span class="token punctuation">{</span>completed<span class="token operator">:</span> <span class="token operator">!</span>todo<span class="token punctuation">.</span>completed<span class="token punctuation">}</span><span class="token punctuation">)</span>
             <span class="token punctuation">)</span>
 
-      <span class="token keyword">case</span> ‘<span class="token constant">SET_VISIBILITY_FILTER</span>’<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> ‘<span class="token constant">SET_VISIBILITY_FILTER</span>’<span class="token operator">:</span> <span class="token punctuation">{</span>
        <span class="token keyword">return</span> action<span class="token punctuation">.</span>filter
       <span class="token punctuation">}</span>
 
-     <span class="token keyword">default</span><span class="token punctuation">:</span>
+     <span class="token keyword">default</span><span class="token operator">:</span>
       <span class="token keyword">return</span> state
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -258,7 +259,8 @@
 <span class="token keyword">export</span> <span class="token keyword">default</span> Link
 </code></pre>
             <p>如下图：
-              <img src="/images/1-5WQbEnAhRP6fmfiCjOeS4A.png" /></p>
+              <img src="/images/1-5WQbEnAhRP6fmfiCjOeS4A.png" />
+            </p>
             <p>注意：在实际的代码中，Link展示组件被包含在<code>FilterLink</code>容器组件中，进而3个FilterLink组件显示在Footer展示组件中。</p>
             <h3>第七步－为部分或者全部展示组件创建容器组件</h3>
             <p>最后，为每个组件创建Redux链接</p>

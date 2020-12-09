@@ -46,25 +46,25 @@
             <h4>标准模块</h4>
             <p>OCaml 内置模块</p>
             <pre><code class="language-ocaml"><span class="token comment">(* 列表 *)</span>
-# List<span class="token punctuation">.</span>length <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">List</span><span class="token punctuation">.</span>length <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">3</span>
-# <span class="token keyword">let</span> q <span class="token operator">=</span> Queue<span class="token punctuation">.</span>create <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">val</span> q <span class="token punctuation">:</span> <span class="token type variable">'_a</span> Queue<span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
+# <span class="token keyword">let</span> q <span class="token operator">=</span> <span class="token module variable">Queue</span><span class="token punctuation">.</span>create <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> q <span class="token punctuation">:</span> <span class="token type_variable function">'_a</span> <span class="token module variable">Queue</span><span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
 
 <span class="token comment">(* 队列 *)</span>
-# Queue<span class="token punctuation">.</span>add <span class="token string">"first"</span> q<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">Queue</span><span class="token punctuation">.</span>add <span class="token string">"first"</span> q<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
-# Queue<span class="token punctuation">.</span>take q<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">Queue</span><span class="token punctuation">.</span>take q<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"first"</span>
-# Queue<span class="token punctuation">.</span>take q<span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Queue<span class="token punctuation">.</span>Empty<span class="token punctuation">.</span>
+# <span class="token module variable">Queue</span><span class="token punctuation">.</span>take q<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Queue</span><span class="token punctuation">.</span><span class="token module variable">Empty</span><span class="token punctuation">.</span>
 
 <span class="token comment">(* 数组 *)</span>
-# Array<span class="token punctuation">.</span>make <span class="token number">3</span> <span class="token string">'a'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">Array</span><span class="token punctuation">.</span>make <span class="token number">3</span> <span class="token string">'a'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> char array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">|</span><span class="token string">'a'</span><span class="token punctuation">;</span> <span class="token string">'a'</span><span class="token punctuation">;</span> <span class="token string">'a'</span><span class="token operator">|</span><span class="token punctuation">]</span>
 
 <span class="token comment">(* 标准输出 *)</span>
-# Printf<span class="token punctuation">.</span>printf <span class="token string">"%d, %x, %s\n"</span> <span class="token number">10</span> <span class="token number">255</span> <span class="token string">"hoge"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">Printf</span><span class="token punctuation">.</span>printf <span class="token string">"%d, %x, %s\n"</span> <span class="token number">10</span> <span class="token number">255</span> <span class="token string">"hoge"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token number">10</span><span class="token punctuation">,</span> ff<span class="token punctuation">,</span> hoge
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
@@ -74,7 +74,7 @@ Exception<span class="token punctuation">:</span> Queue<span class="token punctu
             <p>由于打开到当前源的模块的名称空间已扩展，因此只有在不困惑时才能打开它。</p>
             <p>由于容器名称经常与函数名称重叠，因此不打开它们是正常的。</p>
             <pre><code class="language-ocaml"><span class="token comment">(* 打开模块 *)</span>
-# <span class="token keyword">open</span> List<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token keyword">open</span> <span class="token module variable">List</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 # length <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">3</span>
 
@@ -85,7 +85,7 @@ Exception<span class="token punctuation">:</span> Queue<span class="token punctu
 <span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"overload!"</span>
 
 <span class="token comment">(* 您可以通过指定模块名称来调用它 *)</span>
-# List<span class="token punctuation">.</span>length <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">List</span><span class="token punctuation">.</span>length <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">3</span>
 </code></pre>
             <p>顺便说一下，OCaml有一个名为Pervasives的模块，在启动时打开。</p>
@@ -94,14 +94,14 @@ Exception<span class="token punctuation">:</span> Queue<span class="token punctu
             <p>模块名称以大写字母开头</p>
             <h5>module 模块名 = struct 各种定义… end</h5>
             <pre><code class="language-ocaml"><span class="token comment">(* 模块定义 *)</span>
-# <span class="token keyword">module</span> Hello <span class="token operator">=</span> <span class="token keyword">struct</span>
+# <span class="token keyword">module</span> <span class="token module variable">Hello</span> <span class="token operator">=</span> <span class="token keyword">struct</span>
     <span class="token keyword">let</span> message <span class="token operator">=</span> <span class="token string">"Hello"</span>
-    <span class="token keyword">let</span> hello <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print<span class="token punctuation">_</span>endline message
+    <span class="token keyword">let</span> hello <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print_endline message
   <span class="token keyword">end</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> Hello <span class="token punctuation">:</span> <span class="token keyword">sig</span> <span class="token keyword">val</span> message <span class="token punctuation">:</span> string <span class="token keyword">val</span> hello <span class="token punctuation">:</span> unit <span class="token operator">-></span> unit <span class="token keyword">end</span>
+<span class="token keyword">module</span> <span class="token module variable">Hello</span> <span class="token punctuation">:</span> <span class="token keyword">sig</span> <span class="token keyword">val</span> message <span class="token punctuation">:</span> string <span class="token keyword">val</span> hello <span class="token punctuation">:</span> unit <span class="token operator">-></span> unit <span class="token keyword">end</span>
 <span class="token comment">(* 调用 *)</span>
-# Hello<span class="token punctuation">.</span>hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Hello
+# <span class="token module variable">Hello</span><span class="token punctuation">.</span>hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Hello</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
             <h4>签名</h4>
@@ -120,37 +120,37 @@ Hello
               <li>应用 =&gt; module 模块名 : 签名名 = 模块名或 struct … end</li>
             </ul>
             <pre><code class="language-ocaml"><span class="token comment">(* message 元素可访问 *)</span>
-# Hello<span class="token punctuation">.</span>message<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">Hello</span><span class="token punctuation">.</span>message<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"Hello"</span>
 
 <span class="token comment">(* message 定义未定义的签名 *)</span>
-# <span class="token keyword">module</span> <span class="token keyword">type</span> Hello<span class="token punctuation">_</span>Sig <span class="token operator">=</span>
+# <span class="token keyword">module</span> <span class="token keyword">type</span> <span class="token module variable">Hello_Sig</span> <span class="token operator">=</span>
     <span class="token keyword">sig</span>
       <span class="token keyword">val</span> hello<span class="token punctuation">:</span> unit <span class="token operator">-></span> unit
     <span class="token keyword">end</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> <span class="token keyword">type</span> Hello<span class="token punctuation">_</span>Sig <span class="token operator">=</span> <span class="token keyword">sig</span> <span class="token keyword">val</span> hello <span class="token punctuation">:</span> unit <span class="token operator">-></span> unit <span class="token keyword">end</span>
+<span class="token keyword">module</span> <span class="token keyword">type</span> <span class="token module variable">Hello_Sig</span> <span class="token operator">=</span> <span class="token keyword">sig</span> <span class="token keyword">val</span> hello <span class="token punctuation">:</span> unit <span class="token operator">-></span> unit <span class="token keyword">end</span>
 
 <span class="token comment">(* 给一个模块签名 *)</span>
-# <span class="token keyword">module</span> Hello2 <span class="token punctuation">:</span> Hello<span class="token punctuation">_</span>Sig <span class="token operator">=</span> Hello<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> Hello2 <span class="token punctuation">:</span> Hello<span class="token punctuation">_</span>Sig
+# <span class="token keyword">module</span> <span class="token module variable">Hello2</span> <span class="token punctuation">:</span> <span class="token module variable">Hello_Sig</span> <span class="token operator">=</span> <span class="token module variable">Hello</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">module</span> <span class="token module variable">Hello2</span> <span class="token punctuation">:</span> <span class="token module variable">Hello_Sig</span>
 
 <span class="token comment">(* 因为它不是签名, message 元素不可访问 *)</span>
-# Hello2<span class="token punctuation">.</span>hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Hello
+# <span class="token module variable">Hello2</span><span class="token punctuation">.</span>hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Hello</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
-# Hello2<span class="token punctuation">.</span>message<span class="token punctuation">;</span><span class="token punctuation">;</span>
-Error<span class="token punctuation">:</span> Unbound <span class="token keyword">value</span> Hello2<span class="token punctuation">.</span>message
+# <span class="token module variable">Hello2</span><span class="token punctuation">.</span>message<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Error</span><span class="token punctuation">:</span> <span class="token module variable">Unbound</span> <span class="token keyword">value</span> <span class="token module variable">Hello2</span><span class="token punctuation">.</span>message
 
 <span class="token comment">(* 直接定义模块 *)</span>
-# <span class="token keyword">module</span> Hello3 <span class="token punctuation">:</span> Hello<span class="token punctuation">_</span>Sig <span class="token operator">=</span> <span class="token keyword">struct</span>
-    <span class="token keyword">let</span> hello <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print<span class="token punctuation">_</span>endline <span class="token string">"Hello3!"</span>
+# <span class="token keyword">module</span> <span class="token module variable">Hello3</span> <span class="token punctuation">:</span> <span class="token module variable">Hello_Sig</span> <span class="token operator">=</span> <span class="token keyword">struct</span>
+    <span class="token keyword">let</span> hello <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print_endline <span class="token string">"Hello3!"</span>
   <span class="token keyword">end</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> Hello3 <span class="token punctuation">:</span> Hello<span class="token punctuation">_</span>Sig
-# Hello3<span class="token punctuation">.</span>hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Hello3<span class="token operator">!</span>
+<span class="token keyword">module</span> <span class="token module variable">Hello3</span> <span class="token punctuation">:</span> <span class="token module variable">Hello_Sig</span>
+# <span class="token module variable">Hello3</span><span class="token punctuation">.</span>hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Hello3</span><span class="token operator">!</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
-# Hello3<span class="token punctuation">.</span>message<span class="token punctuation">;</span><span class="token punctuation">;</span>
-Error<span class="token punctuation">:</span> Unbound <span class="token keyword">value</span> Hello3<span class="token punctuation">.</span>message
+# <span class="token module variable">Hello3</span><span class="token punctuation">.</span>message<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Error</span><span class="token punctuation">:</span> <span class="token module variable">Unbound</span> <span class="token keyword">value</span> <span class="token module variable">Hello3</span><span class="token punctuation">.</span>message
 </code></pre>
             <h4>抽象数据类型</h4>
             <p>在签名定义中，省略 = …用于类型定义（typ t = …）</p>
@@ -158,26 +158,26 @@ Error<span class="token punctuation">:</span> Unbound <span class="token keyword
             <p>通过隐藏类型信息和实现，可以将该类型的操作限制为通过模块进行的操作。</p>
             <p>防止意外操作。</p>
             <pre><code class="language-ocaml"><span class="token comment">(* 签名定义 *)</span>
-# <span class="token keyword">module</span> <span class="token keyword">type</span> AbstTypeSig <span class="token operator">=</span> <span class="token keyword">sig</span>
+# <span class="token keyword">module</span> <span class="token keyword">type</span> <span class="token module variable">AbstTypeSig</span> <span class="token operator">=</span> <span class="token keyword">sig</span>
     <span class="token keyword">type</span> t <span class="token comment">(* 抽象数据类型 *)</span>
-    <span class="token keyword">val</span> get<span class="token punctuation">_</span>t <span class="token punctuation">:</span> int <span class="token operator">-></span> t
+    <span class="token keyword">val</span> get_t <span class="token punctuation">:</span> int <span class="token operator">-></span> t
     <span class="token keyword">val</span> print <span class="token punctuation">:</span> t <span class="token operator">-></span> unit
   <span class="token keyword">end</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> <span class="token keyword">type</span> AbstTypeSig <span class="token operator">=</span>
-  <span class="token keyword">sig</span> <span class="token keyword">type</span> t <span class="token keyword">val</span> get<span class="token punctuation">_</span>t <span class="token punctuation">:</span> int <span class="token operator">-></span> t <span class="token keyword">val</span> print <span class="token punctuation">:</span> t <span class="token operator">-></span> unit <span class="token keyword">end</span>
+<span class="token keyword">module</span> <span class="token keyword">type</span> <span class="token module variable">AbstTypeSig</span> <span class="token operator">=</span>
+  <span class="token keyword">sig</span> <span class="token keyword">type</span> t <span class="token keyword">val</span> get_t <span class="token punctuation">:</span> int <span class="token operator">-></span> t <span class="token keyword">val</span> print <span class="token punctuation">:</span> t <span class="token operator">-></span> unit <span class="token keyword">end</span>
 
 <span class="token comment">(* 模块定义 *)</span>
-# <span class="token keyword">module</span> AbstTypeInt <span class="token punctuation">:</span> AbstTypeSig <span class="token operator">=</span> <span class="token keyword">struct</span>
+# <span class="token keyword">module</span> <span class="token module variable">AbstTypeInt</span> <span class="token punctuation">:</span> <span class="token module variable">AbstTypeSig</span> <span class="token operator">=</span> <span class="token keyword">struct</span>
     <span class="token keyword">type</span> t <span class="token operator">=</span> int
-    <span class="token keyword">let</span> get<span class="token punctuation">_</span>t i <span class="token operator">=</span> i
-    <span class="token keyword">let</span> print t <span class="token operator">=</span> print<span class="token punctuation">_</span>int t
+    <span class="token keyword">let</span> get_t i <span class="token operator">=</span> i
+    <span class="token keyword">let</span> print t <span class="token operator">=</span> print_int t
   <span class="token keyword">end</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> AbstTypeInt <span class="token punctuation">:</span> AbstTypeSig
+<span class="token keyword">module</span> <span class="token module variable">AbstTypeInt</span> <span class="token punctuation">:</span> <span class="token module variable">AbstTypeSig</span>
 
 <span class="token comment">(* 如果返回值是一个抽象数据类型 &lt;abstr> *)</span>
-# <span class="token keyword">let</span> t <span class="token operator">=</span> AbstTypeInt<span class="token punctuation">.</span>get<span class="token punctuation">_</span>t <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">val</span> t <span class="token punctuation">:</span> AbstTypeInt<span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
-# AbstTypeInt<span class="token punctuation">.</span>print t<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token keyword">let</span> t <span class="token operator">=</span> <span class="token module variable">AbstTypeInt</span><span class="token punctuation">.</span>get_t <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> t <span class="token punctuation">:</span> <span class="token module variable">AbstTypeInt</span><span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
+# <span class="token module variable">AbstTypeInt</span><span class="token punctuation">.</span>print t<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token number">0</span><span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 
 <span class="token comment">(* 
@@ -185,8 +185,8 @@ Error<span class="token punctuation">:</span> Unbound <span class="token keyword
   AbstTypeInt.t 是一个真正的int，但是因为它隐藏着一个抽象的数据类型
   print_int 即使是作为参数引用
 *)</span>
-# <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print<span class="token punctuation">_</span>int t<span class="token punctuation">;</span><span class="token punctuation">;</span>
-Error<span class="token punctuation">:</span> This expression has <span class="token keyword">type</span> AbstTypeInt<span class="token punctuation">.</span>t
+# <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print_int t<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Error</span><span class="token punctuation">:</span> <span class="token module variable">This</span> expression has <span class="token keyword">type</span> <span class="token module variable">AbstTypeInt</span><span class="token punctuation">.</span>t
        but an expression was expected <span class="token keyword">of</span> <span class="token keyword">type</span> int
 </code></pre>
             <h3>Functor</h3>
@@ -205,16 +205,16 @@ Error<span class="token punctuation">:</span> This expression has <span class="t
             </ul>
             <p>将上述“元素类型模块”应用于 functor ，生成“该类型为元素的模块”。</p>
             <pre><code class="language-ocaml"><span class="token comment">(* functor 应用 *)</span>
-# <span class="token keyword">module</span> IntSet <span class="token operator">=</span> Set<span class="token punctuation">.</span>Make <span class="token punctuation">(</span><span class="token keyword">struct</span>
+# <span class="token keyword">module</span> <span class="token module variable">IntSet</span> <span class="token operator">=</span> <span class="token module variable">Set</span><span class="token punctuation">.</span><span class="token module variable">Make</span> <span class="token punctuation">(</span><span class="token keyword">struct</span>
     <span class="token keyword">type</span> t <span class="token operator">=</span> int
     <span class="token keyword">let</span> compare i j <span class="token operator">=</span> i <span class="token operator">-</span> j
   <span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> IntSet <span class="token punctuation">:</span>
+<span class="token keyword">module</span> <span class="token module variable">IntSet</span> <span class="token punctuation">:</span>
   <span class="token keyword">sig</span>
     <span class="token keyword">type</span> elt <span class="token operator">=</span> int <span class="token comment">(* 元素我想作为元素类型对待 elt = int *)</span>
     <span class="token keyword">type</span> t         <span class="token comment">(* 代表一个集合的类型是 IntSet.t 是一种抽象数据类型 *)</span>
     <span class="token keyword">val</span> empty <span class="token punctuation">:</span> t
-    <span class="token keyword">val</span> is<span class="token punctuation">_</span>empty <span class="token punctuation">:</span> t <span class="token operator">-></span> bool
+    <span class="token keyword">val</span> is_empty <span class="token punctuation">:</span> t <span class="token operator">-></span> bool
     <span class="token keyword">val</span> mem <span class="token punctuation">:</span> elt <span class="token operator">-></span> t <span class="token operator">-></span> bool
     <span class="token keyword">val</span> add <span class="token punctuation">:</span> elt <span class="token operator">-></span> t <span class="token operator">-></span> t
     <span class="token keyword">val</span> singleton <span class="token punctuation">:</span> elt <span class="token operator">-></span> t
@@ -226,27 +226,27 @@ Error<span class="token punctuation">:</span> This expression has <span class="t
     <span class="token keyword">val</span> equal <span class="token punctuation">:</span> t <span class="token operator">-></span> t <span class="token operator">-></span> bool
     <span class="token keyword">val</span> subset <span class="token punctuation">:</span> t <span class="token operator">-></span> t <span class="token operator">-></span> bool
     <span class="token keyword">val</span> iter <span class="token punctuation">:</span> <span class="token punctuation">(</span>elt <span class="token operator">-></span> unit<span class="token punctuation">)</span> <span class="token operator">-></span> t <span class="token operator">-></span> unit
-    <span class="token keyword">val</span> fold <span class="token punctuation">:</span> <span class="token punctuation">(</span>elt <span class="token operator">-></span> <span class="token type variable">'a</span> <span class="token operator">-></span> <span class="token type variable">'a</span><span class="token punctuation">)</span> <span class="token operator">-></span> t <span class="token operator">-></span> <span class="token type variable">'a</span> <span class="token operator">-></span> <span class="token type variable">'a</span>
-    <span class="token keyword">val</span> for<span class="token punctuation">_</span>all <span class="token punctuation">:</span> <span class="token punctuation">(</span>elt <span class="token operator">-></span> bool<span class="token punctuation">)</span> <span class="token operator">-></span> t <span class="token operator">-></span> bool
+    <span class="token keyword">val</span> fold <span class="token punctuation">:</span> <span class="token punctuation">(</span>elt <span class="token operator">-></span> <span class="token type_variable function">'a</span> <span class="token operator">-></span> <span class="token type_variable function">'a</span><span class="token punctuation">)</span> <span class="token operator">-></span> t <span class="token operator">-></span> <span class="token type_variable function">'a</span> <span class="token operator">-></span> <span class="token type_variable function">'a</span>
+    <span class="token keyword">val</span> for_all <span class="token punctuation">:</span> <span class="token punctuation">(</span>elt <span class="token operator">-></span> bool<span class="token punctuation">)</span> <span class="token operator">-></span> t <span class="token operator">-></span> bool
     <span class="token keyword">val</span> exists <span class="token punctuation">:</span> <span class="token punctuation">(</span>elt <span class="token operator">-></span> bool<span class="token punctuation">)</span> <span class="token operator">-></span> t <span class="token operator">-></span> bool
     <span class="token keyword">val</span> filter <span class="token punctuation">:</span> <span class="token punctuation">(</span>elt <span class="token operator">-></span> bool<span class="token punctuation">)</span> <span class="token operator">-></span> t <span class="token operator">-></span> t
     <span class="token keyword">val</span> partition <span class="token punctuation">:</span> <span class="token punctuation">(</span>elt <span class="token operator">-></span> bool<span class="token punctuation">)</span> <span class="token operator">-></span> t <span class="token operator">-></span> t <span class="token operator">*</span> t
     <span class="token keyword">val</span> cardinal <span class="token punctuation">:</span> t <span class="token operator">-></span> int
     <span class="token keyword">val</span> elements <span class="token punctuation">:</span> t <span class="token operator">-></span> elt list
-    <span class="token keyword">val</span> min<span class="token punctuation">_</span>elt <span class="token punctuation">:</span> t <span class="token operator">-></span> elt
-    <span class="token keyword">val</span> max<span class="token punctuation">_</span>elt <span class="token punctuation">:</span> t <span class="token operator">-></span> elt
+    <span class="token keyword">val</span> min_elt <span class="token punctuation">:</span> t <span class="token operator">-></span> elt
+    <span class="token keyword">val</span> max_elt <span class="token punctuation">:</span> t <span class="token operator">-></span> elt
     <span class="token keyword">val</span> choose <span class="token punctuation">:</span> t <span class="token operator">-></span> elt
     <span class="token keyword">val</span> split <span class="token punctuation">:</span> elt <span class="token operator">-></span> t <span class="token operator">-></span> t <span class="token operator">*</span> bool <span class="token operator">*</span> t
     <span class="token keyword">val</span> find <span class="token punctuation">:</span> elt <span class="token operator">-></span> t <span class="token operator">-></span> elt
-    <span class="token keyword">val</span> of<span class="token punctuation">_</span>list <span class="token punctuation">:</span> elt list <span class="token operator">-></span> t
+    <span class="token keyword">val</span> of_list <span class="token punctuation">:</span> elt list <span class="token operator">-></span> t
   <span class="token keyword">end</span>
 
 <span class="token comment">(* 使用由 functor 生成的模块 *)</span>
-# <span class="token keyword">open</span> IntSet<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token keyword">open</span> <span class="token module variable">IntSet</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 # <span class="token keyword">let</span> s1 <span class="token operator">=</span> add <span class="token number">2</span> <span class="token punctuation">(</span>add <span class="token number">1</span> empty<span class="token punctuation">)</span>
   <span class="token operator">and</span> s2 <span class="token operator">=</span> add <span class="token number">1</span> <span class="token punctuation">(</span>add <span class="token number">3</span> empty<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">val</span> s1 <span class="token punctuation">:</span> IntSet<span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
-<span class="token keyword">val</span> s2 <span class="token punctuation">:</span> IntSet<span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
+<span class="token keyword">val</span> s1 <span class="token punctuation">:</span> <span class="token module variable">IntSet</span><span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
+<span class="token keyword">val</span> s2 <span class="token punctuation">:</span> <span class="token module variable">IntSet</span><span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
 # mem <span class="token number">1</span> s1<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> bool <span class="token operator">=</span> <span class="token boolean">true</span>
 </code></pre>
@@ -256,27 +256,27 @@ Error<span class="token punctuation">:</span> This expression has <span class="t
             <h5>module functor名称 = functor（参数名称：签名表达式） -&gt; 模块化表达式</h5>
             <p>定义 Set.Make 的一个简单 functor 的例子</p>
             <pre><code class="language-ocaml"><span class="token comment">(* 签名定义 *)</span>
-<span class="token keyword">module</span> <span class="token keyword">type</span> ELEMENT <span class="token operator">=</span> <span class="token keyword">sig</span>
+<span class="token keyword">module</span> <span class="token keyword">type</span> <span class="token module variable">ELEMENT</span> <span class="token operator">=</span> <span class="token keyword">sig</span>
   <span class="token keyword">type</span> t
   <span class="token keyword">val</span> compare<span class="token punctuation">:</span> t <span class="token operator">-></span> t <span class="token operator">-></span> int
 <span class="token keyword">end</span>
 
 <span class="token comment">(* functor 定义 *)</span>
-<span class="token keyword">module</span> MakeSet <span class="token punctuation">(</span>Element <span class="token punctuation">:</span> ELEMENT<span class="token punctuation">)</span> <span class="token operator">=</span>
+<span class="token keyword">module</span> <span class="token module variable">MakeSet</span> <span class="token punctuation">(</span><span class="token module variable">Element</span> <span class="token punctuation">:</span> <span class="token module variable">ELEMENT</span><span class="token punctuation">)</span> <span class="token operator">=</span>
   <span class="token keyword">struct</span>
-    <span class="token keyword">type</span> elt <span class="token operator">=</span> Element<span class="token punctuation">.</span>t
+    <span class="token keyword">type</span> elt <span class="token operator">=</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t
     <span class="token keyword">type</span> t <span class="token operator">=</span> elt list
 
     <span class="token keyword">let</span> empty <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
 
-    <span class="token keyword">let</span> mem x set <span class="token operator">=</span> List<span class="token punctuation">.</span>exists <span class="token punctuation">(</span><span class="token keyword">fun</span> y <span class="token operator">-></span> Element<span class="token punctuation">.</span>compare x y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> set
+    <span class="token keyword">let</span> mem x set <span class="token operator">=</span> <span class="token module variable">List</span><span class="token punctuation">.</span>exists <span class="token punctuation">(</span><span class="token keyword">fun</span> y <span class="token operator">-></span> <span class="token module variable">Element</span><span class="token punctuation">.</span>compare x y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> set
 
     <span class="token keyword">let</span> <span class="token keyword">rec</span> add elt <span class="token operator">=</span> <span class="token keyword">function</span>
     <span class="token operator">|</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">-></span> <span class="token punctuation">[</span>elt<span class="token punctuation">]</span>
     <span class="token operator">|</span> <span class="token punctuation">(</span>x <span class="token punctuation">:</span><span class="token punctuation">:</span> rest <span class="token keyword">as</span> s<span class="token punctuation">)</span> <span class="token operator">-></span>
-        <span class="token keyword">match</span> Element<span class="token punctuation">.</span>compare elt x <span class="token keyword">with</span>
+        <span class="token keyword">match</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>compare elt x <span class="token keyword">with</span>
         <span class="token operator">|</span> <span class="token number">0</span> <span class="token operator">-></span> s
-        <span class="token operator">|</span> r when r <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">-></span> elt <span class="token punctuation">:</span><span class="token punctuation">:</span> s
+        <span class="token operator">|</span> r <span class="token keyword">when</span> r <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">-></span> elt <span class="token punctuation">:</span><span class="token punctuation">:</span> s
         <span class="token operator">|</span> <span class="token punctuation">_</span> <span class="token operator">-></span> x <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>add elt rest<span class="token punctuation">)</span>
 
     <span class="token keyword">let</span> <span class="token keyword">rec</span> elements s <span class="token operator">=</span> s
@@ -291,26 +291,26 @@ Error<span class="token punctuation">:</span> This expression has <span class="t
               <li>这被称为依赖类型</li>
             </ul>
             <pre><code class="language-ocaml"><span class="token comment">(* 返回顶层的值 *)</span>
-<span class="token keyword">module</span> <span class="token keyword">type</span> ELEMENT <span class="token operator">=</span> <span class="token keyword">sig</span> <span class="token keyword">type</span> t <span class="token keyword">val</span> compare <span class="token punctuation">:</span> t <span class="token operator">-></span> t <span class="token operator">-></span> int <span class="token keyword">end</span>
-<span class="token keyword">module</span> MakeSet <span class="token punctuation">:</span>
-  <span class="token keyword">functor</span> <span class="token punctuation">(</span>Element <span class="token punctuation">:</span> ELEMENT<span class="token punctuation">)</span> <span class="token operator">-></span>
+<span class="token keyword">module</span> <span class="token keyword">type</span> <span class="token module variable">ELEMENT</span> <span class="token operator">=</span> <span class="token keyword">sig</span> <span class="token keyword">type</span> t <span class="token keyword">val</span> compare <span class="token punctuation">:</span> t <span class="token operator">-></span> t <span class="token operator">-></span> int <span class="token keyword">end</span>
+<span class="token keyword">module</span> <span class="token module variable">MakeSet</span> <span class="token punctuation">:</span>
+  <span class="token keyword">functor</span> <span class="token punctuation">(</span><span class="token module variable">Element</span> <span class="token punctuation">:</span> <span class="token module variable">ELEMENT</span><span class="token punctuation">)</span> <span class="token operator">-></span>
     <span class="token keyword">sig</span>
-      <span class="token keyword">type</span> elt <span class="token operator">=</span> Element<span class="token punctuation">.</span>t
+      <span class="token keyword">type</span> elt <span class="token operator">=</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t
       <span class="token keyword">type</span> t <span class="token operator">=</span> elt list
-      <span class="token keyword">val</span> empty <span class="token punctuation">:</span> <span class="token type variable">'a</span> list
-      <span class="token keyword">val</span> mem <span class="token punctuation">:</span> Element<span class="token punctuation">.</span>t <span class="token operator">-></span> Element<span class="token punctuation">.</span>t list <span class="token operator">-></span> bool
-      <span class="token keyword">val</span> add <span class="token punctuation">:</span> Element<span class="token punctuation">.</span>t <span class="token operator">-></span> Element<span class="token punctuation">.</span>t list <span class="token operator">-></span> Element<span class="token punctuation">.</span>t list
-      <span class="token keyword">val</span> elements <span class="token punctuation">:</span> <span class="token type variable">'a</span> <span class="token operator">-></span> <span class="token type variable">'a</span>
+      <span class="token keyword">val</span> empty <span class="token punctuation">:</span> <span class="token type_variable function">'a</span> list
+      <span class="token keyword">val</span> mem <span class="token punctuation">:</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t <span class="token operator">-></span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t list <span class="token operator">-></span> bool
+      <span class="token keyword">val</span> add <span class="token punctuation">:</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t <span class="token operator">-></span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t list <span class="token operator">-></span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t list
+      <span class="token keyword">val</span> elements <span class="token punctuation">:</span> <span class="token type_variable function">'a</span> <span class="token operator">-></span> <span class="token type_variable function">'a</span>
     <span class="token keyword">end</span>
 </code></pre>
             <h4>functor 的信息隐藏</h4>
             <p>像普通模块一样，您可以限制函数返回值的签名并隐藏内部实现。</p>
             <h5>module functor名称（参数名称：输入签名表达式）：签名表达式返回 = 模块表达式</h5>
             <p>通过指定要返回的签名表达式可以隐藏信息</p>
-            <pre><code class="language-ocaml"><span class="token keyword">module</span> MakeSet <span class="token punctuation">(</span>Element <span class="token punctuation">:</span> ELEMENT<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+            <pre><code class="language-ocaml"><span class="token keyword">module</span> <span class="token module variable">MakeSet</span> <span class="token punctuation">(</span><span class="token module variable">Element</span> <span class="token punctuation">:</span> <span class="token module variable">ELEMENT</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
   <span class="token comment">(* 签名表达式返回 *)</span>
   <span class="token keyword">sig</span>
-    <span class="token keyword">type</span> elt <span class="token operator">=</span> Element<span class="token punctuation">.</span>t
+    <span class="token keyword">type</span> elt <span class="token operator">=</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t
     <span class="token keyword">type</span> t <span class="token comment">(* 抽象数据类型 *)</span>
     <span class="token keyword">val</span> mem <span class="token punctuation">:</span> elt <span class="token operator">-></span> t <span class="token operator">-></span> bool
     <span class="token keyword">val</span> add <span class="token punctuation">:</span> elt <span class="token operator">-></span> t <span class="token operator">-></span> t
@@ -319,29 +319,29 @@ Error<span class="token punctuation">:</span> This expression has <span class="t
   <span class="token operator">=</span>
   <span class="token comment">(* 模块化 *)</span>
   <span class="token keyword">struct</span>
-    <span class="token keyword">type</span> elt <span class="token operator">=</span> Element<span class="token punctuation">.</span>t
+    <span class="token keyword">type</span> elt <span class="token operator">=</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t
     <span class="token keyword">type</span> t <span class="token operator">=</span> elt list
 
     <span class="token keyword">let</span> empty <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
 
-    <span class="token keyword">let</span> mem x set <span class="token operator">=</span> List<span class="token punctuation">.</span>exists <span class="token punctuation">(</span><span class="token keyword">fun</span> y <span class="token operator">-></span> Element<span class="token punctuation">.</span>compare x y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> set
+    <span class="token keyword">let</span> mem x set <span class="token operator">=</span> <span class="token module variable">List</span><span class="token punctuation">.</span>exists <span class="token punctuation">(</span><span class="token keyword">fun</span> y <span class="token operator">-></span> <span class="token module variable">Element</span><span class="token punctuation">.</span>compare x y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> set
 
     <span class="token keyword">let</span> <span class="token keyword">rec</span> add elt <span class="token operator">=</span> <span class="token keyword">function</span>
     <span class="token operator">|</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">-></span> <span class="token punctuation">[</span>elt<span class="token punctuation">]</span>
     <span class="token operator">|</span> <span class="token punctuation">(</span>x <span class="token punctuation">:</span><span class="token punctuation">:</span> rest <span class="token keyword">as</span> s<span class="token punctuation">)</span> <span class="token operator">-></span>
-        <span class="token keyword">match</span> Element<span class="token punctuation">.</span>compare elt x <span class="token keyword">with</span>
+        <span class="token keyword">match</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>compare elt x <span class="token keyword">with</span>
         <span class="token operator">|</span> <span class="token number">0</span> <span class="token operator">-></span> s
-        <span class="token operator">|</span> r when r <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">-></span> elt <span class="token punctuation">:</span><span class="token punctuation">:</span> s
+        <span class="token operator">|</span> r <span class="token keyword">when</span> r <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">-></span> elt <span class="token punctuation">:</span><span class="token punctuation">:</span> s
         <span class="token operator">|</span> <span class="token punctuation">_</span> <span class="token operator">-></span> x <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>add elt rest<span class="token punctuation">)</span>
 
     <span class="token keyword">let</span> <span class="token keyword">rec</span> elements s <span class="token operator">=</span> s
   <span class="token keyword">end</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 
 <span class="token comment">(* functor 表达式的返回值 *)</span>
-<span class="token keyword">module</span> MakeSet <span class="token punctuation">:</span>
-  <span class="token keyword">functor</span> <span class="token punctuation">(</span>Element <span class="token punctuation">:</span> ELEMENT<span class="token punctuation">)</span> <span class="token operator">-></span>
+<span class="token keyword">module</span> <span class="token module variable">MakeSet</span> <span class="token punctuation">:</span>
+  <span class="token keyword">functor</span> <span class="token punctuation">(</span><span class="token module variable">Element</span> <span class="token punctuation">:</span> <span class="token module variable">ELEMENT</span><span class="token punctuation">)</span> <span class="token operator">-></span>
     <span class="token keyword">sig</span>
-      <span class="token keyword">type</span> elt <span class="token operator">=</span> Element<span class="token punctuation">.</span>t
+      <span class="token keyword">type</span> elt <span class="token operator">=</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t
       <span class="token keyword">type</span> t
       <span class="token keyword">val</span> empty <span class="token punctuation">:</span> t
       <span class="token keyword">val</span> mem <span class="token punctuation">:</span> elt <span class="token operator">-></span> t <span class="token operator">-></span> bool
@@ -353,25 +353,25 @@ Error<span class="token punctuation">:</span> This expression has <span class="t
             <ul>
               <li>before</li>
             </ul>
-            <pre><code class="language-ocaml"># <span class="token keyword">module</span> StringSet <span class="token operator">=</span> MakeSet<span class="token punctuation">(</span>String<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> StringSet <span class="token punctuation">:</span>
+            <pre><code class="language-ocaml"># <span class="token keyword">module</span> <span class="token module variable">StringSet</span> <span class="token operator">=</span> <span class="token module variable">MakeSet</span><span class="token punctuation">(</span><span class="token module variable">String</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">module</span> <span class="token module variable">StringSet</span> <span class="token punctuation">:</span>
   <span class="token keyword">sig</span>
-    <span class="token keyword">type</span> elt <span class="token operator">=</span> String<span class="token punctuation">.</span>t
+    <span class="token keyword">type</span> elt <span class="token operator">=</span> <span class="token module variable">String</span><span class="token punctuation">.</span>t
     <span class="token keyword">type</span> t <span class="token operator">=</span> elt list
-    <span class="token keyword">val</span> empty <span class="token punctuation">:</span> <span class="token type variable">'a</span> list
-    <span class="token keyword">val</span> mem <span class="token punctuation">:</span> String<span class="token punctuation">.</span>t <span class="token operator">-></span> String<span class="token punctuation">.</span>t list <span class="token operator">-></span> bool
-    <span class="token keyword">val</span> add <span class="token punctuation">:</span> String<span class="token punctuation">.</span>t <span class="token operator">-></span> String<span class="token punctuation">.</span>t list <span class="token operator">-></span> String<span class="token punctuation">.</span>t list
-    <span class="token keyword">val</span> elements <span class="token punctuation">:</span> <span class="token type variable">'a</span> <span class="token operator">-></span> <span class="token type variable">'a</span>
+    <span class="token keyword">val</span> empty <span class="token punctuation">:</span> <span class="token type_variable function">'a</span> list
+    <span class="token keyword">val</span> mem <span class="token punctuation">:</span> <span class="token module variable">String</span><span class="token punctuation">.</span>t <span class="token operator">-></span> <span class="token module variable">String</span><span class="token punctuation">.</span>t list <span class="token operator">-></span> bool
+    <span class="token keyword">val</span> add <span class="token punctuation">:</span> <span class="token module variable">String</span><span class="token punctuation">.</span>t <span class="token operator">-></span> <span class="token module variable">String</span><span class="token punctuation">.</span>t list <span class="token operator">-></span> <span class="token module variable">String</span><span class="token punctuation">.</span>t list
+    <span class="token keyword">val</span> elements <span class="token punctuation">:</span> <span class="token type_variable function">'a</span> <span class="token operator">-></span> <span class="token type_variable function">'a</span>
   <span class="token keyword">end</span>
 </code></pre>
             <ul>
               <li>After</li>
             </ul>
-            <pre><code class="language-ocaml"># <span class="token keyword">module</span> IntSet <span class="token operator">=</span> MakeSet<span class="token punctuation">(</span><span class="token keyword">struct</span>
+            <pre><code class="language-ocaml"># <span class="token keyword">module</span> <span class="token module variable">IntSet</span> <span class="token operator">=</span> <span class="token module variable">MakeSet</span><span class="token punctuation">(</span><span class="token keyword">struct</span>
     <span class="token keyword">type</span> t <span class="token operator">=</span> int
     <span class="token keyword">let</span> compare i j <span class="token operator">=</span> i <span class="token operator">-</span> j
   <span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> IntSet <span class="token punctuation">:</span>
+<span class="token keyword">module</span> <span class="token module variable">IntSet</span> <span class="token punctuation">:</span>
   <span class="token keyword">sig</span>
     <span class="token keyword">type</span> elt <span class="token operator">=</span> int
     <span class="token keyword">type</span> t <span class="token comment">(* 抽象数据类型 *)</span>
@@ -381,39 +381,39 @@ Error<span class="token punctuation">:</span> This expression has <span class="t
     <span class="token keyword">val</span> elements <span class="token punctuation">:</span> t <span class="token operator">-></span> elt list
   <span class="token keyword">end</span>
 
-# Open IntSet<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">Open</span> <span class="token module variable">IntSet</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 # <span class="token keyword">let</span> s1 <span class="token operator">=</span> add <span class="token number">1</span> <span class="token punctuation">(</span>add <span class="token number">2</span> empty<span class="token punctuation">)</span>
   <span class="token operator">and</span> s2 <span class="token operator">=</span> add <span class="token number">3</span> <span class="token punctuation">(</span>add <span class="token number">4</span> empty<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">val</span> s1 <span class="token punctuation">:</span> IntSet<span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span> <span class="token comment">(* 抽象数据类型 *)</span>
-<span class="token keyword">val</span> s2 <span class="token punctuation">:</span> IntSet<span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
+<span class="token keyword">val</span> s1 <span class="token punctuation">:</span> <span class="token module variable">IntSet</span><span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span> <span class="token comment">(* 抽象数据类型 *)</span>
+<span class="token keyword">val</span> s2 <span class="token punctuation">:</span> <span class="token module variable">IntSet</span><span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
 
 <span class="token comment">(* 当它是一个字符串 *)</span>
-# <span class="token keyword">module</span> StringSet <span class="token operator">=</span> MakeSet<span class="token punctuation">(</span>String<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> StringSet <span class="token punctuation">:</span>
+# <span class="token keyword">module</span> <span class="token module variable">StringSet</span> <span class="token operator">=</span> <span class="token module variable">MakeSet</span><span class="token punctuation">(</span><span class="token module variable">String</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">module</span> <span class="token module variable">StringSet</span> <span class="token punctuation">:</span>
   <span class="token keyword">sig</span>
-    <span class="token keyword">type</span> elt <span class="token operator">=</span> String<span class="token punctuation">.</span>t
-    <span class="token keyword">type</span> t <span class="token operator">=</span> MakeSet<span class="token punctuation">(</span>String<span class="token punctuation">)</span><span class="token punctuation">.</span>t <span class="token comment">(* 有隐藏的实现吗？ *)</span>
+    <span class="token keyword">type</span> elt <span class="token operator">=</span> <span class="token module variable">String</span><span class="token punctuation">.</span>t
+    <span class="token keyword">type</span> t <span class="token operator">=</span> <span class="token module variable">MakeSet</span><span class="token punctuation">(</span><span class="token module variable">String</span><span class="token punctuation">)</span><span class="token punctuation">.</span>t <span class="token comment">(* 有隐藏的实现吗？ *)</span>
     <span class="token keyword">val</span> empty <span class="token punctuation">:</span> t
     <span class="token keyword">val</span> mem <span class="token punctuation">:</span> elt <span class="token operator">-></span> t <span class="token operator">-></span> bool
     <span class="token keyword">val</span> add <span class="token punctuation">:</span> elt <span class="token operator">-></span> t <span class="token operator">-></span> t
     <span class="token keyword">val</span> elements <span class="token punctuation">:</span> t <span class="token operator">-></span> elt list
   <span class="token keyword">end</span>
 
-# <span class="token keyword">open</span> StringSet<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token keyword">open</span> <span class="token module variable">StringSet</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 # <span class="token keyword">let</span> s1 <span class="token operator">=</span> add <span class="token string">"a"</span> <span class="token punctuation">(</span>add <span class="token string">"b"</span> empty<span class="token punctuation">)</span>
   <span class="token operator">and</span> s2 <span class="token operator">=</span> add <span class="token string">"c"</span> <span class="token punctuation">(</span>add <span class="token string">"d"</span> empty<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">val</span> s1 <span class="token punctuation">:</span> StringSet<span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span> <span class="token comment">(* 这是一个抽象的数据类型 *)</span>
-<span class="token keyword">val</span> s2 <span class="token punctuation">:</span> StringSet<span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
+<span class="token keyword">val</span> s1 <span class="token punctuation">:</span> <span class="token module variable">StringSet</span><span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span> <span class="token comment">(* 这是一个抽象的数据类型 *)</span>
+<span class="token keyword">val</span> s2 <span class="token punctuation">:</span> <span class="token module variable">StringSet</span><span class="token punctuation">.</span>t <span class="token operator">=</span> <span class="token operator">&lt;</span>abstr<span class="token operator">></span>
 </code></pre>
             <h4>签名的分解和定义（ with type ）</h4>
             <p>签名表达式 with type 类型名 = 类型定义 and type …</p>
             <p>不要指定你希望 functor 直接用 sig … end 返回的签名定义，而是要给它定义名称。</p>
             <p>type elt = Element.t 部分</p>
             <p>签名不能被定义为别名，因为它取决于伪参数名称</p>
-            <pre><code class="language-ocaml"><span class="token keyword">module</span> MakeSet <span class="token punctuation">(</span>Element <span class="token punctuation">:</span> ELEMENT<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+            <pre><code class="language-ocaml"><span class="token keyword">module</span> <span class="token module variable">MakeSet</span> <span class="token punctuation">(</span><span class="token module variable">Element</span> <span class="token punctuation">:</span> <span class="token module variable">ELEMENT</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
   <span class="token comment">(* 签名表达式返回 *)</span>
   <span class="token keyword">sig</span>
-    <span class="token keyword">type</span> elt <span class="token operator">=</span> Element<span class="token punctuation">.</span>t
+    <span class="token keyword">type</span> elt <span class="token operator">=</span> <span class="token module variable">Element</span><span class="token punctuation">.</span>t
     <span class="token keyword">type</span> t <span class="token comment">(* 抽象数据类型 *)</span>
   <span class="token keyword">end</span>
   <span class="token operator">=</span>
@@ -421,7 +421,7 @@ Error<span class="token punctuation">:</span> This expression has <span class="t
 </code></pre>
             <h4>with type 语法使用</h4>
             <pre><code class="language-ocaml"><span class="token comment">(* with type 类型定义替换 elt *)</span>
-# <span class="token keyword">module</span> <span class="token keyword">type</span> ElementWithType <span class="token operator">=</span>
+# <span class="token keyword">module</span> <span class="token keyword">type</span> <span class="token module variable">ElementWithType</span> <span class="token operator">=</span>
     <span class="token keyword">sig</span>
       <span class="token keyword">type</span> elt
       <span class="token keyword">type</span> t
@@ -432,8 +432,8 @@ Error<span class="token punctuation">:</span> This expression has <span class="t
     <span class="token keyword">end</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 
 <span class="token comment">(* with type 定义 *)</span>
-# <span class="token keyword">module</span> <span class="token keyword">type</span> E2 <span class="token operator">=</span> ElementWithType <span class="token keyword">with</span> <span class="token keyword">type</span> elt <span class="token operator">=</span> int<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">module</span> <span class="token keyword">type</span> E2 <span class="token operator">=</span>
+# <span class="token keyword">module</span> <span class="token keyword">type</span> <span class="token module variable">E2</span> <span class="token operator">=</span> <span class="token module variable">ElementWithType</span> <span class="token keyword">with</span> <span class="token keyword">type</span> elt <span class="token operator">=</span> int<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">module</span> <span class="token keyword">type</span> <span class="token module variable">E2</span> <span class="token operator">=</span>
   <span class="token keyword">sig</span>
     <span class="token keyword">type</span> elt <span class="token operator">=</span> int
     <span class="token keyword">type</span> t

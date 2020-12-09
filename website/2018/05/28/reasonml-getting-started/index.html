@@ -56,40 +56,40 @@
             <p>要开始，我们将为我们的应用程序创建样板代码：</p>
             <p><code>create-react-app weather-app --scripts-version reason-scripts</code></p>
             <p>这给了我们一个基本的 App 组件：</p>
-            <pre><code class="language-ocaml"><span class="token punctuation">[</span><span class="token operator">%</span>bs<span class="token punctuation">.</span>raw <span class="token punctuation">{</span><span class="token operator">|</span>require<span class="token punctuation">(</span><span class="token type variable">'</span><span class="token punctuation">.</span><span class="token operator">/</span>app<span class="token punctuation">.</span>css'<span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token punctuation">[</span><span class="token operator">%</span>bs<span class="token punctuation">.</span>raw <span class="token punctuation">{</span><span class="token operator">|</span>require<span class="token punctuation">(</span>'<span class="token punctuation">.</span><span class="token operator">/</span>app<span class="token punctuation">.</span>css'<span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
 <span class="token punctuation">[</span><span class="token operator">@</span>bs<span class="token punctuation">.</span><span class="token keyword">module</span><span class="token punctuation">]</span> <span class="token keyword">external</span> logo <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"./logo.svg"</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">~</span>message<span class="token punctuation">,</span> <span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token label function">~message</span><span class="token punctuation">,</span> _children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
-    render<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>self<span class="token punctuation">)</span> <span class="token operator">=></span>
+    render<span class="token punctuation">:</span> <span class="token punctuation">(</span>_self<span class="token punctuation">)</span> <span class="token operator">=></span>
         <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App"</span><span class="token operator">></span>
             <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App-header"</span><span class="token operator">></span>
                 <span class="token operator">&lt;</span>img src<span class="token operator">=</span>logo className<span class="token operator">=</span><span class="token string">"App-logo"</span> alt<span class="token operator">=</span><span class="token string">"logo"</span> <span class="token operator">/></span>
-                <span class="token operator">&lt;</span>h2<span class="token operator">></span> <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h2<span class="token operator">></span>
+                <span class="token operator">&lt;</span>h2<span class="token operator">></span> <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h2<span class="token operator">></span>
             <span class="token operator">&lt;/</span>div<span class="token operator">></span>
             <span class="token operator">&lt;</span>p className<span class="token operator">=</span><span class="token string">"App-intro"</span><span class="token operator">></span>
-                <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"To get started, edit"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token operator">&lt;</span>code<span class="token operator">></span> <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">" src/app.re "</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>code<span class="token operator">></span>
-                <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"and save to reload."</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"To get started, edit"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token operator">&lt;</span>code<span class="token operator">></span> <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">" src/app.re "</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>code<span class="token operator">></span>
+                <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"and save to reload."</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
             <span class="token operator">&lt;/</span>p<span class="token operator">></span>
         <span class="token operator">&lt;/</span>div<span class="token operator">></span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>我们可以使用 <code>yarn start</code> 开始编译和运行。我们来看看一些有趣的部分…</p>
-            <pre><code class="language-ocaml"><span class="token punctuation">[</span><span class="token operator">%</span>bs<span class="token punctuation">.</span>raw <span class="token punctuation">{</span><span class="token operator">|</span>require<span class="token punctuation">(</span><span class="token type variable">'</span><span class="token punctuation">.</span><span class="token operator">/</span>app<span class="token punctuation">.</span>css'<span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token punctuation">[</span><span class="token operator">%</span>bs<span class="token punctuation">.</span>raw <span class="token punctuation">{</span><span class="token operator">|</span>require<span class="token punctuation">(</span>'<span class="token punctuation">.</span><span class="token operator">/</span>app<span class="token punctuation">.</span>css'<span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 </code></pre>
             <p>BuckleScript 允许我们将原始的 JavaScript 代码混合到我们的代码中，从一个一行代码到一个完整的库(如果我们只是在 hacking)。这应该很少使用，但是在我们开始的时候可以快速开始。</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>我们将使用两种类型的ReasonReact组件：<code>statelessComponent</code> 和 <code>reducerComponent</code>。无状态组件按照他们在锡上所说的话做。 Reducer组件是有状态的，并且内置了类似 Redux 的 reducers。 我们稍后再讨论。</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">~</span>message<span class="token punctuation">,</span> <span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token label function">~message</span><span class="token punctuation">,</span> _children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
 </code></pre>
             <p>这是定义我们组件的方法。 这两个参数具有不同的符号：<code>〜</code> 是一个带标签的参数，意味着我们可以通过名称引用参数，而 <code>_</code> 是一种更明确的方式显示参数未被使用（否则编译器会给我们一个警告）。</p>
             <p><code>...component</code> 扩展运算符意味着我们的 make 函数正在构建我们刚定义的组件，覆盖默认值。</p>
-            <pre><code class="language-ocaml"><span class="token operator">&lt;</span>h2<span class="token operator">></span> <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h2<span class="token operator">></span>
+            <pre><code class="language-ocaml"><span class="token operator">&lt;</span>h2<span class="token operator">></span> <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h2<span class="token operator">></span>
 </code></pre>
             <p>JSX 中的 Reason 比正常的 React 更严格。我们不能仅仅编写 <code>&lt;h2&gt; {message} &lt;/h2&gt;</code>，而是必须将 <code>message</code> 字符串显式转换为 JSX 元素。</p>
             <p>稍后我们将构建自己的组件时，我们将使用此样板。</p>
@@ -101,7 +101,7 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>在这个文件中，我们可以使用这个数据结构创建新记录，编译器会知道它是一个 Weather 项目。从其他文件中，我们需要告诉编译器该类型是什么。在 Reason 中，<a href="https://reasonml.github.io/docs/en/faq.html#i-don-t-see-any-import-or-require-in-my-file-how-does-module-resolution-work">文件可以作为模块引用</a>，这意味着我们不必显式导入它们！我们可以这样做：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> today<span class="token punctuation">:</span> WeatherData<span class="token punctuation">.</span>weather <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> today<span class="token punctuation">:</span> <span class="token module variable">WeatherData</span><span class="token punctuation">.</span>weather <span class="token operator">=</span> <span class="token punctuation">{</span>
     summary<span class="token punctuation">:</span> <span class="token string">"Warm throughout the day"</span><span class="token punctuation">,</span>
     temp<span class="token punctuation">:</span> <span class="token number">30.5</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -117,30 +117,30 @@
             </ul>
             <p><code>Actions</code> 定义了我们可以对操作状态做不同的事情。例如，<code>Add</code> 或 <code>Subtract</code>。 Reducers 是纯粹的函数，它定义了这些动作如何影响状态，就像在 Redux 中一样。他们采取 <code>action</code> 和我们以前的状态作为参数，并返回一个<a href="https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html#state-update-through-reducer">更新类型</a>。</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    weather<span class="token punctuation">:</span> WeatherData<span class="token punctuation">.</span>weather
+    weather<span class="token punctuation">:</span> <span class="token module variable">WeatherData</span><span class="token punctuation">.</span>weather
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword">type</span> action <span class="token operator">=</span> 
-    <span class="token operator">|</span> WeatherLoaded<span class="token punctuation">(</span>WeatherData<span class="token punctuation">.</span>weather<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">|</span> <span class="token module variable">WeatherLoaded</span><span class="token punctuation">(</span><span class="token module variable">WeatherData</span><span class="token punctuation">.</span>weather<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>reducerComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>reducerComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> dummyWeather<span class="token punctuation">:</span> WeatherData<span class="token punctuation">.</span>weather <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> dummyWeather<span class="token punctuation">:</span> <span class="token module variable">WeatherData</span><span class="token punctuation">.</span>weather <span class="token operator">=</span> <span class="token punctuation">{</span>
     summary<span class="token punctuation">:</span> <span class="token string">"Warm throughout the day"</span><span class="token punctuation">,</span>
     temp<span class="token punctuation">:</span> <span class="token number">30.5</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span>_children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
 
     initaState<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
         weather<span class="token punctuation">:</span> dummyWeather
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
-    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> <span class="token punctuation">_</span>prevState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> _prevState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
         switch action <span class="token punctuation">{</span>
-            <span class="token operator">|</span> WeatherLoaded<span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span> <span class="token operator">=></span>
-              ReasonReact<span class="token punctuation">.</span>Update<span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token operator">|</span> <span class="token module variable">WeatherLoaded</span><span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span> <span class="token operator">=></span>
+              <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">Update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
                   weather<span class="token punctuation">:</span> newWeather
               <span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token punctuation">}</span>
@@ -148,19 +148,19 @@
 
     render<span class="token punctuation">:</span> <span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">=></span>
         <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App"</span><span class="token operator">></span>
-            <span class="token operator">&lt;</span>p<span class="token operator">></span> <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>self<span class="token punctuation">.</span>state<span class="token punctuation">.</span>weather<span class="token punctuation">.</span>summary<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>p<span class="token operator">></span>
+            <span class="token operator">&lt;</span>p<span class="token operator">></span> <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>self<span class="token punctuation">.</span>state<span class="token punctuation">.</span>weather<span class="token punctuation">.</span>summary<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>p<span class="token operator">></span>
         <span class="token operator">&lt;/</span>div<span class="token operator">></span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 </code></pre>
             <p>这里有两个新的 Reason 概念：变体和模式匹配。</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> action <span class="token operator">=</span> 
-    <span class="token operator">|</span> WeatherLoaded<span class="token punctuation">(</span>WeatherData<span class="token punctuation">.</span>weather<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">|</span> <span class="token module variable">WeatherLoaded</span><span class="token punctuation">(</span><span class="token module variable">WeatherData</span><span class="token punctuation">.</span>weather<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>这是一个变体：代表不同值的选择的数据结构（像枚举）。变体中的每个案例都必须大写，并且可以选择接收参数。在 ReasonReact 中，<code>action</code> 表示为变体。这些可以与 switch 表达式一起使用：</p>
             <pre><code class="language-ocaml">switch action <span class="token punctuation">{</span>
-    <span class="token operator">|</span> WeatherLoaded<span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span> <span class="token operator">=></span>
-      ReasonReact<span class="token punctuation">.</span>Update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token operator">|</span> <span class="token module variable">WeatherLoaded</span><span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span> <span class="token operator">=></span>
+      <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">Update</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>
             <p>这是 Reason 中最有用的功能之一。这里我们是基于我们在 <code>reducer()</code> 方法中接收到的参数的模式匹配 <code>action</code>。如果我们忘记处理一个案例，编译器知道，并会告诉我们！</p>
@@ -187,13 +187,13 @@
 <span class="token keyword">let</span> url <span class="token operator">=</span> <span class="token string">"https://query.yahooapis.com/v1/public/yql?q=select%20item.condition%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22london%22)%20AND%20u%3D%22c%22&amp;format=json&amp;env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"</span><span class="token punctuation">;</span>
 
 <span class="token keyword">let</span> parseWeatherJson <span class="token operator">=</span> json<span class="token punctuation">:</span> weather <span class="token operator">=></span> 
-    Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span><span class="token punctuation">{</span>
+    <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span><span class="token punctuation">{</span>
         summary<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        temp<span class="token punctuation">:</span> float<span class="token punctuation">_</span>of<span class="token punctuation">_</span>string<span class="token punctuation">(</span>field<span class="token punctuation">(</span><span class="token string">"temp"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        temp<span class="token punctuation">:</span> float_of_string<span class="token punctuation">(</span>field<span class="token punctuation">(</span><span class="token string">"temp"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword">let</span> parseWeatherResultsJson <span class="token operator">=</span> json <span class="token operator">=></span>
-    Json<span class="token punctuation">.</span>parseOrRaise<span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token operator">|></span> Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span><span class="token punctuation">(</span>at<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token module variable">Json</span><span class="token punctuation">.</span>parseOrRaise<span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token operator">|></span> <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span><span class="token punctuation">(</span>at<span class="token punctuation">(</span><span class="token punctuation">[</span>
         <span class="token string">"query"</span><span class="token punctuation">,</span>
         <span class="token string">"results"</span><span class="token punctuation">,</span>
         <span class="token string">"channel"</span><span class="token punctuation">,</span>
@@ -202,10 +202,10 @@
     <span class="token punctuation">]</span><span class="token punctuation">,</span> parseWeatherJson<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token keyword">let</span> getWeather <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span>
-    Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span><span class="token punctuation">(</span>
-        Bs<span class="token punctuation">_</span>fetch<span class="token punctuation">.</span>fetch<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
-            <span class="token operator">|></span> then<span class="token punctuation">_</span><span class="token punctuation">(</span>Bs<span class="token punctuation">_</span>fetch<span class="token punctuation">.</span>Response<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
-            <span class="token operator">|></span> then<span class="token punctuation">_</span><span class="token punctuation">(</span>
+    <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span><span class="token punctuation">(</span>
+        <span class="token module variable">Bs_fetch</span><span class="token punctuation">.</span>fetch<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+            <span class="token operator">|></span> then_<span class="token punctuation">(</span><span class="token module variable">Bs_fetch</span><span class="token punctuation">.</span><span class="token module variable">Response</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+            <span class="token operator">|></span> then_<span class="token punctuation">(</span>
                 jsonText <span class="token operator">=></span> <span class="token punctuation">{</span>
                     <span class="token keyword">let</span> result <span class="token operator">=</span> parseWeatherResultsJson<span class="token punctuation">(</span>jsonText<span class="token punctuation">)</span><span class="token punctuation">;</span>
                     resolve<span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -214,14 +214,14 @@
     <span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 </code></pre>
-            <pre><code class="language-ocaml">Josn<span class="token punctuation">.</span>parseOrRaise<span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token operator">|></span> Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span><span class="token punctuation">(</span>at<span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <pre><code class="language-ocaml"><span class="token module variable">Josn</span><span class="token punctuation">.</span>parseOrRaise<span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token operator">|></span> <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span><span class="token punctuation">(</span>at<span class="token punctuation">(</span><span class="token punctuation">[</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token punctuation">]</span><span class="token punctuation">,</span> parseWeatherJson<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>这会在通过指定字段遍历数据之前解析 JSON 字符串响应。然后它使用 parseWeatherJson() 方法来解析在条件字段中找到的数据。</p>
-            <pre><code class="language-ocaml">Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span><span class="token punctuation">{</span>
+            <pre><code class="language-ocaml"><span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span><span class="token punctuation">{</span>
     summary<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    temp<span class="token punctuation">:</span> float<span class="token punctuation">_</span>of<span class="token punctuation">_</span>string<span class="token punctuation">(</span>field<span class="token punctuation">(</span><span class="token string">"temp"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    temp<span class="token punctuation">:</span> float_of_string<span class="token punctuation">(</span>field<span class="token punctuation">(</span><span class="token string">"temp"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>在这个片段中，字段和字符串是 <code>Json.Decode</code> 的属性。这个新的语法“打开” <code>Json.Decode</code>，所以它的属性可以在大括号内自由使用（而不是重复<code>Json.Decode.foo</code>）。该代码生成一个 <code>weather</code> 项目，使用 <code>text</code> 和 <code>temp</code> 字段分配 <code>summary</code> 和 <code>temp</code>。</p>
@@ -229,27 +229,27 @@
             <h2>更新状态</h2>
             <p>现在我们有一个返回 <code>promise</code> 的 <code>getWeather()</code> 方法，我们需要在 App 组件加载时调用它。ReasonReact 对 React.js 有一组类似的生命周期方法，但有一些<a href="https://reasonml.github.io/reason-react/docs/en/lifecycles.html">细微差别</a>。我们将使用 <code>didMount</code> 生命周期方法使 API 调用获取天气。</p>
             <p>首先，我们需要改变我们的状态，以表明可能没有状态的天气项目 - 我们将摆脱虚拟数据。 <code>option()</code> 是 Reason 中的一个内置变体，它描述了一个“<code>nullable</code>（可空）”值：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">type</span> option<span class="token punctuation">(</span><span class="token type variable">'a</span><span class="token punctuation">)</span> <span class="token operator">=</span> None <span class="token operator">|</span> Some<span class="token punctuation">(</span><span class="token type variable">'a</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">type</span> option<span class="token punctuation">(</span><span class="token type_variable function">'a</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token module variable">None</span> <span class="token operator">|</span> <span class="token module variable">Some</span><span class="token punctuation">(</span><span class="token type_variable function">'a</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>我们需要在我们的状态类型和初始状态中指定 <code>None</code>，并在 <code>WeatherLoaded</code> reducer 中指定 <code>Some(weather)</code>：</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    weather<span class="token punctuation">:</span> option<span class="token punctuation">(</span>WeatherData<span class="token punctuation">.</span>weather<span class="token punctuation">)</span>
+    weather<span class="token punctuation">:</span> option<span class="token punctuation">(</span><span class="token module variable">WeatherData</span><span class="token punctuation">.</span>weather<span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token operator">//</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span>_children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
 
     initialState<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        weather<span class="token punctuation">:</span> None
+        weather<span class="token punctuation">:</span> <span class="token module variable">None</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
-    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> <span class="token punctuation">_</span>prevState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> _prevState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
         switch action <span class="token punctuation">{</span>
-            <span class="token operator">|</span> WeatherLoaded<span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span> <span class="token operator">=></span>
-              ReasonReact<span class="token punctuation">.</span>Update<span class="token punctuation">(</span><span class="token punctuation">{</span>
-                  weather<span class="token punctuation">:</span> Some<span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span>
+            <span class="token operator">|</span> <span class="token module variable">WeatherLoaded</span><span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span> <span class="token operator">=></span>
+              <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">Update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                  weather<span class="token punctuation">:</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span>
               <span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -259,28 +259,28 @@
 </code></pre>
             <p>现在，我们实际上可以在组件装入时发出 API 请求。查看下面的代码，<code>handleWeatherLoaded</code> 是一个将我们的 <code>WeatherLoaded</code> action 分派给 reducer 的方法。</p>
             <p>注意：重要的是从大多数组件生命周期中返回 <code>ReasonReact.NoUpdate</code>。reducer 将在下一次改变中处理所有状态变化。</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span>_children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token operator">//</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 
     didMount<span class="token punctuation">:</span> <span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        <span class="token keyword">let</span> handleWeatherLoaded <span class="token operator">=</span> weather <span class="token operator">=></span> self<span class="token punctuation">.</span>send<span class="token punctuation">(</span>WeatherLoaded<span class="token punctuation">(</span>weather<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        WeatherData<span class="token punctuation">.</span>getWeather<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token operator">|></span> Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>then<span class="token punctuation">_</span><span class="token punctuation">(</span>
+        <span class="token keyword">let</span> handleWeatherLoaded <span class="token operator">=</span> weather <span class="token operator">=></span> self<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token module variable">WeatherLoaded</span><span class="token punctuation">(</span>weather<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token module variable">WeatherData</span><span class="token punctuation">.</span>getWeather<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token operator">|></span> <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>then_<span class="token punctuation">(</span>
                 weather <span class="token operator">=></span> <span class="token punctuation">{</span>
                     handleWeatherLoaded<span class="token punctuation">(</span>weather<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>resolve<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>resolve<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token punctuation">}</span>
             <span class="token punctuation">)</span>
             <span class="token operator">|></span> ignore<span class="token punctuation">;</span>
 
-            ReasonReact<span class="token punctuation">.</span>NoUpdate<span class="token punctuation">;</span>
+            <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">NoUpdate</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
     <span class="token operator">//</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>如果我们现在运行我们的应用程序，我们会遇到错误…我们当前正在尝试呈现关于 <code>self.state.weather</code> 的信息，但是直到我们收到来自 API 的响应时，它才设置为 None。让我们更新我们的应用程序组件，以便在等待时显示加载消息：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span>_children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token operator">//</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
 
     render<span class="token punctuation">:</span> <span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">=></span> 
@@ -288,10 +288,10 @@
             <span class="token operator">&lt;</span>p<span class="token operator">></span>
             <span class="token punctuation">{</span>
                 switch self<span class="token punctuation">.</span>state<span class="token punctuation">.</span>weather <span class="token punctuation">{</span>
-                    <span class="token operator">|</span> None <span class="token operator">=></span>
-                        ReactReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"Loading weather..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token operator">|</span> Some<span class="token punctuation">(</span>weather<span class="token punctuation">)</span> <span class="token operator">=></span> 
-                        ReactReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>weather<span class="token punctuation">.</span>summary<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token operator">|</span> <span class="token module variable">None</span> <span class="token operator">=></span>
+                        <span class="token module variable">ReactReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"Loading weather..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token operator">|</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>weather<span class="token punctuation">)</span> <span class="token operator">=></span> 
+                        <span class="token module variable">ReactReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>weather<span class="token punctuation">.</span>summary<span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token punctuation">}</span>
             <span class="token punctuation">}</span>
             <span class="token operator">&lt;/</span>p<span class="token operator">></span>
@@ -303,10 +303,10 @@
             <h2>错误处理</h2>
             <p>我们没有想过的一件事是如果我们无法加载数据会发生什么。如果API停机，或者它返回了我们预料不到的情况呢？我们需要认识到这一点并拒绝承诺：</p>
             <pre><code class="language-ocaml"><span class="token keyword">let</span> getWeather <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span>
-    Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span><span class="token punctuation">(</span>
-        Bs<span class="token punctuation">_</span>fetch<span class="token punctuation">.</span>fetch<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
-            <span class="token operator">|></span> then<span class="token punctuation">_</span><span class="token punctuation">(</span>Bs<span class="token punctuation">_</span>fetch<span class="token punctuation">.</span>Response<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
-            <span class="token operator">|></span> then<span class="token punctuation">_</span><span class="token punctuation">(</span>
+    <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span><span class="token punctuation">(</span>
+        <span class="token module variable">Bs_fetch</span><span class="token punctuation">.</span>fetch<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+            <span class="token operator">|></span> then_<span class="token punctuation">(</span><span class="token module variable">Bs_fetch</span><span class="token punctuation">.</span><span class="token module variable">Response</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+            <span class="token operator">|></span> then_<span class="token punctuation">(</span>
                 jsonText <span class="token operator">=></span> <span class="token punctuation">{</span>
                     switch <span class="token punctuation">(</span>parseWeatherResultsJson<span class="token punctuation">(</span>jsonText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
                     <span class="token operator">|</span> <span class="token keyword">exception</span> e <span class="token operator">=></span> reject<span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -323,50 +323,50 @@
 </code></pre>
             <p>这个 switch 语句试图解析 API 响应。如果发生异常，它会拒绝承诺那个错误。如果解析成功，该承诺将与天气项目一起解决。</p>
             <p>接下来，我们将改变我们的状态，让我们认识到是否发生错误。我们来创建一个新的类型，它向我们之前的 <code>Some('a)</code> 或 <code>None</code> 添加一个 <code>Error</code> 案例。</p>
-            <pre><code class="language-ocaml"><span class="token keyword">type</span> optionOrError<span class="token punctuation">(</span><span class="token type variable">'a</span><span class="token punctuation">)</span> <span class="token operator">=</span> 
-    <span class="token operator">|</span> Some<span class="token punctuation">(</span><span class="token type variable">'a</span><span class="token punctuation">)</span>
-    <span class="token operator">|</span> None
-    <span class="token operator">|</span> Error<span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">type</span> optionOrError<span class="token punctuation">(</span><span class="token type_variable function">'a</span><span class="token punctuation">)</span> <span class="token operator">=</span> 
+    <span class="token operator">|</span> <span class="token module variable">Some</span><span class="token punctuation">(</span><span class="token type_variable function">'a</span><span class="token punctuation">)</span>
+    <span class="token operator">|</span> <span class="token module variable">None</span>
+    <span class="token operator">|</span> <span class="token module variable">Error</span><span class="token punctuation">;</span>
 
 <span class="token keyword">type</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    weather<span class="token punctuation">:</span> optionOrError<span class="token punctuation">(</span>WeatherData<span class="token punctuation">.</span>weather<span class="token punctuation">)</span>
+    weather<span class="token punctuation">:</span> optionOrError<span class="token punctuation">(</span><span class="token module variable">WeatherData</span><span class="token punctuation">.</span>weather<span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>在这样做的同时，我们还需要向渲染函数添加一个 <code>Error</code> 案例 - 我会让你自己添加。最后，我们需要创建一个新的 <code>action</code>和 <code>reducer</code>，以便在我们的 <code>getWeather()</code> 承诺被拒绝时使用。</p>
             <pre><code class="language-ocaml"><span class="token operator">//</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token keyword">type</span> action <span class="token operator">=</span> 
-    <span class="token operator">|</span> WeatherLoaded<span class="token punctuation">(</span>WeatherData<span class="token punctuation">.</span>weather<span class="token punctuation">)</span>
-    <span class="token operator">|</span> WeatherError<span class="token punctuation">;</span>
+    <span class="token operator">|</span> <span class="token module variable">WeatherLoaded</span><span class="token punctuation">(</span><span class="token module variable">WeatherData</span><span class="token punctuation">.</span>weather<span class="token punctuation">)</span>
+    <span class="token operator">|</span> <span class="token module variable">WeatherError</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span>_children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
 
     didMount<span class="token punctuation">:</span> <span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        <span class="token keyword">let</span> handleWeatherLoaded <span class="token operator">=</span> weather <span class="token operator">=></span> self<span class="token punctuation">.</span>send<span class="token punctuation">(</span>WeatherLoaded<span class="token punctuation">(</span>weather<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">let</span> handleWeatherError <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> self<span class="token punctuation">.</span>send<span class="token punctuation">(</span>WeatherError<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> handleWeatherLoaded <span class="token operator">=</span> weather <span class="token operator">=></span> self<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token module variable">WeatherLoaded</span><span class="token punctuation">(</span>weather<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> handleWeatherError <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> self<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token module variable">WeatherError</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        WeatherData<span class="token punctuation">.</span>getWeather<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token operator">|></span> Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>then<span class="token punctuation">_</span><span class="token punctuation">(</span>
+        <span class="token module variable">WeatherData</span><span class="token punctuation">.</span>getWeather<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token operator">|></span> <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>then_<span class="token punctuation">(</span>
                 <span class="token operator">//</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
             <span class="token punctuation">)</span>
-            <span class="token operator">|></span> Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>catch<span class="token punctuation">(</span>
-                <span class="token punctuation">_</span>err <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token operator">|></span> <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>catch<span class="token punctuation">(</span>
+                _err <span class="token operator">=></span> <span class="token punctuation">{</span>
                     handleWeatherError<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>resolve<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>resolve<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token punctuation">}</span>
             <span class="token punctuation">)</span>
             <span class="token operator">|></span> ignore<span class="token punctuation">;</span>
 
-        ReasonReact<span class="token punctuation">.</span>NoUpdate<span class="token punctuation">;</span>
+        <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">NoUpdate</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
-    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> <span class="token punctuation">_</span>prevState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> _prevState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
         switch action <span class="token punctuation">{</span>
-            <span class="token operator">|</span> WeatherLoaded<span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span> <span class="token operator">=></span>
+            <span class="token operator">|</span> <span class="token module variable">WeatherLoaded</span><span class="token punctuation">(</span>newWeather<span class="token punctuation">)</span> <span class="token operator">=></span>
                 <span class="token operator">//</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
             <span class="token operator">|</span> weatherError <span class="token operator">=></span>
-              ReasonReact<span class="token punctuation">.</span>Update<span class="token punctuation">(</span><span class="token punctuation">{</span>
-                  weather<span class="token punctuation">:</span> Error
+              <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">Update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                  weather<span class="token punctuation">:</span> <span class="token module variable">Error</span>
               <span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>

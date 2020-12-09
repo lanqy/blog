@@ -45,11 +45,11 @@
             <h3>Actions</h3>
             <p>Actions 是一些用于描述我们怎样改变我们应用状态的对象，你可以这么认为actions就是我们状态树的API。例如，一个添加用户的action可以像这样：</p>
             <pre><code class="language-javascript"><span class="token punctuation">{</span>
-  type<span class="token punctuation">:</span> <span class="token string">'ADD_USER'</span><span class="token punctuation">,</span>
-  data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    name<span class="token punctuation">:</span> <span class="token string">'Foo'</span><span class="token punctuation">,</span>
-    email<span class="token punctuation">:</span> <span class="token string">'foo@bar.com'</span><span class="token punctuation">,</span>
-    password<span class="token punctuation">:</span> <span class="token string">'Foobar123_'</span>
+  type<span class="token operator">:</span> <span class="token string">'ADD_USER'</span><span class="token punctuation">,</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'Foo'</span><span class="token punctuation">,</span>
+    email<span class="token operator">:</span> <span class="token string">'foo@bar.com'</span><span class="token punctuation">,</span>
+    password<span class="token operator">:</span> <span class="token string">'Foobar123_'</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -63,11 +63,11 @@
               我们考虑一下一个todo应用程序，需要些什么基本的东西。首先一个todo程序，由一个列表组成。其实这个列表包含一些我们可以改变的项目。<br />
               从应用的状态来看，我们可以这样定义我们的模型（model）：</p>
             <pre><code class="language-javascript"><span class="token punctuation">{</span>
-  todo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    items<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+  todo<span class="token operator">:</span> <span class="token punctuation">{</span>
+    items<span class="token operator">:</span> <span class="token punctuation">[</span>
       <span class="token punctuation">{</span>
-        message<span class="token punctuation">:</span> <span class="token string">"Finish Redux blog post..."</span><span class="token punctuation">,</span>
-        completed<span class="token punctuation">:</span> <span class="token boolean">false</span>
+        message<span class="token operator">:</span> <span class="token string">"Finish Redux blog post..."</span><span class="token punctuation">,</span>
+        completed<span class="token operator">:</span> <span class="token boolean">false</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
@@ -77,9 +77,9 @@
             <p>我们要怎样处理我们应用的状态呢？首先，我们添加一个新待办项目到我们状态中去，让我们创建一个action来做这件事：</p>
             <pre><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">addTodo</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token punctuation">:</span> <span class="token string">'ADD_TODO'</span><span class="token punctuation">,</span>
-    message<span class="token punctuation">:</span> message<span class="token punctuation">,</span>
-    completed<span class="token punctuation">:</span> <span class="token boolean">false</span>
+    type<span class="token operator">:</span> <span class="token string">'ADD_TODO'</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span> message<span class="token punctuation">,</span>
+    completed<span class="token operator">:</span> <span class="token boolean">false</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -89,21 +89,21 @@
               因此让我们创建actions来做这些事情：</p>
             <pre><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">completeTodo</span><span class="token punctuation">(</span><span class="token parameter">index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token punctuation">:</span> <span class="token string">'COMPLETE_TODO'</span><span class="token punctuation">,</span>
-    index<span class="token punctuation">:</span> index
+    type<span class="token operator">:</span> <span class="token string">'COMPLETE_TODO'</span><span class="token punctuation">,</span>
+    index<span class="token operator">:</span> index
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">function</span> <span class="token function">deleteTodo</span><span class="token punctuation">(</span><span class="token parameter">index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token punctuation">:</span> <span class="token string">'DELETE_TODO'</span><span class="token punctuation">,</span>
-    index<span class="token punctuation">:</span> index
+    type<span class="token operator">:</span> <span class="token string">'DELETE_TODO'</span><span class="token punctuation">,</span>
+    index<span class="token operator">:</span> index
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">function</span> <span class="token function">clearTodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    type<span class="token punctuation">:</span> <span class="token string">'CLEAR_TODO'</span>
+    type<span class="token operator">:</span> <span class="token string">'CLEAR_TODO'</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -111,8 +111,8 @@
             <pre><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'redux'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">var</span> defaultState <span class="token operator">=</span> <span class="token punctuation">{</span>
-  todo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    items<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  todo<span class="token operator">:</span> <span class="token punctuation">{</span>
+    items<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
@@ -126,17 +126,17 @@
               让我们先处理我们的<code>ADD_TODO</code> action，如下所示：</p>
             <pre><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">todoApp</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">'ADD_TODO'</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> <span class="token string">'ADD_TODO'</span><span class="token operator">:</span>
       <span class="token keyword">var</span> newState <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
       newState<span class="token punctuation">.</span>todo<span class="token punctuation">.</span>items<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-        message<span class="token punctuation">:</span> action<span class="token punctuation">.</span>message<span class="token punctuation">,</span>
-        completed<span class="token punctuation">:</span> <span class="token boolean">false</span>
+        message<span class="token operator">:</span> action<span class="token punctuation">.</span>message<span class="token punctuation">,</span>
+        completed<span class="token operator">:</span> <span class="token boolean">false</span>
       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
       <span class="token keyword">return</span> newState<span class="token punctuation">;</span>
 
-    <span class="token keyword">default</span><span class="token punctuation">:</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
       <span class="token keyword">return</span> state<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -145,42 +145,42 @@
               现在我们有了第一个我们的action处理器，让我们添加其它的：<br /></p>
             <pre><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">todoApp</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">'ADD_TODO'</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> <span class="token string">'ADD_TODO'</span><span class="token operator">:</span>
       <span class="token keyword">var</span> newState <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
       newState<span class="token punctuation">.</span>todo<span class="token punctuation">.</span>items<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-        message<span class="token punctuation">:</span> action<span class="token punctuation">.</span>message<span class="token punctuation">,</span>
-        completed<span class="token punctuation">:</span> <span class="token boolean">false</span>
+        message<span class="token operator">:</span> action<span class="token punctuation">.</span>message<span class="token punctuation">,</span>
+        completed<span class="token operator">:</span> <span class="token boolean">false</span>
       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
       <span class="token keyword">return</span> newState<span class="token punctuation">;</span>
 
-    <span class="token keyword">case</span> <span class="token string">'COMPLETE_TODO'</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> <span class="token string">'COMPLETE_TODO'</span><span class="token operator">:</span>
       <span class="token keyword">var</span> newState <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
       newState<span class="token punctuation">.</span>todo<span class="token punctuation">.</span>items<span class="token punctuation">[</span>action<span class="token punctuation">.</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>completed <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 
       <span class="token keyword">return</span> newState<span class="token punctuation">;</span>
 
-    <span class="token keyword">case</span> <span class="token string">'DELETE_TODO'</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> <span class="token string">'DELETE_TODO'</span><span class="token operator">:</span>
       <span class="token keyword">var</span> items <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>todo<span class="token punctuation">.</span>items<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
       items<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
       <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-        todo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-          items<span class="token punctuation">:</span> items
+        todo<span class="token operator">:</span> <span class="token punctuation">{</span>
+          items<span class="token operator">:</span> items
         <span class="token punctuation">}</span>
       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">case</span> <span class="token string">'CLEAR_TODO'</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> <span class="token string">'CLEAR_TODO'</span><span class="token operator">:</span>
       <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-        todo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-          items<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        todo<span class="token operator">:</span> <span class="token punctuation">{</span>
+          items<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
         <span class="token punctuation">}</span>
       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">default</span><span class="token punctuation">:</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
       <span class="token keyword">return</span> state<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -192,8 +192,8 @@
 <span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'redux'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">var</span> defaultState <span class="token operator">=</span> <span class="token punctuation">{</span>
-  todo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    items<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  todo<span class="token operator">:</span> <span class="token punctuation">{</span>
+    items<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
@@ -207,18 +207,18 @@
 
 <span class="token keyword">class</span> <span class="token class-name">AddTodoForm</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
   state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    message<span class="token punctuation">:</span> <span class="token string">''</span>
+    message<span class="token operator">:</span> <span class="token string">''</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
   <span class="token function">onFormSubmit</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addTodo</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> message<span class="token punctuation">:</span> <span class="token string">''</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> message<span class="token operator">:</span> <span class="token string">''</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 
   <span class="token function">onMessageChanged</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> message <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> message<span class="token punctuation">:</span> message <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> message<span class="token operator">:</span> message <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 
   <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -252,14 +252,14 @@
 
 <span class="token keyword">class</span> <span class="token class-name">TodoList</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
   state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    items<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    items<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
   <span class="token function">componentWillMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     store<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
       <span class="token keyword">var</span> state <span class="token operator">=</span> store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
       <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-        items<span class="token punctuation">:</span> state<span class="token punctuation">.</span>todo<span class="token punctuation">.</span>items
+        items<span class="token operator">:</span> state<span class="token punctuation">.</span>todo<span class="token punctuation">.</span>items
       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -307,21 +307,21 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <span class="token punctuation">}</span>
 
 ReactStormpath<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  dispatcher<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    type<span class="token punctuation">:</span> <span class="token string">'redux'</span><span class="token punctuation">,</span>
-    store<span class="token punctuation">:</span> <span class="token function">createStore</span><span class="token punctuation">(</span>myApp<span class="token punctuation">)</span>
+  dispatcher<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'redux'</span><span class="token punctuation">,</span>
+    store<span class="token operator">:</span> <span class="token function">createStore</span><span class="token punctuation">(</span>myApp<span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>一旦做到这一点，我们就可以通过Stormpath React SDK拦截和处理我们的actions调度，例如，如果你希望通过用户数据来丰富你的状态，那么简单地处理<code>USER_SET</code>action来添加用户数据到你的状态中。</p>
             <pre><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">myApp</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">'USER_SET'</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> <span class="token string">'USER_SET'</span><span class="token operator">:</span>
       <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-        user<span class="token punctuation">:</span> action<span class="token punctuation">.</span>data
+        user<span class="token operator">:</span> action<span class="token punctuation">.</span>data
       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">default</span><span class="token punctuation">:</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
       <span class="token keyword">return</span> state<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>

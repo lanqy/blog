@@ -47,9 +47,9 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword">let</span> myValue <span class="token operator">=</span> <span class="token punctuation">{</span>something<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token operator">/*</span> 哦，神奇的 myThing<span class="token punctuation">_</span><span class="token punctuation">_</span>to<span class="token punctuation">_</span>devtools 可用<span class="token operator">!</span> <span class="token operator">*/</span>
+<span class="token operator">/*</span> 哦，神奇的 myThing__to_devtools 可用<span class="token operator">!</span> <span class="token operator">*/</span>
 
-Js<span class="token punctuation">.</span>log<span class="token punctuation">(</span>myThing<span class="token punctuation">_</span><span class="token punctuation">_</span>to<span class="token punctuation">_</span>devtools myValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token module variable">Js</span><span class="token punctuation">.</span>log<span class="token punctuation">(</span>myThing__to_devtools myValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>你可以真正做到一个或多个 PPX 链接。他们非常强大。例如，您可以使用它将 Reason JSX 翻译成 ReactJS 能够理解的内容。这就是 reactjs_jsx_ppx 所做的。</p>
             <h2>构建一个 PPX</h2>
@@ -66,67 +66,67 @@ Js<span class="token punctuation">.</span>log<span class="token punctuation">(</
             <h2>写 PPX</h2>
             <p>PPX 是类型为 Ast_mapper.mapper 的映射器。这个映射器类型只是一个包含 ParseTree 数据类型的很多映射器函数签名的记录。它看起来像这样：</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> mapper <span class="token operator">=</span> <span class="token punctuation">{</span>
-    attribute<span class="token punctuation">:</span> mapper <span class="token operator">=></span> Parsetree<span class="token punctuation">.</span>attribute <span class="token operator">=></span> Parsetree<span class="token punctuation">.</span>attribute<span class="token punctuation">,</span>
-    case<span class="token punctuation">:</span> mapper <span class="token operator">=></span> Parsetree<span class="token punctuation">.</span>case <span class="token operator">=></span> Parsetree<span class="token punctuation">.</span>case<span class="token punctuation">,</span>
-    cases<span class="token punctuation">:</span> mapper <span class="token operator">=></span> list Parsetree<span class="token punctuation">.</span>case <span class="token operator">=></span> list Parsetree<span class="token punctuation">.</span>case<span class="token punctuation">,</span>
+    attribute<span class="token punctuation">:</span> mapper <span class="token operator">=></span> <span class="token module variable">Parsetree</span><span class="token punctuation">.</span>attribute <span class="token operator">=></span> <span class="token module variable">Parsetree</span><span class="token punctuation">.</span>attribute<span class="token punctuation">,</span>
+    case<span class="token punctuation">:</span> mapper <span class="token operator">=></span> <span class="token module variable">Parsetree</span><span class="token punctuation">.</span>case <span class="token operator">=></span> <span class="token module variable">Parsetree</span><span class="token punctuation">.</span>case<span class="token punctuation">,</span>
+    cases<span class="token punctuation">:</span> mapper <span class="token operator">=></span> list <span class="token module variable">Parsetree</span><span class="token punctuation">.</span>case <span class="token operator">=></span> list <span class="token module variable">Parsetree</span><span class="token punctuation">.</span>case<span class="token punctuation">,</span>
     <span class="token operator">/*</span> 还有很多其他的mapper函数类型 <span class="token operator">*/</span>
 <span class="token punctuation">}</span>
 </code></pre>
             <p>Ast_mapper 模块已经为我们提供了一个默认映射器：</p>
             <p>Ast_mapper.default_mapper（类型为 Ast_mapper.mapper ）。</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> Ast<span class="token punctuation">_</span>mapper<span class="token punctuation">.</span>default<span class="token punctuation">_</span>mapper<span class="token punctuation">:</span> Ast<span class="token punctuation">_</span>mapper<span class="token punctuation">.</span>mapper<span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> <span class="token module variable">Ast_mapper</span><span class="token punctuation">.</span>default_mapper<span class="token punctuation">:</span> <span class="token module variable">Ast_mapper</span><span class="token punctuation">.</span>mapper<span class="token punctuation">;</span>
 </code></pre>
             <p>我们将继承这个默认的映射器来创建我们的 PPX ，并且只覆盖将 [%test] 转换为 42 所需的内容。</p>
-            <pre><code class="language-ocaml"><span class="token operator">/*</span> ppx<span class="token punctuation">_</span>test<span class="token punctuation">.</span>re <span class="token operator">*/</span>
-<span class="token keyword">open</span> Asttypes<span class="token punctuation">;</span>
-<span class="token keyword">open</span> Parsetree<span class="token punctuation">;</span>
-<span class="token keyword">open</span> Ast<span class="token punctuation">_</span>mapper<span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token operator">/*</span> ppx_test<span class="token punctuation">.</span>re <span class="token operator">*/</span>
+<span class="token keyword">open</span> <span class="token module variable">Asttypes</span><span class="token punctuation">;</span>
+<span class="token keyword">open</span> <span class="token module variable">Parsetree</span><span class="token punctuation">;</span>
+<span class="token keyword">open</span> <span class="token module variable">Ast_mapper</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> test<span class="token punctuation">_</span>mapper  argv <span class="token operator">=></span> <span class="token punctuation">{</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>default<span class="token punctuation">_</span>mapper<span class="token punctuation">,</span> <span class="token operator">/*</span> 我们扩展了 default<span class="token punctuation">_</span>mapper <span class="token operator">*/</span>
-    <span class="token operator">/*</span> 并覆盖 <span class="token type variable">'expr</span><span class="token type variable">'</span> 属性 <span class="token operator">*/</span>
+<span class="token keyword">let</span> test_mapper  argv <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>default_mapper<span class="token punctuation">,</span> <span class="token operator">/*</span> 我们扩展了 default_mapper <span class="token operator">*/</span>
+    <span class="token operator">/*</span> 并覆盖 <span class="token type_variable function">'expr</span>' 属性 <span class="token operator">*/</span>
     expr<span class="token punctuation">:</span> <span class="token keyword">fun</span> mapper expr <span class="token operator">=></span> 
     <span class="token operator">/*</span> 如果表达式是 <span class="token punctuation">[</span><span class="token operator">%</span>测试<span class="token punctuation">]</span> <span class="token operator">*/</span>
 
     switch expr <span class="token punctuation">{</span>
-        <span class="token operator">|</span> <span class="token punctuation">{</span>pexp<span class="token punctuation">_</span>desc<span class="token punctuation">:</span> Pexp<span class="token punctuation">_</span>extension <span class="token punctuation">{</span>text<span class="token punctuation">:</span> <span class="token string">"test"</span><span class="token punctuation">}</span> <span class="token punctuation">(</span>PStr <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token operator">@</span>implicit<span class="token punctuation">_</span>arity<span class="token punctuation">]</span><span class="token punctuation">}</span> <span class="token operator">=></span>
+        <span class="token operator">|</span> <span class="token punctuation">{</span>pexp_desc<span class="token punctuation">:</span> <span class="token module variable">Pexp_extension</span> <span class="token punctuation">{</span>text<span class="token punctuation">:</span> <span class="token string">"test"</span><span class="token punctuation">}</span> <span class="token punctuation">(</span><span class="token module variable">PStr</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token operator">@</span>implicit_arity<span class="token punctuation">]</span><span class="token punctuation">}</span> <span class="token operator">=></span>
         <span class="token operator">/*</span> 然后换成 <span class="token number">42</span> <span class="token operator">*/</span>
-            Ast<span class="token punctuation">_</span>helper<span class="token punctuation">.</span>Exp<span class="token punctuation">.</span>constant <span class="token punctuation">(</span>Const<span class="token punctuation">_</span>int <span class="token number">42</span><span class="token punctuation">)</span>
-        <span class="token operator">|</span> other <span class="token operator">=></span> default<span class="token punctuation">_</span>mapper<span class="token punctuation">.</span>expr mapper other
+            <span class="token module variable">Ast_helper</span><span class="token punctuation">.</span><span class="token module variable">Exp</span><span class="token punctuation">.</span>constant <span class="token punctuation">(</span><span class="token module variable">Const_int</span> <span class="token number">42</span><span class="token punctuation">)</span>
+        <span class="token operator">|</span> other <span class="token operator">=></span> default_mapper<span class="token punctuation">.</span>expr mapper other
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> register <span class="token string">"ppx_test"</span> test<span class="token punctuation">_</span>mapper<span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> register <span class="token string">"ppx_test"</span> test_mapper<span class="token punctuation">;</span>
 
 </code></pre>
             <p>我们扩展 default_mapper 并覆盖 'expr’属性。如果参数中给出的表达式匹配 [%test] ，则返回 42 .否则，返回 default_mapper 实现。</p>
             <h2>构建 PPX</h2>
             <p>BuckleScript 需要一个二进制文件：node_modules / packages_name / binary_file。在我们的例子中：node_modules / ppx_test / ppx。</p>
             <p>关于 ReasonML 编译如何在这里有一个很好的介绍。让我们看看我们如何在二进制文件中逐步构建我们的 .re 文件：</p>
-            <pre><code class="language-ocaml"><span class="token operator">//</span> <span class="token number">1.</span> 构建 OCaml 文件
+            <pre><code class="language-ocaml"><span class="token operator">//</span> <span class="token number">1.</span> 构建 <span class="token module variable">OCaml</span> 文件
 
 ocamlc <span class="token operator">-</span>o outputfile yourOcamlFile<span class="token punctuation">.</span>ml
 
 <span class="token operator">/*</span>
-<span class="token number">2.</span> 构建 ReasonML 文件
+<span class="token number">2.</span> 构建 <span class="token module variable">ReasonML</span> 文件
 
-如果你想构建 ReasonML 文件，你需要通过带有 pp 标志的预处理器来传递它。
-refmt 是 Reason reformat（它随 <span class="token punctuation">[</span>reason<span class="token operator">-</span>cli<span class="token punctuation">]</span><span class="token punctuation">(</span>https<span class="token punctuation">:</span><span class="token operator">//</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>reasonml<span class="token operator">/</span>reason<span class="token operator">-</span>cli<span class="token punctuation">)</span> 提供）。在这种情况下，它将打印ReasonML文件的二进制文件。<span class="token operator">-</span>impl 告诉编译器 <span class="token punctuation">.</span>re 应该被认为是一个普通的 <span class="token punctuation">.</span>ml（ OCaml 文件）
+如果你想构建 <span class="token module variable">ReasonML</span> 文件，你需要通过带有 pp 标志的预处理器来传递它。
+refmt 是 <span class="token module variable">Reason</span> reformat（它随 <span class="token punctuation">[</span>reason<span class="token operator">-</span>cli<span class="token punctuation">]</span><span class="token punctuation">(</span>https<span class="token punctuation">:</span><span class="token operator">//</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>reasonml<span class="token operator">/</span>reason<span class="token operator">-</span>cli<span class="token punctuation">)</span> 提供）。在这种情况下，它将打印<span class="token module variable">ReasonML</span>文件的二进制文件。<span class="token operator">-</span>impl 告诉编译器 <span class="token punctuation">.</span>re 应该被认为是一个普通的 <span class="token punctuation">.</span>ml（ <span class="token module variable">OCaml</span> 文件）
 <span class="token operator">*/</span>
 ocamlc <span class="token operator">-</span>pp <span class="token string">"refmt --print binary"</span> <span class="token operator">-</span>o outputFile <span class="token operator">-</span>impl yourReasonFile<span class="token punctuation">.</span>re
 
 <span class="token operator">/*</span>
-<span class="token number">3.</span>使通用模块可用 我们需要 OCaml Common 模块。 <span class="token operator">-</span>I 搜索依赖关系，<span class="token string">'+'</span> 使其相对于 OCaml 目录
+<span class="token number">3.</span>使通用模块可用 我们需要 <span class="token module variable">OCaml</span> <span class="token module variable">Common</span> 模块。 <span class="token operator">-</span>I 搜索依赖关系，<span class="token string">'+'</span> 使其相对于 <span class="token module variable">OCaml</span> 目录
 <span class="token operator">*/</span>
 
-ocamlc <span class="token operator">-</span>pp <span class="token string">"refmt --print binary"</span> <span class="token operator">-</span>o ppx <span class="token operator">-</span>I <span class="token operator">+</span>compiler<span class="token operator">-</span>libs ocamlcommon<span class="token punctuation">.</span>cma <span class="token operator">-</span>impl ppx<span class="token punctuation">_</span>test<span class="token punctuation">.</span>re
+ocamlc <span class="token operator">-</span>pp <span class="token string">"refmt --print binary"</span> <span class="token operator">-</span>o ppx <span class="token operator">-</span>I <span class="token operator">+</span>compiler<span class="token operator">-</span>libs ocamlcommon<span class="token punctuation">.</span>cma <span class="token operator">-</span>impl ppx_test<span class="token punctuation">.</span>re
 
 </code></pre>
             <p>用最后一条命令，我们生成我们的 ppx 二进制文件。所以我们现在有了 node_modules / ppx_test / ppx</p>
             <h2>使用魔法</h2>
             <pre><code class="language-ocaml">render<span class="token punctuation">:</span> <span class="token keyword">fun</span> <span class="token punctuation">_</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token operator">&lt;</span>div<span class="token operator">></span>
-        <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>stringToElement <span class="token punctuation">(</span>string<span class="token punctuation">_</span>of<span class="token punctuation">_</span>int <span class="token punctuation">[</span><span class="token operator">%</span>test<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement <span class="token punctuation">(</span>string_of_int <span class="token punctuation">[</span><span class="token operator">%</span>test<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token operator">&lt;/</span>div<span class="token operator">></span>
 <span class="token punctuation">}</span>
 </code></pre>

@@ -50,9 +50,9 @@
             <p>我们将解码来自此Github API请求的公共数据的响应：<a href="https://api.github.com/search/repositories?q=topic%3Areasonml&amp;type=Repositories">https://api.github.com/search/repositories?q=topic%3Areasonml&amp;type=Repositories</a> 但首先可以使用假数据进行设置。</p>
             <p>创建一个名为 <code>RepoData.re</code> 的新文件并将其添加到其中。</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> repo <span class="token operator">=</span> <span class="token punctuation">{</span>
-    full<span class="token punctuation">_</span>name<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
-    stargazers<span class="token punctuation">_</span>count<span class="token punctuation">:</span> int<span class="token punctuation">,</span>
-    html<span class="token punctuation">_</span>url<span class="token punctuation">:</span> string
+    full_name<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
+    stargazers_count<span class="token punctuation">:</span> int<span class="token punctuation">,</span>
+    html_url<span class="token punctuation">:</span> string
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <h2>文件既是模块</h2>
@@ -62,22 +62,22 @@
             </blockquote>
             <p>在 Reason 中，每个文件都是一个模块，并且使用关键字 <code>let</code>，<code>type</code> 和 <code>module</code> 在文件顶层定义的所有东西都暴露在其他文件（即其他模块）中使用。在这种情况下，其他模块可以将我们的 repo 类型引用为 RepoData.repo。与 Javascript 不同，不需要导入来引用其他模块的东西。</p>
             <p>让我们在 <code>app.re</code> 中使用我们的类型。repos 页面只是 repos 列表，列表中的每个项目都包含 repos 名称（链接到 Github 上的 repos）以及 repos 的 stars 数量。我们将定义一些虚拟数据，并在 <code>App.re</code> 中绘制一个名为 RepoItem 的新组件来表示 repos 列表中的项目：</p>
-            <pre><code class="language-ocaml"><span class="token operator">//</span> App<span class="token punctuation">.</span>re
-<span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token operator">//</span> <span class="token module variable">App</span><span class="token punctuation">.</span>re
+<span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span>_children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
-    render<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token punctuation">_</span>self<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    render<span class="token punctuation">:</span><span class="token punctuation">(</span>_self<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
         <span class="token operator">/*</span> our dummy data <span class="token operator">*/</span>
-        <span class="token keyword">let</span> dummyRepo<span class="token punctuation">:</span> RepoData<span class="token punctuation">.</span>repo <span class="token operator">=</span> <span class="token punctuation">{</span>
-            stargazers<span class="token punctuation">_</span>count<span class="token punctuation">:</span> <span class="token number">27</span><span class="token punctuation">,</span>
-            full<span class="token punctuation">_</span>name<span class="token punctuation">:</span> <span class="token string">"jsdf/reason-react-hacker-news"</span><span class="token punctuation">,</span>
-            html<span class="token punctuation">_</span>url<span class="token punctuation">:</span> <span class="token string">"https://github.com/jsdf/reason-react-hacker-news"</span>
+        <span class="token keyword">let</span> dummyRepo<span class="token punctuation">:</span> <span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo <span class="token operator">=</span> <span class="token punctuation">{</span>
+            stargazers_count<span class="token punctuation">:</span> <span class="token number">27</span><span class="token punctuation">,</span>
+            full_name<span class="token punctuation">:</span> <span class="token string">"jsdf/reason-react-hacker-news"</span><span class="token punctuation">,</span>
+            html_url<span class="token punctuation">:</span> <span class="token string">"https://github.com/jsdf/reason-react-hacker-news"</span>
         <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
         <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App"</span><span class="token operator">></span>
-            <span class="token operator">&lt;</span>h1<span class="token operator">></span><span class="token punctuation">{</span>ReasonReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"Reason Projects"</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>h1<span class="token operator">></span>
-            <span class="token operator">&lt;</span>RepoItem repo<span class="token operator">=</span>dummyRepo <span class="token operator">/></span>
+            <span class="token operator">&lt;</span>h1<span class="token operator">></span><span class="token punctuation">{</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"Reason Projects"</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>h1<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token module variable">RepoItem</span> repo<span class="token operator">=</span>dummyRepo <span class="token operator">/></span>
         <span class="token operator">&lt;/</span>div<span class="token operator">></span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -88,33 +88,33 @@
             <p>请注意，渲染函数的主体现在包含在 <code>{}</code> 括号中，因为它包含多个语句。在 Javascript 中，如果我们在 <code>=&gt;</code> 箭头函数的主体周围使用大括号，我们需要添加一个返回语句来返回一个值。然而在 Reason 中，函数返回最后一条语句产生的值，这里：</p>
             <pre><code class="language-ocaml">···
 <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App"</span><span class="token operator">></span>
-    <span class="token operator">&lt;</span>h1<span class="token operator">></span><span class="token punctuation">{</span>ReasonReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"Reason Projects"</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>h1<span class="token operator">></span>
-    <span class="token operator">&lt;</span>RepoItem repo<span class="token operator">=</span>dummyRepo <span class="token operator">/></span>
+    <span class="token operator">&lt;</span>h1<span class="token operator">></span><span class="token punctuation">{</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span><span class="token string">"Reason Projects"</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>h1<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token module variable">RepoItem</span> repo<span class="token operator">=</span>dummyRepo <span class="token operator">/></span>
 <span class="token operator">&lt;/</span>div<span class="token operator">></span>
 </code></pre>
             <p>自动成为返回值。如果你不想从函数返回任何东西，你可以创建最后一个语句 ()（在 <a href="https://reasonml.github.io/docs/en/function.html#optional-labeled-arguments">Reason</a> 中称为 “unit”）。</p>
             <h2>在 ReasonReact 中定义组件</h2>
             <p>你现在可能会看到一个错误提示，说 RepoItem 文件或模块没有找到。这是因为我们在App组件渲染函数中添加了 <code>&lt;RepoItem repo=dummyRepo /&gt;</code>，但是我们还没有创建该模块。添加一个名为 <code>RepoItem.re</code> 的新文件，包含：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"RepoItem"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"RepoItem"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">~</span>repo<span class="token punctuation">:</span> RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">,</span> <span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> 
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token label function">~repo</span><span class="token punctuation">:</span> <span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">,</span> _children<span class="token punctuation">)</span> <span class="token operator">=></span> 
 <span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
-    render<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>self<span class="token punctuation">)</span> <span class="token operator">=></span>
-    <span class="token operator">&lt;</span>div<span class="token operator">></span><span class="token punctuation">{</span>ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span>repo<span class="token punctuation">.</span>full<span class="token punctuation">_</span>name<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>div<span class="token operator">></span>
+    render<span class="token punctuation">:</span> <span class="token punctuation">(</span>_self<span class="token punctuation">)</span> <span class="token operator">=></span>
+    <span class="token operator">&lt;</span>div<span class="token operator">></span><span class="token punctuation">{</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span>repo<span class="token punctuation">.</span>full_name<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>div<span class="token operator">></span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>这里发生了什么？让我们来剖析这个文件中发生了什么。</p>
             <p>每个 Reason React 组件都是一个 Reason 模块，它定义了一个名为 make 的函数，它定义了 props 和 children 参数。props 被指定为<a href="https://reasonml.github.io/docs/en/function.html#labeled-arguments">标签参数</a>。</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> compoent <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"SomeComponent"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> compoent <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"SomeComponent"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">~</span>someProp<span class="token punctuation">,</span> <span class="token operator">~</span>anotherProp<span class="token punctuation">,</span> <span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">/*</span> some stuff here <span class="token operator">*/</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token label function">~someProp</span><span class="token punctuation">,</span> <span class="token label function">~anotherProp</span><span class="token punctuation">,</span> _children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">/*</span> some stuff here <span class="token operator">*/</span><span class="token punctuation">;</span>
 </code></pre>
             <p><code>make</code> 函数返回一条记录。此记录中的第一件事通常是 <code>...component</code>，其中 <code>component</code> 是<code>ReasonReact.reducerComponent</code> 或 <code>ReasonReact.statelessComponent</code> 的返回值（对于分别使用状态和不使用状态的组件）。如果这看起来有点奇怪，可以把它看作是从 React组件类继承的，就像做 Foo 类的扩展等同于在ReactJS中扩展 <code>class Foo extends React.Component {...</code> 一样。</p>
-            <pre><code class="language-ocaml"><span class="token operator">//</span> RepoItem<span class="token punctuation">.</span>re
-<span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"RepoItem"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token operator">//</span> <span class="token module variable">RepoItem</span><span class="token punctuation">.</span>re
+<span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"RepoItem"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">~</span>someProp<span class="token punctuation">,</span> <span class="token operator">~</span>anotherProp<span class="token punctuation">,</span> <span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> 
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token label function">~someProp</span><span class="token punctuation">,</span> <span class="token label function">~anotherProp</span><span class="token punctuation">,</span> _children<span class="token punctuation">)</span> <span class="token operator">=></span> 
     <span class="token punctuation">{</span>
         <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
         <span class="token operator">/*</span> render <span class="token operator">and</span> lifecycle methods go here <span class="token operator">*/</span>
@@ -124,13 +124,13 @@
 </code></pre>
             <p>记录的其余部分是您可以从 React 中添加渲染函数和您习惯使用的生命周期方法的位置。</p>
             <p>因此，回到 <code>RepoItem.re</code>：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> compoent <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"RepoItem"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> compoent <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"RepoItem"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">~</span>repo<span class="token punctuation">:</span> RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">,</span> <span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token label function">~repo</span><span class="token punctuation">:</span> <span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">,</span> _children<span class="token punctuation">)</span> <span class="token operator">=></span>
     <span class="token punctuation">{</span>
         <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
-        render<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>self<span class="token punctuation">)</span> <span class="token operator">=></span>
-        <span class="token operator">&lt;</span>div<span class="token operator">></span><span class="token punctuation">{</span>ReasonReact<span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>repo<span class="token punctuation">.</span>full<span class="token punctuation">_</span>name<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>div<span class="token operator">></span>
+        render<span class="token punctuation">:</span> <span class="token punctuation">(</span>_self<span class="token punctuation">)</span> <span class="token operator">=></span>
+        <span class="token operator">&lt;</span>div<span class="token operator">></span><span class="token punctuation">{</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>stringToElement<span class="token punctuation">(</span>repo<span class="token punctuation">.</span>full_name<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>div<span class="token operator">></span>
     <span class="token punctuation">}</span>
 
 </code></pre>
@@ -138,17 +138,17 @@
             <p>在ReactJS中，你可以使用 this.props 来访问render方法中的组件的属性。在 ReasonReact 中，我们接收属性作为 make 函数的标签参数，我们可以直接在渲染函数中使用它们（就像我们正在访问上面的 repos 属性的 full_name 字段一样）。</p>
             <p>make 函数也会传递一个 children 参数，但我们并没有在这个组件中使用子元素，所以我们在 _children 参数名称的开始处放置了一个 _ 下划线。这只是让 Reason 知道我们并没有真正使用这个参数。尽管我们没有使用这个参数，但它仍然需要包含在函数参数中，否则会出错。</p>
             <p>接下来，我们将充实渲染函数以呈现 repos 记录的字段：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"RepoItem"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"RepoItem"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">~</span>repo<span class="token punctuation">:</span> RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">,</span> <span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token label function">~repo</span><span class="token punctuation">:</span> <span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">,</span> _children<span class="token punctuation">)</span> <span class="token operator">=></span>
     <span class="token punctuation">{</span>
         <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
-        render<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>self<span class="token punctuation">)</span> <span class="token operator">=></span>
+        render<span class="token punctuation">:</span> <span class="token punctuation">(</span>_self<span class="token punctuation">)</span> <span class="token operator">=></span>
             <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"RepoItem"</span><span class="token operator">></span>
-                <span class="token operator">&lt;</span>a href<span class="token operator">=</span>repo<span class="token punctuation">.</span>html<span class="token punctuation">_</span>url<span class="token operator">></span>
-                    <span class="token operator">&lt;</span>h2<span class="token operator">></span><span class="token punctuation">{</span>ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span>repo<span class="token punctuation">.</span>full<span class="token punctuation">_</span>name<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>h2<span class="token operator">></span>
+                <span class="token operator">&lt;</span>a href<span class="token operator">=</span>repo<span class="token punctuation">.</span>html_url<span class="token operator">></span>
+                    <span class="token operator">&lt;</span>h2<span class="token operator">></span><span class="token punctuation">{</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span>repo<span class="token punctuation">.</span>full_name<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;/</span>h2<span class="token operator">></span>
                 <span class="token operator">&lt;/</span>a<span class="token operator">></span>
-                <span class="token punctuation">{</span>ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span>string<span class="token punctuation">_</span>of<span class="token punctuation">_</span>int<span class="token punctuation">(</span>repo<span class="token punctuation">.</span>stargazers<span class="token punctuation">_</span>count<span class="token punctuation">)</span> <span class="token operator">++</span> <span class="token string">" stars"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+                <span class="token punctuation">{</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span>string_of_int<span class="token punctuation">(</span>repo<span class="token punctuation">.</span>stargazers_count<span class="token punctuation">)</span> <span class="token operator">++</span> <span class="token string">" stars"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
             <span class="token operator">&lt;/</span>div<span class="token operator">></span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
@@ -159,34 +159,34 @@
             <p>我们的应用程序将加载一些数据然后渲染它，这意味着我们需要一个地方来加载数据。 React 状态组件似乎是一个明显的选择。所以我们会让我们的应用组件成为有状态的。我们通过将 <code>ReasonReact.statelessComponent</code> 更改为 <code>ReasonReact.reducerComponent</code> 来完成此操作。</p>
             <p>在 <code>App.re</code>：</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span>
+    repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token operator">/*</span> 我们的虚拟数据 <span class="token operator">*/</span>
 
-<span class="token keyword">let</span> dummyRepo<span class="token punctuation">:</span> RepoData<span class="token punctuation">.</span>repo <span class="token operator">=</span> <span class="token punctuation">{</span>
-    stargazers<span class="token punctuation">_</span>count<span class="token punctuation">:</span> <span class="token number">27</span><span class="token punctuation">,</span>
-    full<span class="token punctuation">_</span>name<span class="token punctuation">:</span> <span class="token string">"jsdf/reason-react-hacker-news"</span><span class="token punctuation">,</span>
-    html<span class="token punctuation">_</span>url<span class="token punctuation">:</span> <span class="token string">"https://github.com/jsdf/reason-react-hacker-news"</span><span class="token punctuation">,</span>
+<span class="token keyword">let</span> dummyRepo<span class="token punctuation">:</span> <span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo <span class="token operator">=</span> <span class="token punctuation">{</span>
+    stargazers_count<span class="token punctuation">:</span> <span class="token number">27</span><span class="token punctuation">,</span>
+    full_name<span class="token punctuation">:</span> <span class="token string">"jsdf/reason-react-hacker-news"</span><span class="token punctuation">,</span>
+    html_url<span class="token punctuation">:</span> <span class="token string">"https://github.com/jsdf/reason-react-hacker-news"</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> repoItem <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+<span class="token keyword">let</span> repoItem <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span>
     switch <span class="token punctuation">(</span>repoData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token operator">|</span> Some<span class="token punctuation">(</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>RepoItem repo <span class="token operator">/></span>
-        <span class="token operator">|</span> None <span class="token operator">=></span> ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Loading"</span><span class="token punctuation">)</span>
+        <span class="token operator">|</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span><span class="token module variable">RepoItem</span> repo <span class="token operator">/></span>
+        <span class="token operator">|</span> <span class="token module variable">None</span> <span class="token operator">=></span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Loading"</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">_</span>children <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> _children <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
     initialState<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        repoData<span class="token punctuation">:</span> Some<span class="token punctuation">(</span>dummyRepo<span class="token punctuation">)</span>
+        repoData<span class="token punctuation">:</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>dummyRepo<span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
-    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">_</span><span class="token punctuation">)</span> <span class="token operator">=></span> ReasonReact<span class="token punctuation">.</span>NoUpdate<span class="token punctuation">,</span>
+    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">_</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">NoUpdate</span><span class="token punctuation">,</span>
 
     render<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>state<span class="token punctuation">:</span><span class="token punctuation">{</span>repoData<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span>
         <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App"</span><span class="token operator">></span>
-            <span class="token operator">&lt;</span>h1<span class="token operator">></span> <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Decoding JSON in ReasonReact"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h1<span class="token operator">></span>
+            <span class="token operator">&lt;</span>h1<span class="token operator">></span> <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Decoding JSON in ReasonReact"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h1<span class="token operator">></span>
             <span class="token punctuation">(</span>repoItem<span class="token punctuation">(</span>repoData<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token operator">&lt;/</span>div<span class="token operator">></span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -197,7 +197,7 @@
             <h2>变体！选项</h2>
             <p>我们将我们的 <code>state</code> 类型定义为：</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span>
+    repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>Reason 中 <code>option</code> 是由 “变体” 组成的类型。这基本上意味着这种类型的值可以是已经明确定义的几种可能变化中的一种。在 <code>option</code> 的情况下，变体是 <code>Some</code> 和 <code>None</code> 。<code>Some</code> 用于存在值（并且包含值本身），而 <code>None</code> 表示没有值（如 Javascript 中的 <code>null</code> ）。在这里，我们’包裹’ dummyRepo 在 <code>Some</code> 变体中，因为我们有一个值。</p>
@@ -205,26 +205,26 @@
             <p>那么为什么使用这个包装器，而不是让我们的 <code>repoData</code> 字段包含一个值或 null ？Reason 迫使我们在实际使用价值时处理两种可能的情况。这很好，因为这意味着我们不会意外忘记处理’null（空）'情况。请注意，在调用 <code>ReasonReact.reducerComponent</code> 之前，必须定义 <code>state</code> 类型，否则会出现类似“类型构造函数状态将脱离其作用域”的错误。我们将通过创建一个名为 <code>repoItem</code> 的变量来告诉组件在每种情况下应该做什么，并定义在类型状态下定义的变例中我们想要发生的事情。</p>
             <h2>选项和模式匹配</h2>
             <p>当我们定义组件的初始状态时，目前我们已经有了 <code>repoData</code> 伪数据，但是一旦我们从服务器加载它，它的初始值将为空。但是，在 Reason 中，您不能像记录 Javascript 那样只是将记录字段的值设为 <code>null</code>。相反，可能不存在的事物需要用称为 <code>option</code> 的另一种类型“包装”。我们可以改变我们的状态类型来表示如下：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">type</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">type</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>并且在我们的 <code>initialState</code> 函数中，我们将我们的 <code>repo</code> 记录包装在 <code>Some()</code> 中：</p>
             <pre><code class="language-ocaml">initialState<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-    repoData<span class="token punctuation">:</span> Some<span class="token punctuation">(</span>dummyRepo<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    repoData<span class="token punctuation">:</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>dummyRepo<span class="token punctuation">)</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span>
 </code></pre>
             <p>在上面的代码中，我们使用 <code>Some</code> 和 <code>None</code> 变体来定义一个 <code>repoItem</code>，如果有一些数据，我们将这些数据传递给我们的 <code>&lt;RepoItem /&gt;</code> 模块，并将它返回给我们组件中的 UI。如果没有数据，我们告诉该函数使用None选项，返回一个 <code>div</code>来呈现 “Loading” 到 UI。</p>
             <p>然后在渲染 <code>div</code> 中，我们传递当前的 <code>repoData</code> ，然后传递给 <code>renderItem</code> 函数来处理在每种情况下要做的操作 <code>Some</code> 或 <code>None</code> 。我们无法直接将 <code>state.repoData</code> 作为 <code>RepoItem</code> 的 <code>repo</code> 的属性，因为它被包装在一个 <code>option()</code> 中，但是 <code>RepoItem</code> 期待它没有选项包装。那么我们如何解开它呢？我们使用模式匹配。这是 <code>Reason</code> 用来涵盖所有可能的情况（或者至少明确地抛出错误）的地方。模式匹配使用 <code>switch</code> 语句。然而，与 Javascript 中的 <code>switch</code> 语句不同，reason 中的 <code>switch</code> 语句可以匹配值的类型（例如 <code>Some</code> 和 <code>None</code> ），而不仅仅是值本身。我们将改变我们的渲染方法，使用 <code>switch</code> 在每种可能的情况下提供逻辑来呈现我们的 <code>repo</code> 项目。我们可以通过创建一个函数 <code>renderItem</code> 来处理每个 <code>case</code> 并根据结果进行渲染。</p>
-            <pre><code class="language-ocaml">repoItem <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span> 
+            <pre><code class="language-ocaml">repoItem <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span> 
     switch <span class="token punctuation">(</span>repoData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token operator">|</span> Some<span class="token punctuation">(</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>RepoItem repo <span class="token operator">/></span>
-        <span class="token operator">|</span> None <span class="token operator">=></span> ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Loading"</span><span class="token punctuation">)</span>
+        <span class="token operator">|</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span><span class="token module variable">RepoItem</span> repo <span class="token operator">/></span>
+        <span class="token operator">|</span> <span class="token module variable">None</span> <span class="token operator">=></span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Loading"</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>在这里你可以看到 <code>switch</code> 语句有一个 <code>case</code> 与 <code>state.repoData</code> 类型的 <code>Some</code> 类型匹配，并且将实际的 <code>repo</code> 记录提取到一个名为 <code>repo</code> 的变量中，然后它将它用在 =&gt; 右边的表达式中， 返回一个 <RepoItem> 元素。这个表达式只会在 <code>state.repoData</code> 是 <code>Some</code> 的情况下使用。或者，如果 <code>state.repoData</code> 为 <code>None</code>，则将显示文本 “Loading”。</p>
             <p>我们将在我们的 div 中调用 repoItem 并将它作为 repoData 解构的 state.repoData。</p>
             <pre><code class="language-ocaml">render<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>state<span class="token punctuation">:</span> <span class="token punctuation">{</span>repoData<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> 
     <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App"</span><span class="token operator">></span>
-        <span class="token operator">&lt;</span>h1<span class="token operator">></span> <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Decoding JSON in ReasonReact"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h1<span class="token operator">></span>
+        <span class="token operator">&lt;</span>h1<span class="token operator">></span> <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Decoding JSON in ReasonReact"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h1<span class="token operator">></span>
         <span class="token punctuation">(</span>repoItem<span class="token punctuation">(</span>repoData<span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token operator">&lt;/</span>div<span class="token operator">></span><span class="token punctuation">,</span>
 </code></pre>
@@ -236,34 +236,34 @@
             <p>我们可以尝试通过这种方式进行状态更改，方法是首先将 <code>state</code> 设置为 <code>None</code> ，然后在用户单击按钮后更改状态。这是一个人为的例子，但它对说明状态变化很有用。点击此按钮后，假设我们正在从API加载数据:)。</p>
             <p>首先，我们需要添加一个名为 <code>action</code> 的类型，它列举了可能发生在我们组件中的各种可能的状态变化。现在只有一个：<code>Loaded</code>，用于加载 repo 数据时：</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> action <span class="token operator">=</span> 
-    <span class="token operator">|</span> Loaded<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">|</span> <span class="token module variable">Loaded</span><span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>之后，我们添加一个 <code>reducer</code> 方法，它接受一个这样的动作和当前状态，然后计算并返回更新的状态：</p>
-            <pre><code class="language-ocaml">reducer <span class="token operator">=</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> <span class="token punctuation">_</span>state<span class="token punctuation">)</span> <span class="token operator">=></span> 
+            <pre><code class="language-ocaml">reducer <span class="token operator">=</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> _state<span class="token punctuation">)</span> <span class="token operator">=></span> 
     switch <span class="token punctuation">(</span>action<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token operator">|</span> Loaded<span class="token punctuation">(</span>loadedRepo<span class="token punctuation">)</span> <span class="token operator">=></span>
-            ReasonReact<span class="token punctuation">.</span>Update<span class="token punctuation">(</span><span class="token punctuation">{</span>
-                repoData<span class="token punctuation">:</span> Some<span class="token punctuation">(</span>loadedRepo<span class="token punctuation">)</span>
+        <span class="token operator">|</span> <span class="token module variable">Loaded</span><span class="token punctuation">(</span>loadedRepo<span class="token punctuation">)</span> <span class="token operator">=></span>
+            <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">Update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                repoData<span class="token punctuation">:</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>loadedRepo<span class="token punctuation">)</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>您可以看到，我们的实现是对动作类型进行模式匹配并返回包含新状态的 <code>ReasonReact.Update</code>。现在我们只是为 <code>Loaded</code> 行动提供一个案例，但在未来，我们可以想象在这里实施其他类型的状态更改，以响应不同的 <code>action</code> 变体。</p>
             <p>接下来我们更改 <code>initialState</code> ，以无 repo 数据开始：</p>
             <pre><code class="language-ocaml">initialState<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-    repoData<span class="token punctuation">:</span> None
+    repoData<span class="token punctuation">:</span> <span class="token module variable">None</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span>
 </code></pre>
             <p>最后，我们在渲染函数中添加一个按钮元素。我们使用 <code>self.send</code> 方法添加到我们的解构对象中，为按钮的 <code>onClick</code> <code>prop</code> 创建一个处理函数。</p>
             <p><code>send</code> 采取点击事件调用我们想要使用的动作和它期望的任何值。在这里，<code>send(Loaded(dummyRepo))</code>，将点击转换为我们 <code>reducer</code> 的动作。像这样的处理程序也可以使用来自 <code>click</code> 事件对象的信息，但在这种情况下我们不需要它，所以我们把下划线 <code>_</code> 放在它之前忽略它。我们可以创建这样一个按钮：</p>
-            <pre><code class="language-ocaml"><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">_</span>event <span class="token operator">=></span> send<span class="token punctuation">(</span>Loaded<span class="token punctuation">(</span>dummyRepo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">></span>
-    <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Load Repos"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <pre><code class="language-ocaml"><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">(</span>_event <span class="token operator">=></span> send<span class="token punctuation">(</span><span class="token module variable">Loaded</span><span class="token punctuation">(</span>dummyRepo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">></span>
+    <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Load Repos"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token operator">&lt;/</span>button<span class="token operator">></span>
 </code></pre>
             <p>我们可以显示一条消息，在初始空白状态下（当 <code>state.repoData</code> 为 <code>None</code> 时）点击按钮来代替呈现的 <code>RepoItem</code> ：</p>
-            <pre><code class="language-ocaml">repoItem <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span> 
+            <pre><code class="language-ocaml">repoItem <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span> 
     switch <span class="token punctuation">(</span>repoData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token operator">|</span> Some<span class="token punctuation">(</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>RepoItem repo <span class="token operator">/></span>
-        <span class="token operator">|</span> None <span class="token operator">=></span> ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Click Button To Load"</span><span class="token punctuation">)</span>
+        <span class="token operator">|</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span><span class="token module variable">RepoItem</span> repo <span class="token operator">/></span>
+        <span class="token operator">|</span> <span class="token module variable">None</span> <span class="token operator">=></span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Click Button To Load"</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>与在 JS React 中调用 <code>setState</code> 相比，使用 <code>action</code> 和 <code>reducer</code> 的额外步骤似乎过于复杂，但随着有状态组件的增长并具有更多可能的状态（它们之间可能存在越来越多的转换），组件很容易成为难以跟踪和无法测试的纠结。 这是 <code>action-reducer</code> 模型真正闪耀的地方。</p>
@@ -272,50 +272,50 @@
             <h2>使用数组与单个 Repo</h2>
             <p>在我们从 JSON 加载数据之前，还需要对组件进行一次更改。我们实际上想要显示 repo 列表，而不仅仅是一个清单，所以我们需要改变我们的状态类型：</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>array<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>array<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>并对我们的虚拟数据进行相应的更改：</p>
-            <pre><code class="language-ocaml">dummyRepos<span class="token punctuation">:</span> array<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">|</span>
+            <pre><code class="language-ocaml">dummyRepos<span class="token punctuation">:</span> array<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">|</span>
   <span class="token punctuation">{</span>
-    stargazers<span class="token punctuation">_</span>count<span class="token punctuation">:</span> <span class="token number">27</span><span class="token punctuation">,</span>
-    full<span class="token punctuation">_</span>name<span class="token punctuation">:</span> <span class="token string">"jsdf/reason-react-hacker-news"</span><span class="token punctuation">,</span>
-    html<span class="token punctuation">_</span>url<span class="token punctuation">:</span> <span class="token string">"https://github.com/jsdf/reason-react-hacker-news"</span>
+    stargazers_count<span class="token punctuation">:</span> <span class="token number">27</span><span class="token punctuation">,</span>
+    full_name<span class="token punctuation">:</span> <span class="token string">"jsdf/reason-react-hacker-news"</span><span class="token punctuation">,</span>
+    html_url<span class="token punctuation">:</span> <span class="token string">"https://github.com/jsdf/reason-react-hacker-news"</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">{</span>
-    stargazers<span class="token punctuation">_</span>count<span class="token punctuation">:</span> <span class="token number">93</span><span class="token punctuation">,</span>
-    full<span class="token punctuation">_</span>name<span class="token punctuation">:</span> <span class="token string">"reasonml/reason-tools"</span><span class="token punctuation">,</span>
-    html<span class="token punctuation">_</span>url<span class="token punctuation">:</span> <span class="token string">"https://github.com/reasonml/reason-tools"</span>
+    stargazers_count<span class="token punctuation">:</span> <span class="token number">93</span><span class="token punctuation">,</span>
+    full_name<span class="token punctuation">:</span> <span class="token string">"reasonml/reason-tools"</span><span class="token punctuation">,</span>
+    html_url<span class="token punctuation">:</span> <span class="token string">"https://github.com/reasonml/reason-tools"</span>
   <span class="token punctuation">}</span>
 <span class="token operator">|</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 </code></pre>
             <p>呃，<code>[| ... |]</code> 语法？这是 Reason 的数组字面量语法。如果你没有 <code>|</code> 管道字符（所以它看起来像正常的 JS 数组语法），那么你会定义一个 <code>List</code> 而不是一个数组。在 Reason 中列表是不可变的，而数组是可变的（如 Javascript 数组），但是如果处理可变数量的元素，则列表更容易处理。无论如何，我们正在使用一个数组。</p>
             <p>我们需要查看代码并将所有引用 <code>repoData</code> 的地方都改为 <code>RepoData.repo</code>，而不是指定 <code>array(RepoData.repo)</code>。</p>
             <p>最后，通过映射 <code>repos</code> 数组并为每个 <code>RepoItem</code> 创建一个 <code>&lt;RepoItem /&gt;</code>，我们将改变渲染方法来渲染一个 <code>RepoItem</code> 数组而不是一个。 我们必须使用 <code>ReasonReact.array</code> 将元素数组转换为元素本身，以便它可以在下面的 JSX 中使用。</p>
-            <pre><code class="language-ocaml">repoItems <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>array<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+            <pre><code class="language-ocaml">repoItems <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>array<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span>
     switch <span class="token punctuation">(</span>repoData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token operator">|</span> Some<span class="token punctuation">(</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span>
-            ReasonReact<span class="token punctuation">.</span>array<span class="token punctuation">(</span>
-                Array<span class="token punctuation">.</span>map<span class="token punctuation">(</span>
-                    <span class="token punctuation">(</span>repo<span class="token punctuation">:</span> RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>RepoItem key<span class="token operator">=</span>repo<span class="token punctuation">.</span>full<span class="token punctuation">_</span>name repo <span class="token operator">/></span><span class="token punctuation">,</span>
+        <span class="token operator">|</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span>
+            <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>array<span class="token punctuation">(</span>
+                <span class="token module variable">Array</span><span class="token punctuation">.</span>map<span class="token punctuation">(</span>
+                    <span class="token punctuation">(</span>repo<span class="token punctuation">:</span> <span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span><span class="token module variable">RepoItem</span> key<span class="token operator">=</span>repo<span class="token punctuation">.</span>full_name repo <span class="token operator">/></span><span class="token punctuation">,</span>
                     repos<span class="token punctuation">,</span>
                 <span class="token punctuation">)</span><span class="token punctuation">,</span>
             <span class="token punctuation">)</span>
-        <span class="token operator">|</span> None <span class="token operator">=></span> ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Loading"</span><span class="token punctuation">)</span>
+        <span class="token operator">|</span> <span class="token module variable">None</span> <span class="token operator">=></span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Loading"</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">_</span>children <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> _children <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
 
     initialState<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        repoData<span class="token punctuation">:</span> Some<span class="token punctuation">(</span>dummyRepos<span class="token punctuation">)</span>
+        repoData<span class="token punctuation">:</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>dummyRepos<span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
-    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">_</span><span class="token punctuation">)</span> <span class="token operator">=></span> ReasonReact<span class="token punctuation">.</span>NoUpdate<span class="token punctuation">,</span>
+    reducer<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">_</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">NoUpdate</span><span class="token punctuation">,</span>
 
     render<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>state<span class="token punctuation">:</span> <span class="token punctuation">{</span>repoData<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span>
         <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App"</span><span class="token operator">></span>
-            <span class="token operator">&lt;</span>h1<span class="token operator">></span> <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Decoding JSON in ReasonReact"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h1<span class="token operator">></span>
+            <span class="token operator">&lt;</span>h1<span class="token operator">></span> <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Decoding JSON in ReasonReact"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h1<span class="token operator">></span>
             <span class="token punctuation">(</span>repoItems<span class="token punctuation">(</span>repoData<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token operator">&lt;/</span>div<span class="token operator">></span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -346,18 +346,18 @@
             <h2>读取 JSON</h2>
             <p>现在我们已经安装了 <code>bs-json</code>，我们可以使用 <code>Json.Decode</code> 来读取 JSON 并将其转化为记录。</p>
             <p>我们将在 <code>RepoData.re</code> 的末尾定义一个名为 <code>parseRepoJson</code> 的函数：</p>
-            <pre><code class="language-ocaml"><span class="token operator">//</span> RepoData<span class="token punctuation">.</span>re
+            <pre><code class="language-ocaml"><span class="token operator">//</span> <span class="token module variable">RepoData</span><span class="token punctuation">.</span>re
 
 <span class="token keyword">type</span> repo <span class="token operator">=</span> <span class="token punctuation">{</span>
-    full<span class="token punctuation">_</span>name<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
-    stargazers<span class="token punctuation">_</span>count<span class="token punctuation">:</span> int<span class="token punctuation">,</span>
-    html<span class="token punctuation">_</span>url<span class="token punctuation">:</span> string
+    full_name<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
+    stargazers_count<span class="token punctuation">:</span> int<span class="token punctuation">,</span>
+    html_url<span class="token punctuation">:</span> string
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> parseRepoJson <span class="token operator">=</span> <span class="token punctuation">(</span>json<span class="token punctuation">:</span> Js<span class="token punctuation">.</span>Json<span class="token punctuation">.</span>t<span class="token punctuation">)</span><span class="token punctuation">:</span> repo <span class="token operator">=></span> <span class="token punctuation">{</span>
-    full<span class="token punctuation">_</span>name<span class="token punctuation">:</span> Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span>field<span class="token punctuation">(</span><span class="token string">"full_name"</span><span class="token punctuation">,</span> Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span>string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    stargazers<span class="token punctuation">_</span>count<span class="token punctuation">:</span> Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span>field<span class="token punctuation">(</span><span class="token string">"stargazers_count"</span><span class="token punctuation">,</span> Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span>int<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    html<span class="token punctuation">_</span>url<span class="token punctuation">:</span> Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span>field<span class="token punctuation">(</span><span class="token string">"html_url"</span><span class="token punctuation">,</span> Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span>string<span class="token punctuation">,</span> json<span class="token punctuation">)</span>
+<span class="token keyword">let</span> parseRepoJson <span class="token operator">=</span> <span class="token punctuation">(</span>json<span class="token punctuation">:</span> <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Json</span><span class="token punctuation">.</span>t<span class="token punctuation">)</span><span class="token punctuation">:</span> repo <span class="token operator">=></span> <span class="token punctuation">{</span>
+    full_name<span class="token punctuation">:</span> <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span>field<span class="token punctuation">(</span><span class="token string">"full_name"</span><span class="token punctuation">,</span> <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span>string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    stargazers_count<span class="token punctuation">:</span> <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span>field<span class="token punctuation">(</span><span class="token string">"stargazers_count"</span><span class="token punctuation">,</span> <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span>int<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    html_url<span class="token punctuation">:</span> <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span>field<span class="token punctuation">(</span><span class="token string">"html_url"</span><span class="token punctuation">,</span> <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span>string<span class="token punctuation">,</span> json<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
 </code></pre>
@@ -365,30 +365,30 @@
             <h2>不要重复自己</h2>
             <p>这看起来有点罗嗦。我们是否真的必须一遍又一遍地写 <code>Json.Decode</code> ？</p>
             <p>不，Reason 有一些方便的语法来帮助我们，当我们需要一次又一次地引用特定模块的输出时。一种选择是“打开”模块，这意味着它的所有输出在当前作用域都可用，所以我们可以抛弃 <code>Json.Decode</code> 限定符：</p>
-            <pre><code class="language-ocaml">Json<span class="token punctuation">.</span>Decode<span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">;</span>
 
 <span class="token keyword">let</span> parseRepoJson <span class="token operator">=</span> <span class="token punctuation">(</span>json<span class="token punctuation">:</span> repo<span class="token punctuation">)</span> <span class="token operator">=></span>
 <span class="token punctuation">{</span>
-    full<span class="token punctuation">_</span>name<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"full_name"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    stargazers<span class="token punctuation">_</span>count<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"stargazers"</span><span class="token punctuation">,</span> int<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    html<span class="token punctuation">_</span>url<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"html_url"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span>
+    full_name<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"full_name"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    stargazers_count<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"stargazers"</span><span class="token punctuation">,</span> int<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    html_url<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"html_url"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 </code></pre>
             <p>但是，如果打开多个模块，这会引起名称冲突的风险。另一种选择是使用模块名称，后跟一个句点<code>.</code>在表达之前。在表达式内部，我们可以使用模块的任何导出，而不用模块名称进行限定：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> parseRepoJson <span class="token operator">=</span> <span class="token punctuation">(</span>json<span class="token punctuation">:</span> Js<span class="token punctuation">.</span>Json<span class="token punctuation">.</span>t<span class="token punctuation">)</span><span class="token punctuation">:</span> repo <span class="token operator">=></span>
-Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span><span class="token punctuation">{</span>
-    full<span class="token punctuation">_</span>name<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"full_name"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    stargazers<span class="token punctuation">_</span>count<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"stargazers_count"</span><span class="token punctuation">,</span> int<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    html<span class="token punctuation">_</span>url<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"html_url"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> parseRepoJson <span class="token operator">=</span> <span class="token punctuation">(</span>json<span class="token punctuation">:</span> <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Json</span><span class="token punctuation">.</span>t<span class="token punctuation">)</span><span class="token punctuation">:</span> repo <span class="token operator">=></span>
+<span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span><span class="token punctuation">{</span>
+    full_name<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"full_name"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    stargazers_count<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"stargazers_count"</span><span class="token punctuation">,</span> int<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    html_url<span class="token punctuation">:</span> field<span class="token punctuation">(</span><span class="token string">"html_url"</span><span class="token punctuation">,</span> string<span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>注意 <code>(json: Js.Json.t):repo</code>。在这里，我们输入预期的 json 值作为 <code>Js.Json.t</code>，也就是说传入的 <code>repo</code> <code>json</code> 类型必须是(json:Js.Json.t)。请参阅 <a href="https://twitter.com/@nikgraf">@nikgraf</a> 的 <a href="https://egghead.io/lessons/reason-type-parameters-in-reason">egghead系列 Reason 类型参数视频</a> 以了解更多信息。事实上，如果你对Reason感兴趣并且没有看过，现在就去看看，然后再回来。然后每周观看一次，直到你找到它。每次你都会学到一些东西。</p>
             <p>现在让我们通过添加一些代码来测试它，该代码定义了一个 JSON 字符串并使用我们的 <code>parseRepoJson</code> 函数来解析它。</p>
             <p>在app.re中：</p>
-            <pre><code class="language-ocaml">dummyRepos<span class="token punctuation">:</span> array<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">|</span>
-    RepoData<span class="token punctuation">.</span>parseRepoJson<span class="token punctuation">(</span>
-        Js<span class="token punctuation">.</span>Json<span class="token punctuation">.</span>parseExn<span class="token punctuation">(</span>
+            <pre><code class="language-ocaml">dummyRepos<span class="token punctuation">:</span> array<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">|</span>
+    <span class="token module variable">RepoData</span><span class="token punctuation">.</span>parseRepoJson<span class="token punctuation">(</span>
+        <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Json</span><span class="token punctuation">.</span>parseExn<span class="token punctuation">(</span>
             <span class="token punctuation">{</span>js<span class="token operator">|</span>
                 <span class="token punctuation">{</span>
                     <span class="token string">"stargazers_count"</span><span class="token punctuation">:</span> <span class="token number">93</span><span class="token punctuation">,</span>
@@ -410,7 +410,7 @@ Json<span class="token punctuation">.</span>Decode<span class="token punctuation
             <p>该字段包含一个 repos 数组。我们将添加另一个函数，它使用我们的 <code>parseRepoJson</code> 函数将 items 字段解析为一个记录数组。</p>
             <p>在 <code>RepoData.re</code>中：</p>
             <pre><code class="language-ocaml">parseReposResponseJson <span class="token operator">=</span> json <span class="token operator">=></span> 
-    Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span>field<span class="token punctuation">(</span><span class="token string">"items"</span><span class="token punctuation">,</span> Json<span class="token punctuation">.</span>Decode<span class="token punctuation">.</span>array<span class="token punctuation">(</span>parseRepoJson<span class="token punctuation">)</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span>field<span class="token punctuation">(</span><span class="token string">"items"</span><span class="token punctuation">,</span> <span class="token module variable">Json</span><span class="token punctuation">.</span><span class="token module variable">Decode</span><span class="token punctuation">.</span>array<span class="token punctuation">(</span>parseRepoJson<span class="token punctuation">)</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>最后，我们将使用 <code>bs-fetch</code> 包来向 API 发送 HTTP 请求。</p>
             <p>但首先，更多的新语法！我保证这是最后一点。管道运算符 <code>|&gt;</code> 只是将 <code>|&gt;</code> 运算符左边的表达式的结果取出来，并使用该值调用 <code>|&gt;</code> 运算符右边的函数。</p>
@@ -426,39 +426,39 @@ Json<span class="token punctuation">.</span>Decode<span class="token punctuation
 <span class="token keyword">let</span> reposUrl <span class="token operator">=</span> <span class="token string">"https://api.github.com/search/repositories?q=topic%3Areasonml&amp;type=Repositories"</span><span class="token punctuation">;</span>
 
 <span class="token keyword">let</span> fetchRepos <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-    Fetch<span class="token punctuation">.</span>fetch<span class="token punctuation">(</span>reposUrl<span class="token punctuation">)</span>
-    <span class="token operator">|></span> Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>then<span class="token punctuation">_</span><span class="token punctuation">(</span>Fetch<span class="token punctuation">.</span>Response<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
-    <span class="token operator">|></span> Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>then<span class="token punctuation">_</span><span class="token punctuation">(</span>
+    <span class="token module variable">Fetch</span><span class="token punctuation">.</span>fetch<span class="token punctuation">(</span>reposUrl<span class="token punctuation">)</span>
+    <span class="token operator">|></span> <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>then_<span class="token punctuation">(</span><span class="token module variable">Fetch</span><span class="token punctuation">.</span><span class="token module variable">Response</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+    <span class="token operator">|></span> <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>then_<span class="token punctuation">(</span>
         jsonText <span class="token operator">=></span>
-            Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>resolve<span class="token punctuation">(</span>parseReposResponseJson<span class="token punctuation">(</span>Js<span class="token punctuation">.</span>Json<span class="token punctuation">.</span>parseExn<span class="token punctuation">(</span>jsonText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>resolve<span class="token punctuation">(</span>parseReposResponseJson<span class="token punctuation">(</span><span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Json</span><span class="token punctuation">.</span>parseExn<span class="token punctuation">(</span>jsonText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 </code></pre>
             <p>我们可以通过暂时打开 <code>Js.Promise</code> 来使 Promise 链式 <code>fetchRepos</code> 更简洁：</p>
             <pre><code class="language-ocaml">fetchRepos <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span>
-    Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span><span class="token punctuation">(</span>
-        Fetch<span class="token punctuation">.</span>fetch<span class="token punctuation">(</span>reposUrl<span class="token punctuation">)</span>
-        <span class="token operator">|></span> then<span class="token punctuation">_</span><span class="token punctuation">(</span>Fetch<span class="token punctuation">.</span>Response<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
-        <span class="token operator">|></span> then<span class="token punctuation">_</span><span class="token punctuation">(</span>
+    <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span><span class="token punctuation">(</span>
+        <span class="token module variable">Fetch</span><span class="token punctuation">.</span>fetch<span class="token punctuation">(</span>reposUrl<span class="token punctuation">)</span>
+        <span class="token operator">|></span> then_<span class="token punctuation">(</span><span class="token module variable">Fetch</span><span class="token punctuation">.</span><span class="token module variable">Response</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+        <span class="token operator">|></span> then_<span class="token punctuation">(</span>
             jsonText <span class="token operator">=></span>
-                resolve<span class="token punctuation">(</span>parseReposResponseJson<span class="token punctuation">(</span>Js<span class="token punctuation">.</span>Json<span class="token punctuation">.</span>parseExn<span class="token punctuation">(</span>jsonText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                resolve<span class="token punctuation">(</span>parseReposResponseJson<span class="token punctuation">(</span><span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Json</span><span class="token punctuation">.</span>parseExn<span class="token punctuation">(</span>jsonText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token punctuation">)</span>
     <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>最后，回到 <code>App.re</code> 中，我们将添加一些代码来加载数据并将其存储在组件状态中：</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
-    repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>array<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>array<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword">type</span> action <span class="token operator">=</span> 
-    <span class="token operator">|</span> Loaded<span class="token punctuation">(</span>array<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">|</span> <span class="token module variable">Loaded</span><span class="token punctuation">(</span>array<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>reducerComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>reducerComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> dummyRepos<span class="token punctuation">:</span> array<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">|</span>
-    RepoData<span class="token punctuation">.</span>parseRepoJson<span class="token punctuation">(</span>
-        Js<span class="token punctuation">.</span>Json<span class="token punctuation">.</span>parseExn<span class="token punctuation">(</span>
+<span class="token keyword">let</span> dummyRepos<span class="token punctuation">:</span> array<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">|</span>
+    <span class="token module variable">RepoData</span><span class="token punctuation">.</span>parseRepoJson<span class="token punctuation">(</span>
+        <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Json</span><span class="token punctuation">.</span>parseExn<span class="token punctuation">(</span>
             <span class="token punctuation">{</span>js<span class="token operator">|</span>
                 <span class="token punctuation">{</span>
                     <span class="token string">"stargazers_count"</span><span class="token punctuation">:</span> <span class="token number">93</span><span class="token punctuation">,</span>
@@ -470,38 +470,38 @@ Json<span class="token punctuation">.</span>Decode<span class="token punctuation
     <span class="token punctuation">)</span><span class="token punctuation">,</span>
 <span class="token operator">|</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> repoItems <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>array<span class="token punctuation">(</span>RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+<span class="token keyword">let</span> repoItems <span class="token operator">=</span> <span class="token punctuation">(</span>repoData<span class="token punctuation">:</span> option<span class="token punctuation">(</span>array<span class="token punctuation">(</span><span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span>
     switch <span class="token punctuation">(</span>repoData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token operator">|</span> Some<span class="token punctuation">(</span>repos<span class="token punctuation">)</span> <span class="token operator">=></span>
-            ReasonReact<span class="token punctuation">.</span>array<span class="token punctuation">(</span>
-                Array<span class="token punctuation">.</span>map<span class="token punctuation">(</span>
-                    <span class="token punctuation">(</span>repo<span class="token punctuation">:</span> RepoData<span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>RepoItem key<span class="token operator">=</span>repo<span class="token punctuation">.</span>full<span class="token punctuation">_</span>name repo <span class="token operator">/></span><span class="token punctuation">,</span>
+        <span class="token operator">|</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>repos<span class="token punctuation">)</span> <span class="token operator">=></span>
+            <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>array<span class="token punctuation">(</span>
+                <span class="token module variable">Array</span><span class="token punctuation">.</span>map<span class="token punctuation">(</span>
+                    <span class="token punctuation">(</span>repo<span class="token punctuation">:</span> <span class="token module variable">RepoData</span><span class="token punctuation">.</span>repo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span><span class="token module variable">RepoItem</span> key<span class="token operator">=</span>repo<span class="token punctuation">.</span>full_name repo <span class="token operator">/></span><span class="token punctuation">,</span>
                     repos<span class="token punctuation">,</span>
                 <span class="token punctuation">)</span><span class="token punctuation">,</span>
             <span class="token punctuation">)</span>
-        <span class="token operator">|</span> None <span class="token operator">=></span> ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Loading"</span><span class="token punctuation">)</span>
+        <span class="token operator">|</span> <span class="token module variable">None</span> <span class="token operator">=></span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Loading"</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> reducer <span class="token operator">=</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> <span class="token punctuation">_</span>state<span class="token punctuation">)</span> <span class="token operator">=></span> 
+<span class="token keyword">let</span> reducer <span class="token operator">=</span> <span class="token punctuation">(</span>action<span class="token punctuation">,</span> _state<span class="token punctuation">)</span> <span class="token operator">=></span> 
     switch <span class="token punctuation">(</span>action<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token operator">|</span> Loaded<span class="token punctuation">(</span>loadedRepo<span class="token punctuation">)</span> <span class="token operator">=></span> ReasonReact<span class="token punctuation">.</span>Update<span class="token punctuation">(</span><span class="token punctuation">{</span>
-            repoData<span class="token punctuation">:</span> Some<span class="token punctuation">(</span>loadedRepo<span class="token punctuation">)</span>
+        <span class="token operator">|</span> <span class="token module variable">Loaded</span><span class="token punctuation">(</span>loadedRepo<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span><span class="token module variable">Update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            repoData<span class="token punctuation">:</span> <span class="token module variable">Some</span><span class="token punctuation">(</span>loadedRepo<span class="token punctuation">)</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">_</span>children <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> _children <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
     initialState<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        repoData<span class="token punctuation">:</span> None
+        repoData<span class="token punctuation">:</span> <span class="token module variable">None</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
     didMount<span class="token punctuation">:</span> self <span class="token operator">=></span> <span class="token punctuation">{</span>
-        <span class="token keyword">let</span> handleReposLoaded <span class="token operator">=</span> repoData <span class="token operator">=></span> self<span class="token punctuation">.</span>send<span class="token punctuation">(</span>Loaded<span class="token punctuation">(</span>repoData<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> handleReposLoaded <span class="token operator">=</span> repoData <span class="token operator">=></span> self<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token module variable">Loaded</span><span class="token punctuation">(</span>repoData<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        RepoData<span class="token punctuation">.</span>fetchRepos<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token operator">|></span> Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>then<span class="token punctuation">_</span><span class="token punctuation">(</span>repoData <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token module variable">RepoData</span><span class="token punctuation">.</span>fetchRepos<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token operator">|></span> <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>then_<span class="token punctuation">(</span>repoData <span class="token operator">=></span> <span class="token punctuation">{</span>
                 handleReposLoaded<span class="token punctuation">(</span>repoData<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                Js<span class="token punctuation">.</span>Promise<span class="token punctuation">.</span>resolve<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Promise</span><span class="token punctuation">.</span>resolve<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token operator">|></span> ignore<span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -510,7 +510,7 @@ Json<span class="token punctuation">.</span>Decode<span class="token punctuation
 
     render<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>state<span class="token punctuation">:</span> <span class="token punctuation">{</span>repoData<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span>
         <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App"</span><span class="token operator">></span>
-            <span class="token operator">&lt;</span>h1<span class="token operator">></span> <span class="token punctuation">(</span>ReasonReact<span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Decoding JSON in ReasonReact"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h1<span class="token operator">></span>
+            <span class="token operator">&lt;</span>h1<span class="token operator">></span> <span class="token punctuation">(</span><span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>string<span class="token punctuation">(</span><span class="token string">"Decoding JSON in ReasonReact"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;/</span>h1<span class="token operator">></span>
             <span class="token punctuation">(</span>repoItems<span class="token punctuation">(</span>repoData<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token operator">&lt;/</span>div<span class="token operator">></span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -523,7 +523,7 @@ Json<span class="token punctuation">.</span>Decode<span class="token punctuation
             <h2>添加一些 CSS</h2>
             <p>让我们回到 <code>index.re</code>。将此代码添加到文件的顶部：</p>
             <pre><code class="language-ocaml"><span class="token punctuation">[</span><span class="token operator">%</span>bs<span class="token punctuation">.</span>raw <span class="token punctuation">{</span><span class="token operator">|</span>
-require<span class="token punctuation">(</span><span class="token type variable">'</span><span class="token punctuation">.</span><span class="token operator">/</span>index<span class="token punctuation">.</span>css'<span class="token punctuation">)</span><span class="token punctuation">;</span>
+require<span class="token punctuation">(</span>'<span class="token punctuation">.</span><span class="token operator">/</span>index<span class="token punctuation">.</span>css'<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">|</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 </code></pre>
             <p>这<code>%bs.raw</code> 的东西允许我们在 <code>{|</code> 和 <code>|}</code> 之间加入一些简单的 Javascript 代码。在这种情况下，我们只是使用它来以通常的 Webpack 方式包含一个 CSS 文件。保存后，您应该看到应用于应用的一些样式更改。您可以打开为我们制作的 <code>create-react-app</code> 的 <code>index.css</code> 文件，并根据您的内容定制样式。让我们添加一些 <code>margin</code>，以便 ui 不会被推到左侧。打开 <code>index.css</code> 并将其更改为：</p>
@@ -534,7 +534,7 @@ require<span class="token punctuation">(</span><span class="token type variable"
 <span class="token punctuation">}</span>
 </code></pre>
             <p>您还可以通过传递使用 <a href="https://reasonml.github.io/reason-react/docs/en/style.html#docsNav"><code>ReactDOMRe.Style.make</code></a> 创建的样式属性，在 React 组件中使用内联样式：</p>
-            <pre><code class="language-ocaml">style<span class="token operator">=</span><span class="token punctuation">{</span>ReactDOMRe<span class="token punctuation">.</span>Style<span class="token punctuation">.</span>make<span class="token punctuation">(</span><span class="token operator">~</span>color<span class="token operator">=</span><span class="token string">"red"</span><span class="token punctuation">,</span> <span class="token operator">~</span>fontSize<span class="token operator">=</span><span class="token string">"68px"</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+            <pre><code class="language-ocaml">style<span class="token operator">=</span><span class="token punctuation">{</span><span class="token module variable">ReactDOMRe</span><span class="token punctuation">.</span><span class="token module variable">Style</span><span class="token punctuation">.</span>make<span class="token punctuation">(</span><span class="token label function">~color</span><span class="token operator">=</span><span class="token string">"red"</span><span class="token punctuation">,</span> <span class="token label function">~fontSize</span><span class="token operator">=</span><span class="token string">"68px"</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
 </code></pre>
             <p>就是这样！</p>
             <p>你可以在<a href="https://decoding-json-in-reason-react.netlify.com/">这里</a>看到完成的应用程序。完整的源代码在 <a href="https://github.com/idkjs/decoding-json-in-reason-react">Github</a> 上可用。</p>

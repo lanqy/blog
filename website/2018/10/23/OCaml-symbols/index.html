@@ -57,7 +57,7 @@
 
 <span class="token comment">(* 模式匹配 *)</span>
 <span class="token keyword">match</span> s <span class="token keyword">with</span>
-<span class="token operator">|</span> <span class="token punctuation">(</span>first<span class="token punctuation">,</span> last<span class="token punctuation">)</span> <span class="token operator">-></span> Printf<span class="token punctuation">.</span>printf <span class="token string">"my name is %s %s"</span> first last
+<span class="token operator">|</span> <span class="token punctuation">(</span>first<span class="token punctuation">,</span> last<span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token module variable">Printf</span><span class="token punctuation">.</span>printf <span class="token string">"my name is %s %s"</span> first last
 </code></pre>
             <h2>4、 ;</h2>
             <p>这是一个句子休息。尽管 OCaml 的大部分语法都不需要这个分隔符，但它对短代码的函数并没有多大用处。正如上面已经提到的那样，这个符号也被用来分隔列表（下面）和记录元素</p>
@@ -82,27 +82,27 @@
             <p>用于编写由变体类型和模式匹配分隔的多个模式。例如：</p>
             <pre><code class="language-ocaml"><span class="token comment">(* 变体类型的定义 *)</span> 
 <span class="token keyword">type</span> foobar <span class="token operator">=</span> 
-    Foo <span class="token comment">(* 可能是 Foo *)</span> 
-  <span class="token operator">|</span> Bar 
-  <span class="token operator">|</span> Baz 
+    <span class="token module variable">Foo</span> <span class="token comment">(* 可能是 Foo *)</span> 
+  <span class="token operator">|</span> <span class="token module variable">Bar</span> 
+  <span class="token operator">|</span> <span class="token module variable">Baz</span> 
 <span class="token comment">(* 模式匹配 *)</span> 
 <span class="token keyword">match</span> v <span class="token keyword">with</span> 
-<span class="token operator">|</span> Foo <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
-<span class="token operator">|</span> Bar <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
-<span class="token operator">|</span> Baz <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">|</span> <span class="token module variable">Foo</span> <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+<span class="token operator">|</span> <span class="token module variable">Bar</span> <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+<span class="token operator">|</span> <span class="token module variable">Baz</span> <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 </code></pre>
             <h2>10、 -&gt;</h2>
             <p>它用于模式匹配守卫或类型的符号。例如： String.get 获取字符串中特定位置的字符的函数类型是 string -&gt; int -&gt; char</p>
             <pre><code class="language-ocaml"><span class="token comment">(* 模式匹配 *)</span> 
 <span class="token keyword">match</span> v <span class="token keyword">with</span> 
-<span class="token operator">|</span> Foo <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
-<span class="token operator">|</span> Bar <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
-<span class="token operator">|</span> Baz <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">|</span> <span class="token module variable">Foo</span> <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+<span class="token operator">|</span> <span class="token module variable">Bar</span> <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+<span class="token operator">|</span> <span class="token module variable">Baz</span> <span class="token operator">-></span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 </code></pre>
             <h2>11、 ()</h2>
             <p>括号内没有任何内容。这是一个 unit ，它没有任何称为类型的东西…它在其他语言中是无效的。</p>
             <p>() 如果你发现一个指定参数的函数，它是一个不需要任何参数的函数。函数不能在没有参数的情况下调用，因此可以通过指定来调用类型以()开头的 unit - &gt; 函数。例如：</p>
-            <pre><code class="language-ocaml"># Sys<span class="token punctuation">.</span>getcwd <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment">(* 获取当前目录 *)</span> 
+            <pre><code class="language-ocaml"># <span class="token module variable">Sys</span><span class="token punctuation">.</span>getcwd <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment">(* 获取当前目录 *)</span> 
 <span class="token operator">-:</span> string <span class="token operator">=</span> <span class="token string">"/Volumes/Users/szktty"</span>
 </code></pre>
             <p>入口点是 let () = … 也是这个符号，这是模式匹配，但不是一个参数。</p>
@@ -144,7 +144,7 @@
             <p>另外，这不是一个单独的语言规范，也不是强制性的，但作为命名惯例_it有时附加到标识符的末尾（特别是记录字段名称），我们经常看到类似 end_ , to_ 这样的命名方式，原因很简单，因为有同名的end, to 保留字，与其绞尽脑汁想一个命名，不如直接在单词后面加 _ ?</p>
             <pre><code class="language-ocaml"><span class="token keyword">type</span> location <span class="token operator">=</span> <span class="token punctuation">{</span>
   start <span class="token punctuation">:</span> int<span class="token punctuation">;</span>
-  end<span class="token punctuation">_</span> <span class="token punctuation">:</span> int<span class="token punctuation">;</span>
+  end_ <span class="token punctuation">:</span> int<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
             <h2>15、 [| … |]</h2>
@@ -154,17 +154,17 @@
 </code></pre>
             <h2>16、 := &lt;-</h2>
             <p>:= 引用（指针）（赋值（当解引用不提供左值））, &lt;- 变量赋值或声明（赋值）, 例如：</p>
-            <pre><code class="language-ocaml"># <span class="token keyword">let</span> y <span class="token operator">=</span> ref None<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">val</span> y <span class="token punctuation">:</span> <span class="token type variable">'_a</span> option ref <span class="token operator">=</span> <span class="token punctuation">{</span>contents <span class="token operator">=</span> None<span class="token punctuation">}</span>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> y <span class="token operator">=</span> ref <span class="token module variable">None</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> y <span class="token punctuation">:</span> <span class="token type_variable function">'_a</span> option ref <span class="token operator">=</span> <span class="token punctuation">{</span>contents <span class="token operator">=</span> <span class="token module variable">None</span><span class="token punctuation">}</span>
 # y<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token operator">-</span> <span class="token punctuation">:</span> <span class="token type variable">'_a</span> option ref <span class="token operator">=</span> <span class="token punctuation">{</span>contents <span class="token operator">=</span> None<span class="token punctuation">}</span>
-# y <span class="token operator">:=</span> Some <span class="token number">3</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> <span class="token type_variable function">'_a</span> option ref <span class="token operator">=</span> <span class="token punctuation">{</span>contents <span class="token operator">=</span> <span class="token module variable">None</span><span class="token punctuation">}</span>
+# y <span class="token operator">:=</span> <span class="token module variable">Some</span> <span class="token number">3</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 # y<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token operator">-</span> <span class="token punctuation">:</span> int option ref <span class="token operator">=</span> <span class="token punctuation">{</span>contents <span class="token operator">=</span> Some <span class="token number">3</span><span class="token punctuation">}</span>
-# y <span class="token operator">:=</span> None<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int option ref <span class="token operator">=</span> <span class="token punctuation">{</span>contents <span class="token operator">=</span> <span class="token module variable">Some</span> <span class="token number">3</span><span class="token punctuation">}</span>
+# y <span class="token operator">:=</span> <span class="token module variable">None</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 # y<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token operator">-</span> <span class="token punctuation">:</span> int option ref <span class="token operator">=</span> <span class="token punctuation">{</span>contents <span class="token operator">=</span> None<span class="token punctuation">}</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> int option ref <span class="token operator">=</span> <span class="token punctuation">{</span>contents <span class="token operator">=</span> <span class="token module variable">None</span><span class="token punctuation">}</span>
 <span class="token keyword">let</span> s <span class="token operator">=</span> <span class="token string">"hello world"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token keyword">let</span> s' <span class="token operator">=</span> s<span class="token punctuation">;</span><span class="token punctuation">;</span>
 s<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;-</span> <span class="token string">'x'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
@@ -191,25 +191,25 @@ x<span class="token punctuation">;</span><span class="token punctuation">;</span
 </code></pre>
             <h2>18、 ~</h2>
             <p>标签参数中使用的符号，例如：</p>
-            <pre><code class="language-ocaml"># <span class="token keyword">let</span> f <span class="token operator">~</span>x <span class="token operator">~</span>y <span class="token operator">=</span> x <span class="token operator">-</span> y<span class="token punctuation">;</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"># <span class="token keyword">let</span> f <span class="token label function">~x</span> <span class="token label function">~y</span> <span class="token operator">=</span> x <span class="token operator">-</span> y<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token keyword">val</span> f <span class="token punctuation">:</span> x<span class="token punctuation">:</span>int <span class="token operator">-></span> y<span class="token punctuation">:</span>int <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 
-# <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">and</span> y <span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword">in</span> f <span class="token operator">~</span>x <span class="token operator">~</span>y<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">and</span> y <span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword">in</span> f <span class="token label function">~x</span> <span class="token label function">~y</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">1</span>
 
-# <span class="token keyword">let</span> f <span class="token operator">~</span>x<span class="token punctuation">:</span>x1 <span class="token operator">~</span>y<span class="token punctuation">:</span>y1 <span class="token operator">=</span> x1 <span class="token operator">-</span> y1<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token keyword">let</span> f <span class="token label function">~x</span><span class="token punctuation">:</span>x1 <span class="token label function">~y</span><span class="token punctuation">:</span>y1 <span class="token operator">=</span> x1 <span class="token operator">-</span> y1<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token keyword">val</span> f <span class="token punctuation">:</span> x<span class="token punctuation">:</span>int <span class="token operator">-></span> y<span class="token punctuation">:</span>int <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 
-# f <span class="token operator">~</span>x<span class="token punctuation">:</span><span class="token number">3</span> <span class="token operator">~</span>y<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# f <span class="token label function">~x</span><span class="token punctuation">:</span><span class="token number">3</span> <span class="token label function">~y</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">1</span>
 </code></pre>
             <h2>19、 ?</h2>
             <p>可选参数 = 用于标记参数的符号，可以省略。例如：</p>
             <pre><code class="language-ocaml"># <span class="token keyword">let</span> foo <span class="token operator">?</span><span class="token punctuation">(</span>z <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> x y <span class="token operator">=</span> x <span class="token operator">+</span> y <span class="token operator">></span> z<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token keyword">val</span> foo <span class="token punctuation">:</span> <span class="token operator">?</span>z<span class="token punctuation">:</span>int <span class="token operator">-></span> int <span class="token operator">-></span> int <span class="token operator">-></span> bool <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
-# foo <span class="token number">3</span> <span class="token number">3</span> <span class="token operator">~</span>z<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# foo <span class="token number">3</span> <span class="token number">3</span> <span class="token label function">~z</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> bool <span class="token operator">=</span> <span class="token boolean">true</span>
-# foo <span class="token number">3</span> <span class="token number">3</span> <span class="token operator">~</span>z<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# foo <span class="token number">3</span> <span class="token number">3</span> <span class="token label function">~z</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> bool <span class="token operator">=</span> <span class="token boolean">false</span>
 # foo <span class="token number">2</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> bool <span class="token operator">=</span> <span class="token boolean">true</span>
@@ -218,18 +218,18 @@ x<span class="token punctuation">;</span><span class="token punctuation">;</span
             <h2>20、 `</h2>
             <p>表示多态变体的符号。还有其他多态变体符号 [&gt; 和 [&lt; 。</p>
             <p>可以结合 <a href="http://blog.klipse.tech/reason/2018/03/12/blog-reason-types.html">http://blog.klipse.tech/reason/2018/03/12/blog-reason-types.html</a> 这篇文章来理解 [&gt; 和 [&lt; 。</p>
-            <pre><code class="language-ocaml">#  <span class="token keyword">type</span> card <span class="token operator">=</span>  <span class="token punctuation">[</span>  <span class="token type variable">`Jorker</span>  <span class="token operator">|</span>  <span class="token type variable">`Num</span>  <span class="token keyword">of</span>  int  <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment">(* 多态变体类型 *)</span> 
-<span class="token keyword">type</span> card <span class="token operator">=</span>  <span class="token punctuation">[</span>  <span class="token type variable">`Jorker</span>  <span class="token operator">|</span>  <span class="token type variable">`Num</span>  <span class="token keyword">of</span>  int  <span class="token punctuation">]</span> 
+            <pre><code class="language-ocaml">#  <span class="token keyword">type</span> card <span class="token operator">=</span>  <span class="token punctuation">[</span>  <span class="token variant variable">`Jorker</span>  <span class="token operator">|</span>  <span class="token variant variable">`Num</span>  <span class="token keyword">of</span>  int  <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment">(* 多态变体类型 *)</span> 
+<span class="token keyword">type</span> card <span class="token operator">=</span>  <span class="token punctuation">[</span>  <span class="token variant variable">`Jorker</span>  <span class="token operator">|</span>  <span class="token variant variable">`Num</span>  <span class="token keyword">of</span>  int  <span class="token punctuation">]</span> 
 
-#  <span class="token keyword">type</span> in<span class="token punctuation">_</span>data <span class="token operator">=</span>  <span class="token punctuation">[</span>  <span class="token type variable">`Str</span>  <span class="token keyword">of</span>  string  <span class="token operator">|</span>  <span class="token type variable">`Num</span>  <span class="token keyword">of</span>  int  <span class="token punctuation">]</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment">(* 多态变体类型 *)</span> 
-<span class="token keyword">type</span> in<span class="token punctuation">_</span>data <span class="token operator">=</span>  <span class="token punctuation">[</span>  <span class="token type variable">`Num</span>  <span class="token keyword">of</span>  int  <span class="token operator">|</span>  <span class="token type variable">`Str</span>  <span class="token keyword">of</span>  string  <span class="token punctuation">]</span> 
+#  <span class="token keyword">type</span> in_data <span class="token operator">=</span>  <span class="token punctuation">[</span>  <span class="token variant variable">`Str</span>  <span class="token keyword">of</span>  string  <span class="token operator">|</span>  <span class="token variant variable">`Num</span>  <span class="token keyword">of</span>  int  <span class="token punctuation">]</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment">(* 多态变体类型 *)</span> 
+<span class="token keyword">type</span> in_data <span class="token operator">=</span>  <span class="token punctuation">[</span>  <span class="token variant variable">`Num</span>  <span class="token keyword">of</span>  int  <span class="token operator">|</span>  <span class="token variant variable">`Str</span>  <span class="token keyword">of</span>  string  <span class="token punctuation">]</span> 
 
-#  <span class="token keyword">let</span> get<span class="token punctuation">_</span>number<span class="token operator">=</span>  <span class="token keyword">function</span>  <span class="token comment">(* 接收多态变体参数 *)</span> 
-    <span class="token type variable">`Num</span> i <span class="token operator">-></span> i
+#  <span class="token keyword">let</span> get_number<span class="token operator">=</span>  <span class="token keyword">function</span>  <span class="token comment">(* 接收多态变体参数 *)</span> 
+    <span class="token variant variable">`Num</span> i <span class="token operator">-></span> i
    <span class="token operator">|</span>  <span class="token punctuation">_</span>  <span class="token operator">-></span> failwith <span class="token string">" not a number "</span> <span class="token punctuation">;</span><span class="token punctuation">;</span> 
-<span class="token keyword">val</span> get<span class="token punctuation">_</span>number<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">></span>  <span class="token type variable">`</span> Num  <span class="token keyword">of</span> <span class="token type variable">'a</span> <span class="token punctuation">]</span>  <span class="token operator">-></span> <span class="token type variable">'</span> a <span class="token operator">=</span>  <span class="token operator">&lt;</span><span class="token keyword">fun</span> <span class="token operator">></span> 
+<span class="token keyword">val</span> get_number<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">></span>  ` <span class="token module variable">Num</span>  <span class="token keyword">of</span> <span class="token type_variable function">'a</span> <span class="token punctuation">]</span>  <span class="token operator">-></span> ' a <span class="token operator">=</span>  <span class="token operator">&lt;</span><span class="token keyword">fun</span> <span class="token operator">></span> 
 
-# get<span class="token punctuation">_</span>number <span class="token punctuation">(</span> <span class="token type variable">`Num</span>  <span class="token number">3</span> <span class="token punctuation">)</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment">(* 应用多态变体类型 *)</span> 
+# get_number <span class="token punctuation">(</span> <span class="token variant variable">`Num</span>  <span class="token number">3</span> <span class="token punctuation">)</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment">(* 应用多态变体类型 *)</span> 
 <span class="token operator">-:</span> int  <span class="token operator">=</span>  <span class="token number">3</span>
 </code></pre>
             <p>(* 代码来自 <a href="http://osiire.hatenablog.com/entries/2009/05/10">http://osiire.hatenablog.com/entries/2009/05/10</a> *)</p>
@@ -242,16 +242,16 @@ print <span class="token operator">@@</span> <span class="token string">"Hello"<
 print <span class="token string">"Hello"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 </code></pre>
             <p>例如，这两行是等价的（我们加载一个文件，将其解析为XML，将生成的文档解析为选择文档，然后执行选择）</p>
-            <pre><code class="language-ocaml">execute <span class="token punctuation">(</span>parse<span class="token punctuation">_</span>selections <span class="token punctuation">(</span>parse<span class="token punctuation">_</span>xml <span class="token punctuation">(</span>load<span class="token punctuation">_</span>file path<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <pre><code class="language-ocaml">execute <span class="token punctuation">(</span>parse_selections <span class="token punctuation">(</span>parse_xml <span class="token punctuation">(</span>load_file path<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-execute <span class="token operator">@@</span> parse<span class="token punctuation">_</span>selections <span class="token operator">@@</span> parse<span class="token punctuation">_</span>xml <span class="token operator">@@</span> load<span class="token punctuation">_</span>file path
+execute <span class="token operator">@@</span> parse_selections <span class="token operator">@@</span> parse_xml <span class="token operator">@@</span> load_file path
 </code></pre>
             <p>(* 代码来自 <a href="http://roscidus.com/blog/blog/2013/10/13/ocaml-tips/">http://roscidus.com/blog/blog/2013/10/13/ocaml-tips/</a> *)</p>
             <p>这样做的好处是，当你阅读一个 ( ，你必须沿着括号中的其余行扫描来找到匹配的。当你看到 @@ 时，你知道表达式的其余部分是前一个单一的参数功能。</p>
             <p>管道运算符 |&gt; 是相似的，但函数和参数是相反的。以下两行是相同的：</p>
-            <pre><code class="language-ocaml">execute <span class="token operator">@@</span> parse<span class="token punctuation">_</span>selections <span class="token operator">@@</span> parse<span class="token punctuation">_</span>xml <span class="token operator">@@</span> load<span class="token punctuation">_</span>file path
+            <pre><code class="language-ocaml">execute <span class="token operator">@@</span> parse_selections <span class="token operator">@@</span> parse_xml <span class="token operator">@@</span> load_file path
 
-load<span class="token punctuation">_</span>file path <span class="token operator">|></span> parse<span class="token punctuation">_</span>xml <span class="token operator">|></span> parse<span class="token punctuation">_</span>selections <span class="token operator">|></span> execute
+load_file path <span class="token operator">|></span> parse_xml <span class="token operator">|></span> parse_selections <span class="token operator">|></span> execute
 </code></pre>
             <p>(* 代码来自 <a href="http://roscidus.com/blog/blog/2013/10/13/ocaml-tips/">http://roscidus.com/blog/blog/2013/10/13/ocaml-tips/</a> *)</p>
             <h2>22、 ;;</h2>

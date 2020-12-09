@@ -42,49 +42,49 @@
               <p>这是一组适用于当前或未来项目的简单绑定提示，减少了对试验 / 错误的需求，并减少了深度文档搜索解决与下面示例相关的问题。</p>
             </blockquote>
             <h2>保持 React.js 中的 js</h2>
-            <pre><code class="language-ocaml"><span class="token keyword">module</span> Container <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <pre><code class="language-ocaml"><span class="token keyword">module</span> <span class="token module variable">Container</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
   <span class="token punctuation">[</span><span class="token operator">@</span>bs<span class="token punctuation">.</span><span class="token keyword">module</span> <span class="token string">"./styled/Container"</span><span class="token punctuation">]</span>
-  <span class="token keyword">external</span> js <span class="token punctuation">:</span> ReasonReact<span class="token punctuation">.</span>reactClass <span class="token operator">=</span> <span class="token string">"default"</span><span class="token punctuation">;</span>
+  <span class="token keyword">external</span> js <span class="token punctuation">:</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>reactClass <span class="token operator">=</span> <span class="token string">"default"</span><span class="token punctuation">;</span>
   <span class="token keyword">let</span> make <span class="token operator">=</span> children <span class="token operator">=></span>
-    ReasonReact<span class="token punctuation">.</span>wrapJsForReason<span class="token punctuation">(</span>
-      <span class="token operator">~</span>reactClass<span class="token operator">=</span>js<span class="token punctuation">,</span>
-      <span class="token operator">~</span>props<span class="token operator">=</span>Js<span class="token punctuation">.</span>Obj<span class="token punctuation">.</span>empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>wrapJsForReason<span class="token punctuation">(</span>
+      <span class="token label function">~reactClass</span><span class="token operator">=</span>js<span class="token punctuation">,</span>
+      <span class="token label function">~props</span><span class="token operator">=</span><span class="token module variable">Js</span><span class="token punctuation">.</span><span class="token module variable">Obj</span><span class="token punctuation">.</span>empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
       children
       <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
             <p>我将外部 js 命名为如果我需要将 React 组件的规范传递到 Reason 中使用的基于 JS 的库，我可以使用 <code>&lt;ComponentName&gt;.js</code> 来访问它。</p>
             <p>例如：</p>
-            <pre><code class="language-ocaml"><span class="token keyword">open</span> Bindings<span class="token punctuation">.</span>ReactRouter<span class="token punctuation">;</span>
-<span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">open</span> <span class="token module variable">Bindings</span><span class="token punctuation">.</span><span class="token module variable">ReactRouter</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">(</span>_children<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
-  render<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">_</span>self<span class="token punctuation">)</span> <span class="token operator">=></span>
-    <span class="token operator">&lt;</span>Router<span class="token operator">></span>
+  render<span class="token punctuation">:</span> <span class="token punctuation">(</span>_self<span class="token punctuation">)</span> <span class="token operator">=></span>
+    <span class="token operator">&lt;</span><span class="token module variable">Router</span><span class="token operator">></span>
       <span class="token operator">&lt;</span>div<span class="token operator">></span>
-        <span class="token operator">&lt;</span>Header <span class="token operator">/></span>
+        <span class="token operator">&lt;</span><span class="token module variable">Header</span> <span class="token operator">/></span>
       <span class="token operator">&lt;/</span>div<span class="token operator">></span>
-      <span class="token operator">&lt;</span>Switch<span class="token operator">></span>
-        <span class="token operator">&lt;</span>Route exact<span class="token operator">=</span><span class="token boolean">true</span> path<span class="token operator">=</span><span class="token string">"/"</span> component<span class="token operator">=</span>Home<span class="token punctuation">.</span>js <span class="token operator">/></span>
-        <span class="token operator">&lt;</span>Route component<span class="token operator">=</span>NoMatch<span class="token punctuation">.</span>js <span class="token operator">/></span>
-      <span class="token operator">&lt;/</span>Switch<span class="token operator">></span>
-      <span class="token operator">&lt;</span>Footer <span class="token operator">/></span>
+      <span class="token operator">&lt;</span><span class="token module variable">Switch</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token module variable">Route</span> exact<span class="token operator">=</span><span class="token boolean">true</span> path<span class="token operator">=</span><span class="token string">"/"</span> component<span class="token operator">=</span><span class="token module variable">Home</span><span class="token punctuation">.</span>js <span class="token operator">/></span>
+        <span class="token operator">&lt;</span><span class="token module variable">Route</span> component<span class="token operator">=</span><span class="token module variable">NoMatch</span><span class="token punctuation">.</span>js <span class="token operator">/></span>
+      <span class="token operator">&lt;/</span><span class="token module variable">Switch</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token module variable">Footer</span> <span class="token operator">/></span>
       <span class="token operator">&lt;/</span>div<span class="token operator">></span>
-    <span class="token operator">&lt;/</span>Router<span class="token operator">></span>
+    <span class="token operator">&lt;/</span><span class="token module variable">Router</span><span class="token operator">></span>
 <span class="token punctuation">}</span>
 </code></pre>
             <h2>属性</h2>
             <p>这是 Khoa Nguyen 关于使用 BuckleScript 对象“特殊创建函数”绑定 ReasonReact 属性的“<a href="https://khoanguyen.me/writing-reason-react-bindings-the-right-way/">正确方法</a>”。</p>
             <h2>使 ReasonReact 组件对 JS 更友好</h2>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> component <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> component <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>statelessComponent<span class="token punctuation">(</span><span class="token string">"App"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> make <span class="token operator">=</span> <span class="token punctuation">_</span>children <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token keyword">let</span> make <span class="token operator">=</span> _children <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>component<span class="token punctuation">,</span>
   render<span class="token punctuation">:</span> self <span class="token operator">=></span> <span class="token operator">&lt;</span>div <span class="token operator">/></span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> default <span class="token operator">=</span> ReasonReact<span class="token punctuation">.</span>wrapReasonForJs<span class="token punctuation">(</span><span class="token operator">~</span>component<span class="token punctuation">,</span> <span class="token punctuation">_</span>jsProps <span class="token operator">=></span> make<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">||</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> default <span class="token operator">=</span> <span class="token module variable">ReasonReact</span><span class="token punctuation">.</span>wrapReasonForJs<span class="token punctuation">(</span><span class="token label function">~component</span><span class="token punctuation">,</span> _jsProps <span class="token operator">=></span> make<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">||</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>使用为 JS 封装的组件创建“默认”变量，您可以通过它的 BuckleScript 输出文件名简单地导入它，而不用担心命名的导出。例如: 用 <code>import App from './App.bs'</code>; 代替 <code>import { AppWrapped } from './App.bs'</code>;</p>
             <h2>非代码导入</h2>
@@ -98,23 +98,23 @@
 </code></pre>
             <p>要与 BuckleScript 绑定的全局 JS 变量是 <code>bs.val</code>，而不是 <code>bs.module</code>。</p>
             <h2>函数重载</h2>
-            <pre><code class="language-ocaml"><span class="token keyword">module</span> Date <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <pre><code class="language-ocaml"><span class="token keyword">module</span> <span class="token module variable">Date</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
   <span class="token keyword">type</span> t<span class="token punctuation">;</span>
   <span class="token punctuation">[</span><span class="token operator">@</span>bs<span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">]</span> <span class="token keyword">external</span> fromValue<span class="token punctuation">:</span> float <span class="token operator">=></span> t <span class="token operator">=</span> <span class="token string">"Date"</span><span class="token punctuation">;</span>
   <span class="token punctuation">[</span><span class="token operator">@</span>bs<span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">]</span> <span class="token keyword">external</span> fromString<span class="token punctuation">:</span> string <span class="token operator">=></span> t <span class="token operator">=</span> <span class="token string">"Date"</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> date1 <span class="token operator">=</span> Date<span class="token punctuation">.</span>fromValue<span class="token punctuation">(</span><span class="token number">107849354.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> date2 <span class="token operator">=</span> Date<span class="token punctuation">.</span>fromString<span class="token punctuation">(</span><span class="token string">"1995-12-17T03:24:00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> date1 <span class="token operator">=</span> <span class="token module variable">Date</span><span class="token punctuation">.</span>fromValue<span class="token punctuation">(</span><span class="token number">107849354.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> date2 <span class="token operator">=</span> <span class="token module variable">Date</span><span class="token punctuation">.</span>fromString<span class="token punctuation">(</span><span class="token string">"1995-12-17T03:24:00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>如果你绑定的 JS 函数采用不同类型的参数，你可以使用不同类型的不同名称进行多次绑定，以表示你将传递给它的东西。</p>
-            <pre><code class="language-ocaml"><span class="token keyword">module</span> Date <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <pre><code class="language-ocaml"><span class="token keyword">module</span> <span class="token module variable">Date</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
   <span class="token keyword">type</span> t<span class="token punctuation">;</span>
-  <span class="token punctuation">[</span><span class="token operator">@</span>bs<span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">]</span> <span class="token keyword">external</span> make <span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">@</span>bs<span class="token punctuation">.</span>unwrap<span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token operator">|</span> <span class="token type variable">`Value</span><span class="token punctuation">(</span>float<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token type variable">`String</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=></span> t <span class="token operator">=</span> <span class="token string">"Date"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">[</span><span class="token operator">@</span>bs<span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">]</span> <span class="token keyword">external</span> make <span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">@</span>bs<span class="token punctuation">.</span>unwrap<span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token operator">|</span> <span class="token variant variable">`Value</span><span class="token punctuation">(</span>float<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token variant variable">`String</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=></span> t <span class="token operator">=</span> <span class="token string">"Date"</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">let</span> date1 <span class="token operator">=</span> Date<span class="token punctuation">.</span>make<span class="token punctuation">(</span><span class="token type variable">`Value</span><span class="token punctuation">(</span><span class="token number">107849354.</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> date2 <span class="token operator">=</span> Date<span class="token punctuation">.</span>make<span class="token punctuation">(</span><span class="token type variable">`String</span><span class="token punctuation">(</span><span class="token string">"1995-12-17T03:24:00"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> date1 <span class="token operator">=</span> <span class="token module variable">Date</span><span class="token punctuation">.</span>make<span class="token punctuation">(</span><span class="token variant variable">`Value</span><span class="token punctuation">(</span><span class="token number">107849354.</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> date2 <span class="token operator">=</span> <span class="token module variable">Date</span><span class="token punctuation">.</span>make<span class="token punctuation">(</span><span class="token variant variable">`String</span><span class="token punctuation">(</span><span class="token string">"1995-12-17T03:24:00"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
             <p>你也可以使用 <code>bs.unwrap</code> 来“重载”你的函数类型。</p>
 

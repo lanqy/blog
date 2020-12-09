@@ -41,40 +41,40 @@
             <h3>异常处理</h3>
             <p>它在您除以零或指定一个不存在的文件时发生。</p>
             <pre><code class="language-ocaml"># <span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Division<span class="token punctuation">_</span>by<span class="token punctuation">_</span>zero<span class="token punctuation">.</span>
-# open<span class="token punctuation">_</span>in <span class="token string">""</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Sys<span class="token punctuation">_</span>error <span class="token string">": No such file or directory"</span><span class="token punctuation">.</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Division_by_zero</span><span class="token punctuation">.</span>
+# open_in <span class="token string">""</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Sys_error</span> <span class="token string">": No such file or directory"</span><span class="token punctuation">.</span>
 </code></pre>
             <h4>抛出异常（ raise 表达式 ）</h4>
             <h5>raise 异常</h5>
             <h5>raise（ 异常参数 ）</h5>
             <p>如果异常需要参数，则（）是必需的。</p>
-            <pre><code class="language-ocaml"># raise Not<span class="token punctuation">_</span>found<span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Not<span class="token punctuation">_</span>found<span class="token punctuation">.</span>
-# raise <span class="token punctuation">(</span>Sys<span class="token punctuation">_</span>error <span class="token string">": No such file or directory"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Sys<span class="token punctuation">_</span>error <span class="token string">": No such file or directory"</span><span class="token punctuation">.</span>
-# raise <span class="token punctuation">(</span>Sys<span class="token punctuation">_</span>error <span class="token string">": 我会抛出异常！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Sys<span class="token punctuation">_</span>error <span class="token string">": ?\136\145?\154?\138\155?\135??\130常?\129"</span><span class="token punctuation">.</span>
+            <pre><code class="language-ocaml"># raise <span class="token module variable">Not_found</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Not_found</span><span class="token punctuation">.</span>
+# raise <span class="token punctuation">(</span><span class="token module variable">Sys_error</span> <span class="token string">": No such file or directory"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Sys_error</span> <span class="token string">": No such file or directory"</span><span class="token punctuation">.</span>
+# raise <span class="token punctuation">(</span><span class="token module variable">Sys_error</span> <span class="token string">": 我会抛出异常！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Sys_error</span> <span class="token string">": ?\136\145?\154?\138\155?\135??\130常?\129"</span><span class="token punctuation">.</span>
 </code></pre>
             <pre><code class="language-ocaml"># <span class="token keyword">let</span> <span class="token keyword">rec</span> fact n <span class="token operator">=</span>
-    <span class="token keyword">if</span> n <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token keyword">then</span> raise <span class="token punctuation">(</span>Invalid<span class="token punctuation">_</span>argument <span class="token string">": negative argument"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> n <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token keyword">then</span> raise <span class="token punctuation">(</span><span class="token module variable">Invalid_argument</span> <span class="token string">": negative argument"</span><span class="token punctuation">)</span>
     <span class="token keyword">else</span> <span class="token keyword">if</span> n <span class="token operator">=</span> <span class="token number">0</span> <span class="token keyword">then</span> <span class="token number">1</span> <span class="token keyword">else</span> n <span class="token operator">*</span> fact <span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token keyword">val</span> fact <span class="token punctuation">:</span> int <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 # fact <span class="token number">5</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">120</span>
 # fact <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Invalid<span class="token punctuation">_</span>argument <span class="token string">": negative argument"</span><span class="token punctuation">.</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Invalid_argument</span> <span class="token string">": negative argument"</span><span class="token punctuation">.</span>
 </code></pre>
             <h4>异常处理( try with )</h4>
             <h5>try 表达式 with 异常1 -&gt; 表达式1 | …</h5>
-            <pre><code class="language-ocaml"># <span class="token keyword">try</span> raise Not<span class="token punctuation">_</span>found <span class="token keyword">with</span>
-  <span class="token operator">|</span> Not<span class="token punctuation">_</span>found <span class="token operator">-></span> <span class="token string">"not found !"</span>
+            <pre><code class="language-ocaml"># <span class="token keyword">try</span> raise <span class="token module variable">Not_found</span> <span class="token keyword">with</span>
+  <span class="token operator">|</span> <span class="token module variable">Not_found</span> <span class="token operator">-></span> <span class="token string">"not found !"</span>
   <span class="token operator">|</span> <span class="token punctuation">_</span> <span class="token operator">-></span> <span class="token string">"unknown !"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"not found !"</span>
 
 <span class="token comment">(* 前面定义的 fact 函数例子 *)</span>
 # <span class="token keyword">try</span> fact <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">with</span>
-  <span class="token operator">|</span> Invalid<span class="token punctuation">_</span>argument <span class="token punctuation">_</span> <span class="token operator">-></span> <span class="token number">0</span>
+  <span class="token operator">|</span> <span class="token module variable">Invalid_argument</span> <span class="token punctuation">_</span> <span class="token operator">-></span> <span class="token number">0</span>
   <span class="token operator">|</span> <span class="token punctuation">_</span> <span class="token operator">-></span> <span class="token number">9999</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> int <span class="token operator">=</span> <span class="token number">0</span>
 </code></pre>
@@ -82,46 +82,46 @@ Exception<span class="token punctuation">:</span> Invalid<span class="token punc
             <p>异常类型的构造函数中称为异常构造函数。
               该变种是 exn 类型</p>
             <pre><code class="language-ocaml"><span class="token comment">(* 确认异常的变体类型 *)</span>
-# Not<span class="token punctuation">_</span>found<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token operator">-</span> <span class="token punctuation">:</span> exn <span class="token operator">=</span> Not<span class="token punctuation">_</span>found
+# <span class="token module variable">Not_found</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> exn <span class="token operator">=</span> <span class="token module variable">Not_found</span>
 # raise<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token operator">-</span> <span class="token punctuation">:</span> exn <span class="token operator">-></span> <span class="token type variable">'a</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+<span class="token operator">-</span> <span class="token punctuation">:</span> exn <span class="token operator">-></span> <span class="token type_variable function">'a</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 </code></pre>
             <p>异常定义是为exn类型添加一个新的构造函数。</p>
             <p>exn类型是特殊的，你可以稍后添加一个构造函数。</p>
             <h5>exception 异常名</h5>
             <pre><code class="language-ocaml"><span class="token comment">(* 异常定义 *)</span>
-# <span class="token keyword">exception</span> Hoge<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">exception</span> Hoge
-# <span class="token keyword">exception</span> Fuga <span class="token keyword">of</span> string<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">exception</span> Fuga <span class="token keyword">of</span> string
-# raise Hoge<span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Hoge<span class="token punctuation">.</span>
-# raise <span class="token punctuation">(</span>Fuga <span class="token string">"fuga!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Fuga <span class="token string">"fuga!"</span><span class="token punctuation">.</span>
+# <span class="token keyword">exception</span> <span class="token module variable">Hoge</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">exception</span> <span class="token module variable">Hoge</span>
+# <span class="token keyword">exception</span> <span class="token module variable">Fuga</span> <span class="token keyword">of</span> string<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">exception</span> <span class="token module variable">Fuga</span> <span class="token keyword">of</span> string
+# raise <span class="token module variable">Hoge</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Hoge</span><span class="token punctuation">.</span>
+# raise <span class="token punctuation">(</span><span class="token module variable">Fuga</span> <span class="token string">"fuga!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Fuga</span> <span class="token string">"fuga!"</span><span class="token punctuation">.</span>
 </code></pre>
             <h4>关于exn类型</h4>
             <p>既然exn也是一个变体类型，它也可以作为一个参数传递。</p>
-            <pre><code class="language-ocaml"># <span class="token keyword">exception</span> Hoge<span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">exception</span> Hoge
+            <pre><code class="language-ocaml"># <span class="token keyword">exception</span> <span class="token module variable">Hoge</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">exception</span> <span class="token module variable">Hoge</span>
 
 <span class="token comment">(* exn 类型列表 *)</span>
-# <span class="token keyword">let</span> exnlist <span class="token operator">=</span> <span class="token punctuation">[</span>Not<span class="token punctuation">_</span>found<span class="token punctuation">;</span> Hoge<span class="token punctuation">;</span> <span class="token punctuation">(</span>Invalid<span class="token punctuation">_</span>argument <span class="token string">"fuga"</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">val</span> exnlist <span class="token punctuation">:</span> exn list <span class="token operator">=</span> <span class="token punctuation">[</span>Not<span class="token punctuation">_</span>found<span class="token punctuation">;</span> Hoge<span class="token punctuation">;</span> Invalid<span class="token punctuation">_</span>argument <span class="token string">"fuga"</span><span class="token punctuation">]</span>
+# <span class="token keyword">let</span> exnlist <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token module variable">Not_found</span><span class="token punctuation">;</span> <span class="token module variable">Hoge</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token module variable">Invalid_argument</span> <span class="token string">"fuga"</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> exnlist <span class="token punctuation">:</span> exn list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token module variable">Not_found</span><span class="token punctuation">;</span> <span class="token module variable">Hoge</span><span class="token punctuation">;</span> <span class="token module variable">Invalid_argument</span> <span class="token string">"fuga"</span><span class="token punctuation">]</span>
 
 <span class="token comment">(* 接收exn类型的函数 *)</span>
 # <span class="token keyword">let</span> f <span class="token operator">=</span> <span class="token keyword">function</span>
-  <span class="token operator">|</span> Hoge <span class="token operator">-></span> <span class="token string">"hoge!"</span>
+  <span class="token operator">|</span> <span class="token module variable">Hoge</span> <span class="token operator">-></span> <span class="token string">"hoge!"</span>
   <span class="token operator">|</span> x <span class="token operator">-></span> raise x<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token keyword">val</span> f <span class="token punctuation">:</span> exn <span class="token operator">-></span> string <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
-# f Hoge<span class="token punctuation">;</span><span class="token punctuation">;</span>
+# f <span class="token module variable">Hoge</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"hoge!"</span>
-# f Not<span class="token punctuation">_</span>found<span class="token punctuation">;</span><span class="token punctuation">;</span>
-Exception<span class="token punctuation">:</span> Not<span class="token punctuation">_</span>found<span class="token punctuation">.</span>
+# f <span class="token module variable">Not_found</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Exception</span><span class="token punctuation">:</span> <span class="token module variable">Not_found</span><span class="token punctuation">.</span>
 </code></pre>
             <h3>unit 类型</h3>
             <p>输出字符串的程序。</p>
-            <pre><code class="language-ocaml"># print<span class="token punctuation">_</span>string <span class="token string">"hoge\n"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+            <pre><code class="language-ocaml"># print_string <span class="token string">"hoge\n"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 hoge
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
@@ -143,7 +143,7 @@ hoge
    <span class="token punctuation">(</span><span class="token punctuation">)</span> 将匹配模式，如果操作成功，将返回单位类型。
    也就是说，如果匹配成功，则表示操作成功。
 <span class="token operator">*</span>）
-# <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> Bytes<span class="token punctuation">.</span>set <span class="token string">"Test"</span> <span class="token number">1</span> <span class="token string">'C'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token module variable">Bytes</span><span class="token punctuation">.</span>set <span class="token string">"Test"</span> <span class="token number">1</span> <span class="token string">'C'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 </code></pre>
             <h3>可变的数据结构</h3>
             <h4>修改字符串</h4>
@@ -158,7 +158,7 @@ hoge
 <span class="token comment">(* String.set 弃用 *)</span>
 # <span class="token keyword">let</span> f2 <span class="token operator">=</span> <span class="token string">"hoge"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token keyword">val</span> f2 <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"hoge"</span>
-# Bytes<span class="token punctuation">.</span>set f2 <span class="token number">0</span> <span class="token string">'H'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">Bytes</span><span class="token punctuation">.</span>set f2 <span class="token number">0</span> <span class="token string">'H'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 # f2<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"Hoge"</span>
@@ -168,7 +168,7 @@ hoge
 <span class="token keyword">val</span> s <span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"hoge"</span>
 # <span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token punctuation">(</span>s<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token keyword">val</span> a <span class="token punctuation">:</span> string <span class="token operator">*</span> string <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"hoge"</span><span class="token punctuation">,</span> <span class="token string">"hoge"</span><span class="token punctuation">)</span>
-# Bytes<span class="token punctuation">.</span>set s <span class="token number">3</span> <span class="token string">'E'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token module variable">Bytes</span><span class="token punctuation">.</span>set s <span class="token number">3</span> <span class="token string">'E'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 
 <span class="token comment">(* 两者都被改变，因为参考目标是相同的 *)</span>
@@ -211,7 +211,7 @@ hoge
 <span class="token operator">-</span> <span class="token punctuation">:</span> account <span class="token operator">=</span> <span class="token punctuation">{</span>name <span class="token operator">=</span> <span class="token string">"bob"</span><span class="token punctuation">;</span> amount <span class="token operator">=</span> <span class="token number">999</span><span class="token punctuation">}</span>
 <span class="token comment">(* 不可改变 *)</span>
 # <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> ac<span class="token punctuation">.</span>name <span class="token operator">&lt;-</span> <span class="token string">"Hoge"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Error<span class="token punctuation">:</span> The record field name is not <span class="token keyword">mutable</span>
+<span class="token module variable">Error</span><span class="token punctuation">:</span> <span class="token module variable">The</span> record field name is not <span class="token keyword">mutable</span>
 <span class="token comment">(* 这样是可以的 *)</span>
 # ac<span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;-</span> <span class="token string">'B'</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -230,14 +230,14 @@ Error<span class="token punctuation">:</span> The record field name is not <span
 <span class="token keyword">val</span> f <span class="token punctuation">:</span> string ref <span class="token operator">=</span> <span class="token punctuation">{</span>contents <span class="token operator">=</span> <span class="token string">"Fuga"</span><span class="token punctuation">}</span>
 
 <span class="token comment">(* 引用获取 *)</span>
-# <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print<span class="token punctuation">_</span>string <span class="token punctuation">(</span><span class="token operator">!</span>h <span class="token operator">^</span> <span class="token operator">!</span>f <span class="token operator">^</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-HogeFuga
+# <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print_string <span class="token punctuation">(</span><span class="token operator">!</span>h <span class="token operator">^</span> <span class="token operator">!</span>f <span class="token operator">^</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">HogeFuga</span>
 
 <span class="token comment">(* 引用重写 *)</span>
 # h <span class="token operator">:=</span> <span class="token operator">!</span>f<span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
-# <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print<span class="token punctuation">_</span>string <span class="token punctuation">(</span><span class="token operator">!</span>h <span class="token operator">^</span> <span class="token operator">!</span>f <span class="token operator">^</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-FugaFuga
+# <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print_string <span class="token punctuation">(</span><span class="token operator">!</span>h <span class="token operator">^</span> <span class="token operator">!</span>f <span class="token operator">^</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">FugaFuga</span>
 </code></pre>
             <h4>引用的引用 ( ref ref )</h4>
             <p>它也可以像C语言中的双指针一样</p>
@@ -283,18 +283,18 @@ FugaFuga
             <p>如果相当于一个句子的表达式返回非 unit 类型，则会出现警告</p>
             <p>忽略警告的函数</p>
             <pre><code class="language-ocaml"><span class="token comment">(* 将返回值设置为0（int） *)</span>
-# <span class="token keyword">let</span> print<span class="token punctuation">_</span>hello <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print<span class="token punctuation">_</span>string <span class="token string">"Hello, "</span><span class="token punctuation">;</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">val</span> print<span class="token punctuation">_</span>hello <span class="token punctuation">:</span> unit <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
+# <span class="token keyword">let</span> print_hello <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> print_string <span class="token string">"Hello, "</span><span class="token punctuation">;</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">val</span> print_hello <span class="token punctuation">:</span> unit <span class="token operator">-></span> int <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">fun</span><span class="token operator">></span>
 
 <span class="token comment">(* 警告出现在 print_hello *)</span>
-# print<span class="token punctuation">_</span>hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> print<span class="token punctuation">_</span>string <span class="token string">"World\n"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Warning <span class="token number">10</span><span class="token punctuation">:</span> this expression should have <span class="token keyword">type</span> unit<span class="token punctuation">.</span>
-Hello<span class="token punctuation">,</span> World
+# print_hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> print_string <span class="token string">"World\n"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Warning</span> <span class="token number">10</span><span class="token punctuation">:</span> this expression should have <span class="token keyword">type</span> unit<span class="token punctuation">.</span>
+<span class="token module variable">Hello</span><span class="token punctuation">,</span> <span class="token module variable">World</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 
 <span class="token comment">(* 忽略不发出警告 *)</span>
-# ignore <span class="token punctuation">(</span>print<span class="token punctuation">_</span>hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> print<span class="token punctuation">_</span>string <span class="token string">"World\n"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Hello<span class="token punctuation">,</span> World
+# ignore <span class="token punctuation">(</span>print_hello <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> print_string <span class="token string">"World\n"</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token module variable">Hello</span><span class="token punctuation">,</span> <span class="token module variable">World</span>
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
             <p>;是一个分隔符</p>
@@ -311,23 +311,23 @@ Hello<span class="token punctuation">,</span> World
             <p>或</p>
             <p>for variable = start_value downto end_value do 表达式 done</p>
             <pre><code class="language-ocaml"><span class="token comment">(* for 循环 *)</span>
-# <span class="token keyword">for</span> i <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">to</span> <span class="token number">10</span> <span class="token keyword">do</span> <span class="token keyword">begin</span> print<span class="token punctuation">_</span>int i<span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span> <span class="token keyword">done</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token keyword">for</span> i <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">to</span> <span class="token number">10</span> <span class="token keyword">do</span> <span class="token keyword">begin</span> print_int i<span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span> <span class="token keyword">done</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token number">12345678910</span><span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
-# <span class="token keyword">for</span> i <span class="token operator">=</span> <span class="token number">10</span> <span class="token keyword">downto</span> <span class="token number">1</span> <span class="token keyword">do</span> <span class="token keyword">begin</span> print<span class="token punctuation">_</span>int i<span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span> <span class="token keyword">done</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+# <span class="token keyword">for</span> i <span class="token operator">=</span> <span class="token number">10</span> <span class="token keyword">downto</span> <span class="token number">1</span> <span class="token keyword">do</span> <span class="token keyword">begin</span> print_int i<span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span> <span class="token keyword">done</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 <span class="token number">10987654321</span><span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
             <h5>while</h5>
             <p>while 条件 do 表达式 done</p>
             <p>while据说它用得不多。</p>
-            <pre><code class="language-ocaml"><span class="token keyword">let</span> quit<span class="token punctuation">_</span>loop <span class="token operator">=</span> ref <span class="token boolean">false</span> <span class="token keyword">in</span>
-  <span class="token keyword">while</span> not <span class="token operator">!</span>quit<span class="token punctuation">_</span>loop <span class="token keyword">do</span>
-  print<span class="token punctuation">_</span>string <span class="token string">"Have you had enough yet? (y/n) "</span><span class="token punctuation">;</span>
-  <span class="token keyword">let</span> str <span class="token operator">=</span> read<span class="token punctuation">_</span>line <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">in</span>
+            <pre><code class="language-ocaml"><span class="token keyword">let</span> quit_loop <span class="token operator">=</span> ref <span class="token boolean">false</span> <span class="token keyword">in</span>
+  <span class="token keyword">while</span> not <span class="token operator">!</span>quit_loop <span class="token keyword">do</span>
+  print_string <span class="token string">"Have you had enough yet? (y/n) "</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> str <span class="token operator">=</span> read_line <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">in</span>
   <span class="token keyword">if</span> str<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'y'</span> <span class="token keyword">then</span>
-      quit<span class="token punctuation">_</span>loop <span class="token operator">:=</span> <span class="token boolean">true</span>
+      quit_loop <span class="token operator">:=</span> <span class="token boolean">true</span>
   <span class="token keyword">done</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-Have you had enough yet<span class="token operator">?</span> <span class="token punctuation">(</span>y<span class="token operator">/</span>n<span class="token punctuation">)</span> n
-Have you had enough yet<span class="token operator">?</span> <span class="token punctuation">(</span>y<span class="token operator">/</span>n<span class="token punctuation">)</span> y
+<span class="token module variable">Have</span> you had enough yet<span class="token operator">?</span> <span class="token punctuation">(</span>y<span class="token operator">/</span>n<span class="token punctuation">)</span> n
+<span class="token module variable">Have</span> you had enough yet<span class="token operator">?</span> <span class="token punctuation">(</span>y<span class="token operator">/</span>n<span class="token punctuation">)</span> y
 <span class="token operator">-</span> <span class="token punctuation">:</span> unit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
 

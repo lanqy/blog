@@ -42,16 +42,16 @@
             <h4>进入目录（cd projectName）</h4>
             <h4>新建package.json 内容如下：</h4>
             <pre><code class="language-js"><span class="token punctuation">{</span>
-  <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"my-project-name"</span><span class="token punctuation">,</span>
-  <span class="token string">"version"</span><span class="token punctuation">:</span> <span class="token string">"0.1.0"</span><span class="token punctuation">,</span>
-  <span class="token string">"devDependencies"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    <span class="token string">"grunt"</span><span class="token punctuation">:</span> <span class="token string">"^0.4.5"</span><span class="token punctuation">,</span>
-    <span class="token string">"grunt-contrib-concat"</span><span class="token punctuation">:</span> <span class="token string">"^1.0.0"</span><span class="token punctuation">,</span>
-    <span class="token string">"grunt-contrib-cssmin"</span><span class="token punctuation">:</span> <span class="token string">"^0.12.3"</span><span class="token punctuation">,</span>
-    <span class="token string">"grunt-contrib-imagemin"</span><span class="token punctuation">:</span> <span class="token string">"^1.0.0"</span><span class="token punctuation">,</span>
-    <span class="token string">"grunt-contrib-jshint"</span><span class="token punctuation">:</span> <span class="token string">"^0.12.0"</span><span class="token punctuation">,</span>
-    <span class="token string">"grunt-contrib-nodeunit"</span><span class="token punctuation">:</span> <span class="token string">"~0.4.1"</span><span class="token punctuation">,</span>
-    <span class="token string">"grunt-contrib-uglify"</span><span class="token punctuation">:</span> <span class="token string">"^0.5.1"</span>
+  <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"my-project-name"</span><span class="token punctuation">,</span>
+  <span class="token string">"version"</span><span class="token operator">:</span> <span class="token string">"0.1.0"</span><span class="token punctuation">,</span>
+  <span class="token string">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"grunt"</span><span class="token operator">:</span> <span class="token string">"^0.4.5"</span><span class="token punctuation">,</span>
+    <span class="token string">"grunt-contrib-concat"</span><span class="token operator">:</span> <span class="token string">"^1.0.0"</span><span class="token punctuation">,</span>
+    <span class="token string">"grunt-contrib-cssmin"</span><span class="token operator">:</span> <span class="token string">"^0.12.3"</span><span class="token punctuation">,</span>
+    <span class="token string">"grunt-contrib-imagemin"</span><span class="token operator">:</span> <span class="token string">"^1.0.0"</span><span class="token punctuation">,</span>
+    <span class="token string">"grunt-contrib-jshint"</span><span class="token operator">:</span> <span class="token string">"^0.12.0"</span><span class="token punctuation">,</span>
+    <span class="token string">"grunt-contrib-nodeunit"</span><span class="token operator">:</span> <span class="token string">"~0.4.1"</span><span class="token punctuation">,</span>
+    <span class="token string">"grunt-contrib-uglify"</span><span class="token operator">:</span> <span class="token string">"^0.5.1"</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -63,35 +63,35 @@
     grunt<span class="token punctuation">.</span><span class="token function">initConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
 
         <span class="token comment">//our JSHint options</span>
-        jshint<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            all<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'main.js'</span><span class="token punctuation">]</span> <span class="token comment">//files to lint</span>
+        jshint<span class="token operator">:</span> <span class="token punctuation">{</span>
+            all<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'main.js'</span><span class="token punctuation">]</span> <span class="token comment">//files to lint</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
         <span class="token comment">//our concat options</span>
-        concat<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            options<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-                separator<span class="token punctuation">:</span> <span class="token string">';'</span> <span class="token comment">//separates scripts</span>
+        concat<span class="token operator">:</span> <span class="token punctuation">{</span>
+            options<span class="token operator">:</span> <span class="token punctuation">{</span>
+                separator<span class="token operator">:</span> <span class="token string">';'</span> <span class="token comment">//separates scripts</span>
             <span class="token punctuation">}</span><span class="token punctuation">,</span>
-            dist<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-                src<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'html5/javascripts/jquery.min.js'</span><span class="token punctuation">,</span> <span class="token string">'html5/javascripts/dialog.js'</span><span class="token punctuation">,</span> <span class="token string">'html5/javascripts/utils.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/limit.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/pageScrollAjax.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/app.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/tabs.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/swiper.min.js'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">//需要合并的文件，注意顺序</span>
-                dest<span class="token punctuation">:</span> <span class="token string">'html5/javascripts/build.js'</span> <span class="token comment">//合并后生成的文件</span>
+            dist<span class="token operator">:</span> <span class="token punctuation">{</span>
+                src<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'html5/javascripts/jquery.min.js'</span><span class="token punctuation">,</span> <span class="token string">'html5/javascripts/dialog.js'</span><span class="token punctuation">,</span> <span class="token string">'html5/javascripts/utils.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/limit.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/pageScrollAjax.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/app.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/tabs.js'</span><span class="token punctuation">,</span><span class="token string">'html5/javascripts/swiper.min.js'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">//需要合并的文件，注意顺序</span>
+                dest<span class="token operator">:</span> <span class="token string">'html5/javascripts/build.js'</span> <span class="token comment">//合并后生成的文件</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
         <span class="token comment">//压缩js</span>
-        uglify<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            js<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-                files<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-                    <span class="token string">'html5/javascripts/build.min.js'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'html5/javascripts/build.js'</span><span class="token punctuation">]</span> <span class="token comment">//合并后压缩</span>
+        uglify<span class="token operator">:</span> <span class="token punctuation">{</span>
+            js<span class="token operator">:</span> <span class="token punctuation">{</span>
+                files<span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token string">'html5/javascripts/build.min.js'</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'html5/javascripts/build.js'</span><span class="token punctuation">]</span> <span class="token comment">//合并后压缩</span>
                 <span class="token punctuation">}</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        cssmin<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-         options<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-             keepSpecialComments<span class="token punctuation">:</span> <span class="token number">0</span>
+        cssmin<span class="token operator">:</span> <span class="token punctuation">{</span>
+         options<span class="token operator">:</span> <span class="token punctuation">{</span>
+             keepSpecialComments<span class="token operator">:</span> <span class="token number">0</span>
          <span class="token punctuation">}</span><span class="token punctuation">,</span>
-         compress<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-             files<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token comment">// css压缩app.min.css为压缩后生成的文件,后面的数组为需要合并压缩的文件（同样注意顺序）</span>
-                 <span class="token string">'html5/stylesheets/app.min.css'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+         compress<span class="token operator">:</span> <span class="token punctuation">{</span>
+             files<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token comment">// css压缩app.min.css为压缩后生成的文件,后面的数组为需要合并压缩的文件（同样注意顺序）</span>
+                 <span class="token string">'html5/stylesheets/app.min.css'</span><span class="token operator">:</span> <span class="token punctuation">[</span>
                      <span class="token string">"html5/stylesheets/common.css"</span><span class="token punctuation">,</span>
                      <span class="token string">"html5/stylesheets/swiper.min.css"</span><span class="token punctuation">,</span>
                      <span class="token string">"html5/stylesheets/dialog.css"</span><span class="token punctuation">,</span>
@@ -103,31 +103,31 @@
          <span class="token punctuation">}</span>
      <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
-     imagemin<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+     imagemin<span class="token operator">:</span> <span class="token punctuation">{</span>
             <span class="token comment">/* 压缩图片大小 */</span>
-            dist<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-                options<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-                    optimizationLevel<span class="token punctuation">:</span> <span class="token number">3</span> <span class="token comment">//定义 PNG 图片优化水平</span>
+            dist<span class="token operator">:</span> <span class="token punctuation">{</span>
+                options<span class="token operator">:</span> <span class="token punctuation">{</span>
+                    optimizationLevel<span class="token operator">:</span> <span class="token number">3</span> <span class="token comment">//定义 PNG 图片优化水平</span>
                 <span class="token punctuation">}</span><span class="token punctuation">,</span>
-                files<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
-                    expand<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-                    cwd<span class="token punctuation">:</span> <span class="token string">'images/html5'</span><span class="token punctuation">,</span>
-                    src<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'**/*.{png,jpg,jpeg}'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 优化 img 目录下所有 png/jpg/jpeg 图片</span>
-                    dest<span class="token punctuation">:</span> <span class="token string">'images/html5'</span> <span class="token operator">/</span><span class="token operator">/</span> 优化后的图片保存位置，覆盖旧图片，并且不作提示（建议新建一个目录）
+                files<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+                    expand<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                    cwd<span class="token operator">:</span> <span class="token string">'images/html5'</span><span class="token punctuation">,</span>
+                    src<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'**/*.{png,jpg,jpeg}'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 优化 img 目录下所有 png/jpg/jpeg 图片</span>
+                    dest<span class="token operator">:</span> <span class="token string">'images/html5'</span> <span class="token comment">// 优化后的图片保存位置，覆盖旧图片，并且不作提示（建议新建一个目录）</span>
                 <span class="token punctuation">}</span><span class="token punctuation">]</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
 
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">/</span><span class="token operator">/</span>加载任务
+    <span class="token comment">//加载任务</span>
     grunt<span class="token punctuation">.</span><span class="token function">loadNpmTasks</span><span class="token punctuation">(</span><span class="token string">'grunt-contrib-jshint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     grunt<span class="token punctuation">.</span><span class="token function">loadNpmTasks</span><span class="token punctuation">(</span><span class="token string">'grunt-contrib-concat'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     grunt<span class="token punctuation">.</span><span class="token function">loadNpmTasks</span><span class="token punctuation">(</span><span class="token string">'grunt-contrib-uglify'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     grunt<span class="token punctuation">.</span><span class="token function">loadNpmTasks</span><span class="token punctuation">(</span><span class="token string">'grunt-contrib-cssmin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     grunt<span class="token punctuation">.</span><span class="token function">loadNpmTasks</span><span class="token punctuation">(</span><span class="token string">'grunt-contrib-imagemin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token operator">/</span><span class="token operator">/</span> <span class="token keyword">default</span> tasks to run
-    <span class="token operator">/</span><span class="token operator">/</span> grunt<span class="token punctuation">.</span><span class="token function">registerTask</span><span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'jshint'</span><span class="token punctuation">,</span> <span class="token string">'concat'</span><span class="token punctuation">,</span> <span class="token string">'uglify'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// default tasks to run</span>
+    <span class="token comment">// grunt.registerTask('default', ['jshint', 'concat', 'uglify']);</span>
     grunt<span class="token punctuation">.</span><span class="token function">registerTask</span><span class="token punctuation">(</span><span class="token string">'development'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'jshint'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     grunt<span class="token punctuation">.</span><span class="token function">registerTask</span><span class="token punctuation">(</span><span class="token string">'production'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'jshint'</span><span class="token punctuation">,</span> <span class="token string">'concat'</span><span class="token punctuation">,</span> <span class="token string">'uglify'</span><span class="token punctuation">,</span><span class="token string">'imagemin'</span><span class="token punctuation">,</span><span class="token string">'cssmin'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
