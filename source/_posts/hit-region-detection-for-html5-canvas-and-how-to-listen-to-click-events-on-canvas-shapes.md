@@ -1,6 +1,6 @@
 ---
-title: git 常用命令
-description: git 常用命令
+title: HTML5 Canvas的命中区域检测以及如何侦听Canvas形状上的Click事件
+description: HTML5 Canvas的命中区域检测以及如何侦听Canvas形状上的Click事件
 created: 2020/12/09
 author: lanqy
 ---
